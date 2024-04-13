@@ -37,16 +37,18 @@ public class FRMenu extends javax.swing.JFrame {
         MICadUsuario = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         MISair = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         MIConUsuario = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         MISobre = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
 
-        jPanel1.setBackground(new java.awt.Color(228, 113, 37));
+        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
@@ -81,11 +83,11 @@ public class FRMenu extends javax.swing.JFrame {
         });
         jMenu1.add(MICadUsuario);
 
-        jMenuItem2.setText("???");
+        jMenuItem2.setText("Fornecedor");
         jMenu1.add(jMenuItem2);
 
         MISair.setMnemonic('S');
-        MISair.setText("Sair");
+        MISair.setText("Produto");
         MISair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MISairActionPerformed(evt);
@@ -94,6 +96,10 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu1.add(MISair);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu4.setText("Compras");
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuBar1.add(jMenu4);
 
         jMenu2.setMnemonic('o');
         jMenu2.setText("Consulta");
@@ -127,6 +133,9 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu3.add(MISobre);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu5.setText("jMenu5");
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -204,6 +213,8 @@ public class FRMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem5;

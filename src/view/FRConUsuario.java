@@ -51,7 +51,7 @@ public class FRConUsuario extends javax.swing.JDialog {
         setTitle("Consulta de Usuário");
         setMinimumSize(new java.awt.Dimension(490, 490));
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 490));
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 490));
 
@@ -68,7 +68,7 @@ public class FRConUsuario extends javax.swing.JDialog {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Email", "Data Nasc.", "Ativo"
+                "Código", "Nome", "Email", "Data admissão", "Ativo"
             }
         ) {
             Class[] types = new Class [] {
