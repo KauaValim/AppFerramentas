@@ -36,14 +36,17 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         MICadUsuario = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        MISair = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        MIProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MIConUsuario = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        MIConProdutos = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        MIOrdemCompras = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        MIOrdemVendas = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         MISobre = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        MISair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
@@ -58,16 +61,16 @@ public class FRMenu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, Short.MAX_VALUE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         jMenu1.setMnemonic('C');
@@ -86,27 +89,23 @@ public class FRMenu extends javax.swing.JFrame {
         jMenuItem2.setText("Fornecedor");
         jMenu1.add(jMenuItem2);
 
-        MISair.setMnemonic('S');
-        MISair.setText("Produto");
-        MISair.addActionListener(new java.awt.event.ActionListener() {
+        MIProduto.setMnemonic('S');
+        MIProduto.setText("Produto");
+        MIProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MISairActionPerformed(evt);
+                MIProdutoActionPerformed(evt);
             }
         });
-        jMenu1.add(MISair);
+        jMenu1.add(MIProduto);
 
         jMenuBar1.add(jMenu1);
-
-        jMenu4.setText("Compras");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jMenuBar1.add(jMenu4);
 
         jMenu2.setMnemonic('o');
         jMenu2.setText("Consulta");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         MIConUsuario.setMnemonic('U');
-        MIConUsuario.setText("Usuario");
+        MIConUsuario.setText("Usuário");
         MIConUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MIConUsuarioActionPerformed(evt);
@@ -114,10 +113,26 @@ public class FRMenu extends javax.swing.JFrame {
         });
         jMenu2.add(MIConUsuario);
 
-        jMenuItem5.setText("???");
-        jMenu2.add(jMenuItem5);
+        MIConProdutos.setText("Produtos");
+        jMenu2.add(MIConProdutos);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setText("Compras");
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        MIOrdemCompras.setText("Ordem Compras");
+        jMenu4.add(MIOrdemCompras);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Vendas");
+        jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        MIOrdemVendas.setText("Ordem Vendas");
+        jMenu5.add(MIOrdemVendas);
+
+        jMenuBar1.add(jMenu5);
 
         jMenu3.setMnemonic('A');
         jMenu3.setText("Ajuda");
@@ -134,8 +149,9 @@ public class FRMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu5.setText("jMenu5");
-        jMenuBar1.add(jMenu5);
+        MISair.setText("Sair");
+        MISair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuBar1.add(MISair);
 
         setJMenuBar(jMenuBar1);
 
@@ -143,7 +159,7 @@ public class FRMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +169,9 @@ public class FRMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MISairActionPerformed
+    private void MIProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIProdutoActionPerformed
         this.dispose();
-    }//GEN-LAST:event_MISairActionPerformed
+    }//GEN-LAST:event_MIProdutoActionPerformed
 
     private void MICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadUsuarioActionPerformed
         new FRCadUsuario(this, rootPaneCheckingEnabled).setVisible(true);
@@ -206,8 +222,12 @@ public class FRMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MICadUsuario;
+    private javax.swing.JMenuItem MIConProdutos;
     private javax.swing.JMenuItem MIConUsuario;
-    private javax.swing.JMenuItem MISair;
+    private javax.swing.JMenuItem MIOrdemCompras;
+    private javax.swing.JMenuItem MIOrdemVendas;
+    private javax.swing.JMenuItem MIProduto;
+    private javax.swing.JMenu MISair;
     private javax.swing.JMenuItem MISobre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
@@ -217,7 +237,6 @@ public class FRMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
