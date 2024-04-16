@@ -95,4 +95,7 @@ public class UsuarioController {
        return usuarioDAO.readForForn(tipo, desc);
     }
     
+    public List<Produto> readForProd(int tipo, String desc) {
+       return usuarioDAO.readForProd(tipo, desc);
+    }    
 }

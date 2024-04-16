@@ -25,6 +25,7 @@ public class FRCadFornecedor extends javax.swing.JDialog {
     public FRCadFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

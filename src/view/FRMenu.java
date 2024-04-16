@@ -4,9 +4,7 @@
  */
 package view;
 
-import controller.UsuarioController;
 import javax.swing.JOptionPane;
-import javax.swing.ViewportLayout;
 
 /**
  *
@@ -116,6 +114,11 @@ public class FRMenu extends javax.swing.JFrame {
 
         MIConProdutos.setMnemonic('P');
         MIConProdutos.setText("Produtos");
+        MIConProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIConProdutosActionPerformed(evt);
+            }
+        });
         jMenu2.add(MIConProdutos);
 
         jMenuBar1.add(jMenu2);
@@ -229,6 +232,10 @@ public class FRMenu extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new FRConFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void MIConProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIConProdutosActionPerformed
+        new FRConProduto(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_MIConProdutosActionPerformed
 
     /**
      * @param args the command line arguments

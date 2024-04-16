@@ -1,0 +1,72 @@
+CREATE DATABASE dbappferramentas;
+USE dbappferramentas;
+
+CREATE TABLE tbvendedores (
+	pkidvendedor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(60) NOT NULL,
+    email VARCHAR(40) NOT NULL UNIQUE,
+    senha VARCHAR(32) NOT NULL,
+    dataadmissao DATE NOT NULL,
+    ativo BOOLEAN NOT NULL);
+
+CREATE TABLE tbfornecedores (
+	pkidfornecedor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(60) NOT NULL,
+    email VARCHAR(40) NOT NULL UNIQUE,
+    CNPJ VARCHAR(18) NOT NULL UNIQUE,
+    datacadastro DATE NOT NULL,
+    endereco VARCHAR(80) NOT NULL,
+    cidade VARCHAR(60) NOT NULL,
+    CEP VARCHAR(9)NOT NULL,
+    ativo BOOLEAN NOT NULL);
+
+CREATE TABLE tbprodutos (
+	pkidproduto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(60) NOT NULL,
+    categoria VARCHAR(60) NOT NULL,
+    NCM VARCHAR(10) NOT NULL,
+    datacadastro DATE NOT NULL,
+    ativo BOOLEAN NOT NULL,
+    img BLOB);
+
+CREATE TABLE tbestoque (
+	pkidestoque INT AUTO_INCREMENT PRIMARY KEY,
+    tipomovimentacao VARCHAR(80) NOT NULL);
+
+CREATE TABLE tbvendas (
+	pkidvenda INT AUTO_INCREMENT PRIMARY KEY,
+    dataemissao DATE NOT NULL,
+    vlrtotal DOUBLE NOT NULL,
+    qntitens INT NOT NULL,
+    fkidvendedor INT NOT NULL,
+    FOREIGN KEY (fkidvendedor) REFERENCES tbvendedores(pkidvendedor) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE tbitensvendas (
+	pkiditemvendas INT AUTO_INCREMENT PRIMARY KEY,
+    fkidvenda INT NOT NULL,
+    FOREIGN KEY (fkidvenda) REFERENCES tbvendas(pkidvenda) ON DELETE CASCADE ON UPDATE CASCADE,
+    fkidproduto INT NOT NULL,
+    FOREIGN KEY (fkidproduto) REFERENCES tbprodutos(pkidproduto) ON DELETE CASCADE ON UPDATE CASCADE,
+    fkidestoque INT NOT NULL,
+    FOREIGN KEY (fkidestoque) REFERENCES tbestoque(pkidestoque) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE tbcompras (
+	pkidcompra INT AUTO_INCREMENT PRIMARY KEY,
+    dataemissao DATE NOT NULL,
+    condpagamento VARCHAR(50) NOT NULL,
+    vlrtotal DOUBLE NOT NULL,
+	qntitens INT NOT NULL,
+    fkidfornecedor INT NOT NULL,
+    FOREIGN KEY (fkidfornecedor) REFERENCES tbfornecedores(pkidfornecedor) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE tbitenscompras (
+	pkiditemcompras INT AUTO_INCREMENT PRIMARY KEY,
+    fkidcompra INT NOT NULL,
+    FOREIGN KEY (fkidcompra) REFERENCES tbcompras(pkidcompra) ON DELETE CASCADE ON UPDATE CASCADE,
+    fkidproduto INT NOT NULL,
+    FOREIGN KEY (fkidproduto) REFERENCES tbprodutos(pkidproduto) ON DELETE CASCADE ON UPDATE CASCADE,
+    fkidestoque INT NOT NULL,
+    FOREIGN KEY (fkidestoque) REFERENCES tbestoque(pkidestoque) ON DELETE CASCADE ON UPDATE CASCADE);
+
+INSERT INTO tbvendedores (nome, email, senha, dataadmissao, ativo)
+VALUES ("adm", "adm@adm.com", md5("123"), "2022-08-15", true);

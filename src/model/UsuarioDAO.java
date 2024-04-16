@@ -129,14 +129,18 @@ public class UsuarioDAO {
         PreparedStatement stmt = null;
 
         try {
-            byte[] iconBytes = Utils.iconToBytes(p.getImagem());
             stmt = con.prepareStatement(sql);
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getCategoria());
             stmt.setString(3, p.getNCM());
             stmt.setDate(4, new java.sql.Date(p.getDataCadastro().getTime()));
             stmt.setBoolean(5, p.isAtivo());
-            stmt.setBytes(6, iconBytes);
+            if (p.getImagem() != null) {
+                byte[] iconBytes = Utils.iconToBytes(p.getImagem());
+                stmt.setBytes(6, iconBytes);
+            } else {
+                stmt.setBytes(6, null);
+            }
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuario: " + p.getNome() + " inserido com sucesso!");
             return true;
@@ -265,10 +269,8 @@ public class UsuarioDAO {
         if (!desc.equals("")) {
             if (tipo == 0 || tipo == 1) {
                 sql = sql + " WHERE nome LIKE ?";
-            } else if (tipo == 2 || tipo == 3){
-                sql = sql + " WHERE email LIKE ?";
             } else {
-                sql = sql + " WHERE cnpj LIKE ?";
+                sql = sql + " WHERE email LIKE ?";
             }
         }
         GerenciadorConexao gerenciador = new GerenciadorConexao();
@@ -280,9 +282,9 @@ public class UsuarioDAO {
         try {
             stmt = con.prepareStatement(sql);
             if (!desc.equals("")) {
-                if (tipo == 0 || tipo == 2 || tipo == 4) {
+                if (tipo == 0 || tipo == 2) {
                     stmt.setString(1, desc + "%");
-                } else if (tipo == 1 || tipo == 3 || tipo == 5){
+                } else {
                     stmt.setString(1, "%" + desc + "%");
                 }
             }
@@ -311,6 +313,54 @@ public class UsuarioDAO {
         }
 
         return fornecedores;
+    }
+    
+    public List<Produto> readForProd(int tipo, String desc) {
+        String sql = "SELECT * FROM tbprodutos";
+        if (!desc.equals("")) {
+            if (tipo == 0 || tipo == 1) {
+                sql = sql + " WHERE nome LIKE ?";
+            } else {
+                sql = sql + " WHERE categoria LIKE ?";
+            }
+        }
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Produto> produtos = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement(sql);
+            if (!desc.equals("")) {
+                if (tipo == 0 || tipo == 2) {
+                    stmt.setString(1, desc + "%");
+                } else {
+                    stmt.setString(1, "%" + desc + "%");
+                }
+            }
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Produto produto = new Produto();
+
+                produto.setPkIdProduto(rs.getLong("pkidproduto"));
+                produto.setNome(rs.getString("nome"));
+                produto.setCategoria(rs.getString("categoria"));
+                produto.setNCM(rs.getString("NCM"));
+                produto.setDataCadastro(rs.getDate("datacadastro"));
+                produto.setAtivo(rs.getBoolean("ativo"));
+                produtos.add(produto);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            gerenciador.closeConnection(stmt, rs);
+        }
+
+        return produtos;
     }
     
 }

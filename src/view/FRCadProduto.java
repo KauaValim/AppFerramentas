@@ -30,6 +30,7 @@ public class FRCadProduto extends javax.swing.JDialog {
     public FRCadProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
