@@ -4,6 +4,20 @@
  */
 package view;
 
+import controller.UsuarioController;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import model.Produto;
+import utils.Utils;
+
 /**
  *
  * @author admin
@@ -16,6 +30,7 @@ public class FRCadProduto extends javax.swing.JDialog {
     public FRCadProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -44,6 +59,12 @@ public class FRCadProduto extends javax.swing.JDialog {
         btnAddFoto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Produtos");
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 450));
@@ -117,6 +138,12 @@ public class FRCadProduto extends javax.swing.JDialog {
         lblFoto.setText("Imagem");
 
         btnAddFoto.setText("Adicionar Imagem");
+        btnAddFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddFotoMouseClicked(evt);
+            }
+        });
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -214,24 +241,23 @@ public class FRCadProduto extends javax.swing.JDialog {
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         // Verificar campos
         if (verificaCampos() == false) {
+            JOptionPane.showMessageDialog(null,"Algum erro de texto");
             return;
         }
 
         // Salvar no banco de dados
-        Usuario usu = new Usuario();
-        usu.setNome(txtNomeProd.getText());
-        usu.setEmail(txtDataCadProd.getText());
-
-        String senha = new String(txtCodProduto.getPassword());
-        senha = Utils.calcularMD5(senha);
-        usu.setSenha(senha);
-        usu.setAtivo(ckbAtivo.isSelected());
-
-        Date data = Utils.converterStringToDate(txtDataNasc.getText());
-        usu.setDataNasc(data);
+        Produto prod = new Produto();
+        prod.setImagem(lblFoto.getIcon());
+        prod.setNome(txtNomeProd.getText());
+        prod.setCategoria(txtCatProd.getText());
+        prod.setNCM(txtNCMProd.getText());
+        
+        Date data = Utils.converterStringToDate(txtDataCadProd.getText());
+        prod.setDataCadastro(data);
+        prod.setAtivo(ckbAtivo.isSelected());
 
         UsuarioController controller = new UsuarioController();
-        if(controller.adicionarUsuario(usu)) {
+        if(controller.adicionarProduto(prod)) {
             this.dispose();
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
@@ -254,10 +280,75 @@ public class FRCadProduto extends javax.swing.JDialog {
 
     private void txtDataCadProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataCadProdKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtCodProduto.requestFocus();
+            ckbAtivo.requestFocus();
         }
     }//GEN-LAST:event_txtDataCadProdKeyPressed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        txtDataCadProd.setText(dtf.format(now));
+    }//GEN-LAST:event_formComponentShown
+
+    private void btnAddFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddFotoMouseClicked
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolha um arquivo");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter (
+        "Imagens", "jpg", "jpeg", "png");
+        fileChooser.setFileFilter(filtro);
+        
+        // Configuração para permitir a seleção de apenas um arquivo
+        fileChooser.setMultiSelectionEnabled(false);
+        
+        int returnValue = fileChooser.showOpenDialog(null);
+        
+        if(returnValue == JFileChooser.APPROVE_OPTION) {
+            File arquivo = fileChooser.getSelectedFile();
+            Icon icon = Utils.fileParaIcon(arquivo);
+            
+            ImageIcon iconRedimensionado = Utils.redimensionarIcon( icon, 140, 140);
+            
+            lblFoto.setIcon(iconRedimensionado);
+        }
+    }//GEN-LAST:event_btnAddFotoMouseClicked
+    
+    
+    
+    private boolean verificaCampos() {
+        if (txtNomeProd.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Nome' em branco");
+            return false;
+        }
+
+        if (!txtNomeProd.getText().matches("^[\\p{L} ]+$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Nome' possui caracteres inválidos");
+            return false;
+        }
+        
+        if(txtCatProd.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Categoria' em branco");
+            return false;
+        }
+        
+        if (!txtCatProd.getText().matches("^[\\p{L} ]+$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Categoria' possui caracteres inválidos");
+            return false;
+        }
+        
+        if (!txtNCMProd.getText().matches("^[0-9]{4}.[0-9]{2}.[0-9]{2}$")&&!txtNCMProd.getText().matches("^[0-9]{2}.[0-9]{2}$")&&!txtNCMProd.getText().matches("^[0-9]{4}.[0-9]{2}$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'NCM' possui formato inválido Ex: 01.01 ou 1001.01 ou 1001.01.01 ");
+            return false;
+        }
+        
+        if (!txtDataCadProd.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Data Nascimento' possui formato inválido Ex: 01/01/2000");
+            return false;
+        }
+
+
+        return true;
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -111,7 +111,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Data de Nascimento:");
+        jLabel5.setText("Data de Admissão:");
 
         ckbAtivo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ckbAtivo.setText("Ativo");
@@ -339,7 +339,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         String email = txtEmail.getText();
         String senha = "";
         boolean ativo = ckbAtivo.isSelected();
-        Date dataDb = usu.getDataNasc();
+        Date dataDb = usu.getDataAdmissao();
 
         if (!nome.equals(txtNome.getText())) {
             usu.setNome(nome);
@@ -369,9 +369,9 @@ public class FRUPDUsuario extends javax.swing.JDialog {
 
         Date data = Utils.converterStringToDate(txtDataNasc.getText());
         if (dataDb != data) {
-            usu.setDataNasc(data);
+            usu.setDataAdmissao(data);
         } else {
-            usu.setDataNasc(dataDb);
+            usu.setDataAdmissao(dataDb);
         }
 
         UsuarioController controller = new UsuarioController();
@@ -485,7 +485,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         txtNome.setText(usu.getNome());
         txtEmail.setText(usu.getEmail());
         txtDataNasc.setText(
-                Utils.converterDateToString(usu.getDataNasc()));
+                Utils.converterDateToString(usu.getDataAdmissao()));
         txtSenha.setText(usu.getSenha());
         txtConfSenha.setText(usu.getSenha());
         setSenhaUsuario(usu.getSenha());

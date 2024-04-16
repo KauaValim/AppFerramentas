@@ -24,12 +24,16 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
+                <Property name="mnemonic" type="int" value="70"/>
                 <Property name="text" type="java.lang.String" value="Fornecedor"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MIProduto">
               <Properties>
-                <Property name="mnemonic" type="int" value="83"/>
+                <Property name="mnemonic" type="int" value="80"/>
                 <Property name="text" type="java.lang.String" value="Produto"/>
               </Properties>
               <Events>
@@ -50,7 +54,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="MIConUsuario">
               <Properties>
                 <Property name="mnemonic" type="int" value="85"/>
-                <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
+                <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MIConUsuarioActionPerformed"/>
@@ -60,16 +64,24 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Fornecedores"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MIConProdutos">
               <Properties>
+                <Property name="mnemonic" type="int" value="80"/>
                 <Property name="text" type="java.lang.String" value="Produtos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MIConProdutosActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
+            <Property name="mnemonic" type="int" value="109"/>
             <Property name="text" type="java.lang.String" value="Compras"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -78,6 +90,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MIOrdemCompras">
               <Properties>
+                <Property name="mnemonic" type="int" value="79"/>
                 <Property name="text" type="java.lang.String" value="Ordem Compras"/>
               </Properties>
             </MenuItem>
@@ -85,6 +98,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
+            <Property name="mnemonic" type="int" value="86"/>
             <Property name="text" type="java.lang.String" value="Vendas"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -93,6 +107,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MIOrdemVendas">
               <Properties>
+                <Property name="mnemonic" type="int" value="79"/>
                 <Property name="text" type="java.lang.String" value="Ordem Vendas"/>
               </Properties>
             </MenuItem>
@@ -120,11 +135,16 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="MISair">
           <Properties>
+            <Property name="mnemonic" type="int" value="83"/>
             <Property name="text" type="java.lang.String" value="Sair"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="menuSelected" listener="javax.swing.event.MenuListener" parameters="javax.swing.event.MenuEvent" handler="MISairMenuSelected"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MISairMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -153,15 +173,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+
+          <Component id="jPanel1" alignment="0" pref="650" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="447" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -172,26 +190,8 @@
           <Color blue="33" green="33" red="0" type="rgb"/>
         </Property>
       </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace pref="116" max="32767" attributes="0"/>
-                  <Component id="jLabel1" pref="182" max="32767" attributes="0"/>
-                  <EmptySpace pref="153" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace pref="116" max="32767" attributes="0"/>
-                  <Component id="jLabel1" pref="117" max="32767" attributes="0"/>
-                  <EmptySpace pref="117" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -201,6 +201,11 @@
               <Image iconType="3" name="/images/logo.png"/>
             </Property>
           </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="260" y="150" width="132" height="116"/>
+            </Constraint>
+          </Constraints>
         </Component>
       </SubComponents>
     </Container>

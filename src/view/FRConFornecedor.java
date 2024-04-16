@@ -7,19 +7,19 @@ package view;
 import controller.UsuarioController;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
-import model.Usuario;
+import model.Fornecedor;
 import utils.Utils;
 
 /**
  *
- * @author S.Lucas
+ * @author kaua_
  */
-public class FRConUsuario extends javax.swing.JDialog {
+public class FRConFornecedor extends javax.swing.JDialog {
 
     /**
-     * Creates new form FRConUsuario
+     * Creates new form FRConFornecedores
      */
-    public FRConUsuario(java.awt.Frame parent, boolean modal) {
+    public FRConFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,11 +34,10 @@ public class FRConUsuario extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPasswordField1 = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUsuario = new javax.swing.JTable();
+        tbFornecedor = new javax.swing.JTable();
         btnPesquisar = new javax.swing.JButton();
         cbFiltro = new javax.swing.JComboBox<>();
         txtFiltro = new javax.swing.JTextField();
@@ -46,34 +45,34 @@ public class FRConUsuario extends javax.swing.JDialog {
         btnReturn = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
 
-        jPasswordField1.setText("jPasswordField1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta de Usuários");
+        setTitle("Consulta de Fornecedores");
         setMinimumSize(new java.awt.Dimension(490, 490));
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
         jPanel1.setPreferredSize(new java.awt.Dimension(490, 509));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/find_user.png"))); // NOI18N
-        jLabel1.setText("Consulta de Usuários");
+        jLabel1.setText("Consulta de Fornecedores");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 28, -1, -1));
 
-        tbUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tbFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Email", "Data admissão", "Ativo"
+                "Código", "Nome", "Email", "CNPJ", "Data cadastro", "Endereço", "Cidade", "CEP", "Ativo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -84,7 +83,9 @@ public class FRConUsuario extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbUsuario);
+        jScrollPane1.setViewportView(tbFornecedor);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 189, 449, 250));
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/find.png"))); // NOI18N
         btnPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,17 +93,21 @@ public class FRConUsuario extends javax.swing.JDialog {
                 btnPesquisarMouseClicked(evt);
             }
         });
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 121, 76, 50));
 
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome iniciando", "Nome contendo", "Email iniciando", "Email contendo" }));
+        jPanel1.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 121, 137, -1));
 
         txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtFiltroKeyPressed(evt);
             }
         });
+        jPanel1.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 149, 311, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Filtro:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 152, -1, -1));
 
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return.png"))); // NOI18N
         btnReturn.setText("Voltar");
@@ -111,6 +116,7 @@ public class FRConUsuario extends javax.swing.JDialog {
                 btnReturnMouseClicked(evt);
             }
         });
+        jPanel1.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 451, -1, -1));
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         btnAlterar.setText("Alterar");
@@ -119,54 +125,7 @@ public class FRConUsuario extends javax.swing.JDialog {
                 btnAlterarMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel1))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(btnAlterar)
-                .addGap(267, 267, 267)
-                .addComponent(btnReturn))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAlterar)
-                    .addComponent(btnReturn)))
-        );
+        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 451, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,24 +145,24 @@ public class FRConUsuario extends javax.swing.JDialog {
         pesquisar();
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
+    private void btnReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReturnMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnReturnMouseClicked
+
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
-        if (tbUsuario.getSelectedRow() != -1) {
+        if (tbFornecedor.getSelectedRow() != -1) {
             int pk = Integer.parseInt(
-                    tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0).toString()
+                    tbFornecedor.getValueAt(tbFornecedor.getSelectedRow(), 0).toString()
             );
-            
+
             FRUPDUsuario telaUPD = new FRUPDUsuario(null, rootPaneCheckingEnabled);
             telaUPD.setPkUsuario(pk);
             telaUPD.carregarUsuario();
             telaUPD.setVisible(true);
-            
+
             pesquisar();
         }
     }//GEN-LAST:event_btnAlterarMouseClicked
-
-    private void btnReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReturnMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_btnReturnMouseClicked
 
     private void txtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -212,20 +171,24 @@ public class FRConUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_txtFiltroKeyPressed
 
     private void pesquisar() {
-        DefaultTableModel modelo = (DefaultTableModel) tbUsuario.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tbFornecedor.getModel();
         modelo.setNumRows(0);
         UsuarioController controller = new UsuarioController();
-        for(Usuario usu : controller.readForDesc(
-        cbFiltro.getSelectedIndex(), txtFiltro.getText())) {
-            Object[] linha = {usu.getPkUsuario()
-                    , usu.getNome()
-                    , usu.getEmail()
-                    , Utils.converterDateToString(usu.getDataAdmissao())
-                    , usu.ativoToString()};
+        for (Fornecedor forn : controller.readForForn(
+                cbFiltro.getSelectedIndex(), txtFiltro.getText())) {
+            Object[] linha = {forn.getPkFornecedor(),
+                forn.getNome(),
+                forn.getEmail(),
+                forn.getCNPJ(),
+                Utils.converterDateToString(forn.getDataCadastro()),
+                forn.getEndereco(),
+                forn.getCidade(),
+                forn.getCEP(),
+                forn.ativoToString()};
             modelo.addRow(linha);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -243,20 +206,21 @@ public class FRConUsuario extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRConUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRConFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRConUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRConFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRConUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRConFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRConUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRConFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRConUsuario dialog = new FRConUsuario(new javax.swing.JFrame(), true);
+                FRConFornecedor dialog = new FRConFornecedor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -276,9 +240,8 @@ public class FRConUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbUsuario;
+    private javax.swing.JTable tbFornecedor;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }
