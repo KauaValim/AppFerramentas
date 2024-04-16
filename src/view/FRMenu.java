@@ -38,7 +38,7 @@ public class FRMenu extends javax.swing.JFrame {
         MIProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MIConUsuario = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MIConFornec = new javax.swing.JMenuItem();
         MIConProdutos = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         MIOrdemCompras = new javax.swing.JMenuItem();
@@ -274,6 +274,7 @@ public class FRMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MICadUsuario;
+    private javax.swing.JMenuItem MIConFornec;
     private javax.swing.JMenuItem MIConProdutos;
     private javax.swing.JMenuItem MIConUsuario;
     private javax.swing.JMenuItem MIOrdemCompras;

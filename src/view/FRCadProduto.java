@@ -144,6 +144,7 @@ public class FRCadProduto extends javax.swing.JDialog {
             }
         });
 
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -343,6 +344,7 @@ public class FRCadProduto extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Campo 'Data Nascimento' possui formato inválido Ex: 01/01/2000");
             return false;
         }
+
 
         return true;
     }
