@@ -39,6 +39,7 @@ public class FRMenu extends javax.swing.JFrame {
         MIProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MIConUsuario = new javax.swing.JMenuItem();
+        MIConFornec = new javax.swing.JMenuItem();
         MIConProdutos = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         MIOrdemCompras = new javax.swing.JMenuItem();
@@ -61,15 +62,15 @@ public class FRMenu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, Short.MAX_VALUE)
                 .addContainerGap(117, Short.MAX_VALUE))
         );
 
@@ -112,6 +113,9 @@ public class FRMenu extends javax.swing.JFrame {
             }
         });
         jMenu2.add(MIConUsuario);
+
+        MIConFornec.setText("Fornecedores");
+        jMenu2.add(MIConFornec);
 
         MIConProdutos.setText("Produtos");
         jMenu2.add(MIConProdutos);
@@ -159,7 +163,9 @@ public class FRMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,6 +228,7 @@ public class FRMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MICadUsuario;
+    private javax.swing.JMenuItem MIConFornec;
     private javax.swing.JMenuItem MIConProdutos;
     private javax.swing.JMenuItem MIConUsuario;
     private javax.swing.JMenuItem MIOrdemCompras;

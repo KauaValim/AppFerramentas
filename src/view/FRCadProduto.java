@@ -35,9 +35,13 @@ public class FRCadProduto extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         txtNomeProd = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtFornecProd = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtCodProduto = new javax.swing.JPasswordField();
+        txtDataCadProd = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtNCMProd = new javax.swing.JTextField();
+        txtCatProd = new javax.swing.JTextField();
+        lblFoto = new javax.swing.JLabel();
+        btnAddFoto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,22 +99,24 @@ public class FRCadProduto extends javax.swing.JDialog {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Fornecedor do Produto:");
+        jLabel3.setText("Data de Cadastro:");
 
-        txtFornecProd.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDataCadProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtFornecProdKeyPressed(evt);
+                txtDataCadProdKeyPressed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Cód. Produto:");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Categoria:");
 
-        txtCodProduto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodProdutoKeyPressed(evt);
-            }
-        });
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("NCM:");
+
+        lblFoto.setBackground(new java.awt.Color(255, 0, 255));
+        lblFoto.setText("Imagem");
+
+        btnAddFoto.setText("Adicionar Imagem");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,20 +130,29 @@ public class FRCadProduto extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ckbAtivo))
-                            .addComponent(txtNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFornecProd, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(71, 71, 71)
+                                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(70, 70, 70)
+                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtDataCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ckbAtivo))
+                                .addComponent(txtNomeProd, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                                .addComponent(txtCatProd)
+                                .addComponent(txtNCMProd)
+                                .addComponent(jLabel2)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAddFoto)
+                                    .addGap(53, 53, 53)))
+                            .addComponent(jLabel5))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -145,21 +160,29 @@ public class FRCadProduto extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ckbAtivo))
+                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddFoto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCatProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNCMProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFornecProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDataCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckbAtivo))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -197,7 +220,7 @@ public class FRCadProduto extends javax.swing.JDialog {
         // Salvar no banco de dados
         Usuario usu = new Usuario();
         usu.setNome(txtNomeProd.getText());
-        usu.setEmail(txtFornecProd.getText());
+        usu.setEmail(txtDataCadProd.getText());
 
         String senha = new String(txtCodProduto.getPassword());
         senha = Utils.calcularMD5(senha);
@@ -225,21 +248,15 @@ public class FRCadProduto extends javax.swing.JDialog {
 
     private void txtNomeProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeProdKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtFornecProd.requestFocus();
+            txtDataCadProd.requestFocus();
         }
     }//GEN-LAST:event_txtNomeProdKeyPressed
 
-    private void txtFornecProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFornecProdKeyPressed
+    private void txtDataCadProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataCadProdKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtCodProduto.requestFocus();
         }
-    }//GEN-LAST:event_txtFornecProdKeyPressed
-
-    private void txtCodProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProdutoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtConfSenha.requestFocus();
-        }
-    }//GEN-LAST:event_txtCodProdutoKeyPressed
+    }//GEN-LAST:event_txtDataCadProdKeyPressed
 
     /**
      * @param args the command line arguments
@@ -284,16 +301,20 @@ public class FRCadProduto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddFoto;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox ckbAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField txtCodProduto;
-    private javax.swing.JTextField txtFornecProd;
+    private javax.swing.JLabel lblFoto;
+    private javax.swing.JTextField txtCatProd;
+    private javax.swing.JTextField txtDataCadProd;
+    private javax.swing.JTextField txtNCMProd;
     private javax.swing.JTextField txtNomeProd;
     // End of variables declaration//GEN-END:variables
 }
