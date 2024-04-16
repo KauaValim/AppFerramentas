@@ -45,16 +45,16 @@ public class FRCadUsuario extends javax.swing.JDialog {
         txtSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         ckbAtivo = new javax.swing.JCheckBox();
-        txtDataNasc = new javax.swing.JFormattedTextField();
+        txtDataAdmissao = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtConfSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Usuário");
+        setTitle("Cadastro de Usuários");
 
-        jPanel1.setBackground(new java.awt.Color(51, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(102, 255, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 490));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -99,10 +99,10 @@ public class FRCadUsuario extends javax.swing.JDialog {
             }
         });
 
-        txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        txtDataNasc.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDataAdmissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtDataAdmissao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDataNascKeyPressed(evt);
+                txtDataAdmissaoKeyPressed(evt);
             }
         });
 
@@ -164,7 +164,7 @@ public class FRCadUsuario extends javax.swing.JDialog {
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -205,7 +205,7 @@ public class FRCadUsuario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckbAtivo)
-                    .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDataAdmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,8 +249,8 @@ public class FRCadUsuario extends javax.swing.JDialog {
         usu.setSenha(senha);
         usu.setAtivo(ckbAtivo.isSelected());
         
-        Date data = Utils.converterStringToDate(txtDataNasc.getText());
-        usu.setDataNasc(data);
+        Date data = Utils.converterStringToDate(txtDataAdmissao.getText());
+        usu.setDataAdmissao(data);
         
         UsuarioController controller = new UsuarioController();
         if(controller.adicionarUsuario(usu)) {
@@ -278,15 +278,15 @@ public class FRCadUsuario extends javax.swing.JDialog {
 
     private void txtConfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfSenhaKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtDataNasc.requestFocus();
+            txtDataAdmissao.requestFocus();
         }
     }//GEN-LAST:event_txtConfSenhaKeyPressed
 
-    private void txtDataNascKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataNascKeyPressed
+    private void txtDataAdmissaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataAdmissaoKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ckbAtivo.requestFocus();
         }
-    }//GEN-LAST:event_txtDataNascKeyPressed
+    }//GEN-LAST:event_txtDataAdmissaoKeyPressed
 
     private void ckbAtivoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ckbAtivoKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -321,8 +321,8 @@ public class FRCadUsuario extends javax.swing.JDialog {
             return false;
         }
         
-        if (!txtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
-            JOptionPane.showMessageDialog(null, "Campo 'Data Nascimento' possui formato inválido Ex: 01/01/2000");
+        if (!txtDataAdmissao.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Data Admissão' possui formato inválido Ex: 01/01/2000");
             return false;
         }
         
@@ -396,7 +396,7 @@ public class FRCadUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtConfSenha;
-    private javax.swing.JFormattedTextField txtDataNasc;
+    private javax.swing.JFormattedTextField txtDataAdmissao;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;

@@ -4,6 +4,8 @@
  */
 package view;
 
+import controller.UsuarioController;
+import javax.swing.JOptionPane;
 import javax.swing.ViewportLayout;
 
 /**
@@ -18,7 +20,6 @@ public class FRMenu extends javax.swing.JFrame {
     public FRMenu() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setExtendedState(6);
     }
 
     /**
@@ -39,6 +40,7 @@ public class FRMenu extends javax.swing.JFrame {
         MIProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MIConUsuario = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         MIConProdutos = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         MIOrdemCompras = new javax.swing.JMenuItem();
@@ -52,26 +54,11 @@ public class FRMenu extends javax.swing.JFrame {
         setTitle("Menu");
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, Short.MAX_VALUE)
-                .addContainerGap(117, Short.MAX_VALUE))
-        );
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 132, 116));
 
         jMenu1.setMnemonic('C');
         jMenu1.setText("Cadastro");
@@ -86,10 +73,16 @@ public class FRMenu extends javax.swing.JFrame {
         });
         jMenu1.add(MICadUsuario);
 
+        jMenuItem2.setMnemonic('F');
         jMenuItem2.setText("Fornecedor");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
-        MIProduto.setMnemonic('S');
+        MIProduto.setMnemonic('P');
         MIProduto.setText("Produto");
         MIProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +98,7 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         MIConUsuario.setMnemonic('U');
-        MIConUsuario.setText("Usuário");
+        MIConUsuario.setText("Usuários");
         MIConUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MIConUsuarioActionPerformed(evt);
@@ -113,22 +106,35 @@ public class FRMenu extends javax.swing.JFrame {
         });
         jMenu2.add(MIConUsuario);
 
+        jMenuItem1.setText("Fornecedores");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        MIConProdutos.setMnemonic('P');
         MIConProdutos.setText("Produtos");
         jMenu2.add(MIConProdutos);
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setMnemonic('m');
         jMenu4.setText("Compras");
         jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        MIOrdemCompras.setMnemonic('O');
         MIOrdemCompras.setText("Ordem Compras");
         jMenu4.add(MIOrdemCompras);
 
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setMnemonic('V');
         jMenu5.setText("Vendas");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        MIOrdemVendas.setMnemonic('O');
         MIOrdemVendas.setText("Ordem Vendas");
         jMenu5.add(MIOrdemVendas);
 
@@ -149,8 +155,23 @@ public class FRMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        MISair.setMnemonic('S');
         MISair.setText("Sair");
         MISair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        MISair.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                MISairMenuSelected(evt);
+            }
+        });
+        MISair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MISairMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(MISair);
 
         setJMenuBar(jMenuBar1);
@@ -159,18 +180,18 @@ public class FRMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void MIProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIProdutoActionPerformed
-        this.dispose();
+        new FRCadProduto(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MIProdutoActionPerformed
 
     private void MICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadUsuarioActionPerformed
@@ -184,6 +205,30 @@ public class FRMenu extends javax.swing.JFrame {
     private void MISobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MISobreActionPerformed
         new FRSobre(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MISobreActionPerformed
+
+    private void MISairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MISairMouseClicked
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if(resposta == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_MISairMouseClicked
+
+    private void MISairMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_MISairMenuSelected
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if(resposta == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_MISairMenuSelected
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new FRCadFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new FRConFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,6 +281,7 @@ public class FRMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

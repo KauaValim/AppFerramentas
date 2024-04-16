@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import utils.Utils;
 
 /**
  *
@@ -21,7 +23,7 @@ import java.util.logging.Level;
 public class UsuarioDAO {
 
     public boolean autenticar(String email, String senha) {
-        String sql = "SELECT * from TBUSUARIO WHERE email = ? and senha = ? and ativo = true";
+        String sql = "SELECT * from tbvendedores WHERE email = ? and senha = ? and ativo = true";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
@@ -45,7 +47,7 @@ public class UsuarioDAO {
     }
 
     public boolean adicionarUsuario(Usuario u) {
-        String sql = "INSERT into TBUSUARIO (nome, email, senha, dataNasc, ativo) VALUES (?,?,?,?,?)";
+        String sql = "INSERT into tbvendedores (nome, email, senha, dataadmissao, ativo) VALUES (?,?,?,?,?)";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
@@ -56,7 +58,7 @@ public class UsuarioDAO {
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getSenha());
-            stmt.setDate(4, new java.sql.Date(u.getDataNasc().getTime()));
+            stmt.setDate(4, new java.sql.Date(u.getDataAdmissao().getTime()));
             stmt.setBoolean(5, u.isAtivo());
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuario: " + u.getNome() + " inserido com sucesso!");
@@ -71,7 +73,7 @@ public class UsuarioDAO {
     }
     
     public boolean alterarUsuario(Usuario u) {
-        String sql = "UPDATE TBUSUARIO SET nome = ?, email = ?, senha = ?, dataNasc = ?, ativo = ? WHERE pkusuario = ?";
+        String sql = "UPDATE tbvendedores SET nome = ?, email = ?, senha = ?, dataadmissao = ?, ativo = ? WHERE pkidvendedor = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
@@ -82,7 +84,7 @@ public class UsuarioDAO {
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getSenha());
-            stmt.setDate(4, new java.sql.Date(u.getDataNasc().getTime()));
+            stmt.setDate(4, new java.sql.Date(u.getDataAdmissao().getTime()));
             stmt.setBoolean(5, u.isAtivo());
             stmt.setLong(6, u.getPkUsuario());
             stmt.executeUpdate();
@@ -98,7 +100,7 @@ public class UsuarioDAO {
     }
     
     public boolean excluirUsuario(int pkUsuario) {
-        String sql = "DELETE FROM tbusuario WHERE pkusuario = ?";
+        String sql = "DELETE FROM tbvendedores WHERE pkidvendedor = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
@@ -118,9 +120,66 @@ public class UsuarioDAO {
 
         return false;
     }
+    
+    public boolean adicionarProduto(Produto p) {
+        String sql = "INSERT into TBPRODUTOS (nome, categoria, NCM, datacadastro, ativo, img) VALUES (?,?,?,?,?,?)";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            byte[] iconBytes = Utils.iconToBytes(p.getImagem());
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, p.getNome());
+            stmt.setString(2, p.getCategoria());
+            stmt.setString(3, p.getNCM());
+            stmt.setDate(4, new java.sql.Date(p.getDataCadastro().getTime()));
+            stmt.setBoolean(5, p.isAtivo());
+            stmt.setBytes(6, iconBytes);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario: " + p.getNome() + " inserido com sucesso!");
+            return true;
+        } catch (SQLException | IOException e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt);
+        }
+
+        return false;
+    }
+    
+    public boolean adicionarFornecedor(Fornecedor f) {
+        String sql = "INSERT into tbfornecedores (nome, email, CNPJ, datacadastro, endereco, cidade, CEP, ativo) VALUES (?,?,?,?,?,?,?,?)";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, f.getNome());
+            stmt.setString(2, f.getEmail());
+            stmt.setString(3, f.getCNPJ());
+            stmt.setDate(4, new java.sql.Date(f.getDataCadastro().getTime()));
+            stmt.setString(5, f.getEndereco());
+            stmt.setString(6, f.getCidade());
+            stmt.setString(7, f.getCEP());
+            stmt.setBoolean(8, f.isAtivo());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario: " + f.getNome() + " inserido com sucesso!");
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt);
+        }
+
+        return false;
+    }
 
     public List<Usuario> readForDesc(int tipo, String desc) {
-        String sql = "SELECT * FROM tbusuario";
+        String sql = "SELECT * FROM tbvendedores";
         if (!desc.equals("")) {
             if (tipo == 0 || tipo == 1) {
                 sql = sql + " WHERE nome LIKE ?";
@@ -149,11 +208,11 @@ public class UsuarioDAO {
             while (rs.next()) {
                 Usuario usuario = new Usuario();
 
-                usuario.setPkUsuario(rs.getLong("pkusuario"));
+                usuario.setPkUsuario(rs.getLong("pkidvendedor"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
                 usuario.setSenha(rs.getString("senha"));
-                usuario.setDataNasc(rs.getDate("datanasc"));
+                usuario.setDataAdmissao(rs.getDate("dataadmissao"));
                 usuario.setAtivo(rs.getBoolean("ativo"));
                 usuarios.add(usuario);
             }
@@ -168,7 +227,7 @@ public class UsuarioDAO {
     }
     
     public Usuario readForPk(long pk) {
-        String sql = "SELECT * FROM tbusuario WHERE pkusuario = ?";
+        String sql = "SELECT * FROM tbvendedores WHERE pkidvendedor = ?";
        
         
         GerenciadorConexao gerenciador = new GerenciadorConexao();
@@ -184,11 +243,11 @@ public class UsuarioDAO {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                usuario.setPkUsuario(rs.getLong("pkusuario"));
+                usuario.setPkUsuario(rs.getLong("pkidvendedor"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
                 usuario.setSenha(rs.getString("senha"));
-                usuario.setDataNasc(rs.getDate("datanasc"));
+                usuario.setDataAdmissao(rs.getDate("dataadmissao"));
                 usuario.setAtivo(rs.getBoolean("ativo"));
             }
 
@@ -199,6 +258,59 @@ public class UsuarioDAO {
         }
 
         return usuario;
+    }
+    
+    public List<Fornecedor> readForForn(int tipo, String desc) {
+        String sql = "SELECT * FROM tbfornecedores";
+        if (!desc.equals("")) {
+            if (tipo == 0 || tipo == 1) {
+                sql = sql + " WHERE nome LIKE ?";
+            } else if (tipo == 2 || tipo == 3){
+                sql = sql + " WHERE email LIKE ?";
+            } else {
+                sql = sql + " WHERE cnpj LIKE ?";
+            }
+        }
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Fornecedor> fornecedores = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement(sql);
+            if (!desc.equals("")) {
+                if (tipo == 0 || tipo == 2 || tipo == 4) {
+                    stmt.setString(1, desc + "%");
+                } else if (tipo == 1 || tipo == 3 || tipo == 5){
+                    stmt.setString(1, "%" + desc + "%");
+                }
+            }
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Fornecedor fornecedor = new Fornecedor();
+
+                fornecedor.setPkFornecedor(rs.getLong("pkidfornecedor"));
+                fornecedor.setNome(rs.getString("nome"));
+                fornecedor.setEmail(rs.getString("email"));
+                fornecedor.setCNPJ(rs.getString("CNPJ"));
+                fornecedor.setDataCadastro(rs.getDate("datacadastro"));
+                fornecedor.setEndereco(rs.getString("endereco"));
+                fornecedor.setCidade(rs.getString("cidade"));
+                fornecedor.setCEP(rs.getString("CEP"));
+                fornecedor.setAtivo(rs.getBoolean("ativo"));
+                fornecedores.add(fornecedor);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            gerenciador.closeConnection(stmt, rs);
+        }
+
+        return fornecedores;
     }
     
 }
