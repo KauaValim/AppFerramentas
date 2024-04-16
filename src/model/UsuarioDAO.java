@@ -188,7 +188,7 @@ public class UsuarioDAO {
             if (tipo == 0 || tipo == 1) {
                 sql = sql + " WHERE nome LIKE ?";
             } else {
-                sql = sql + " WHERE nome LIKE ?";
+                sql = sql + " WHERE email LIKE ?";
             }
         }
         GerenciadorConexao gerenciador = new GerenciadorConexao();

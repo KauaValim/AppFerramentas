@@ -34,8 +34,8 @@ public class FRMenu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MICadUsuario = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        MIProduto = new javax.swing.JMenuItem();
+        MICadFornecedor = new javax.swing.JMenuItem();
+        MICadProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MIConUsuario = new javax.swing.JMenuItem();
         MIConFornec = new javax.swing.JMenuItem();
@@ -71,23 +71,23 @@ public class FRMenu extends javax.swing.JFrame {
         });
         jMenu1.add(MICadUsuario);
 
-        jMenuItem2.setMnemonic('F');
-        jMenuItem2.setText("Fornecedor");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        MICadFornecedor.setMnemonic('F');
+        MICadFornecedor.setText("Fornecedor");
+        MICadFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                MICadFornecedorActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(MICadFornecedor);
 
-        MIProduto.setMnemonic('P');
-        MIProduto.setText("Produto");
-        MIProduto.addActionListener(new java.awt.event.ActionListener() {
+        MICadProduto.setMnemonic('P');
+        MICadProduto.setText("Produto");
+        MICadProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MIProdutoActionPerformed(evt);
+                MICadProdutoActionPerformed(evt);
             }
         });
-        jMenu1.add(MIProduto);
+        jMenu1.add(MICadProduto);
 
         jMenuBar1.add(jMenu1);
 
@@ -104,13 +104,13 @@ public class FRMenu extends javax.swing.JFrame {
         });
         jMenu2.add(MIConUsuario);
 
-        jMenuItem1.setText("Fornecedores");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        MIConFornec.setText("Fornecedores");
+        MIConFornec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(MIConFornec);
 
         MIConProdutos.setMnemonic('P');
         MIConProdutos.setText("Produtos");
@@ -193,9 +193,9 @@ public class FRMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MIProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIProdutoActionPerformed
+    private void MICadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadProdutoActionPerformed
         new FRCadProduto(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_MIProdutoActionPerformed
+    }//GEN-LAST:event_MICadProdutoActionPerformed
 
     private void MICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadUsuarioActionPerformed
         new FRCadUsuario(this, rootPaneCheckingEnabled).setVisible(true);
@@ -225,9 +225,9 @@ public class FRMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MISairMenuSelected
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void MICadFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadFornecedorActionPerformed
         new FRCadFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_MICadFornecedorActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new FRConFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
@@ -273,13 +273,14 @@ public class FRMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MICadFornecedor;
+    private javax.swing.JMenuItem MICadProduto;
     private javax.swing.JMenuItem MICadUsuario;
     private javax.swing.JMenuItem MIConFornec;
     private javax.swing.JMenuItem MIConProdutos;
     private javax.swing.JMenuItem MIConUsuario;
     private javax.swing.JMenuItem MIOrdemCompras;
     private javax.swing.JMenuItem MIOrdemVendas;
-    private javax.swing.JMenuItem MIProduto;
     private javax.swing.JMenu MISair;
     private javax.swing.JMenuItem MISobre;
     private javax.swing.JLabel jLabel1;
@@ -289,8 +290,6 @@ public class FRMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
