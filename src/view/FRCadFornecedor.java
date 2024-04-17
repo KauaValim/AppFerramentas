@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.UsuarioController;
+import controller.FornecedorController;
 import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -250,7 +250,7 @@ public class FRCadFornecedor extends javax.swing.JDialog {
         forn.setDataCadastro(data);
         forn.setAtivo(ckbAtivo.isSelected());
 
-        UsuarioController controller = new UsuarioController();
+        FornecedorController controller = new FornecedorController();
         if(controller.adicionarFornecedor(forn)) {
             this.dispose();
         }

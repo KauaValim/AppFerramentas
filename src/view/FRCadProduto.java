@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.UsuarioController;
+import controller.ProdutoController;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.time.LocalDateTime;
@@ -256,7 +256,7 @@ public class FRCadProduto extends javax.swing.JDialog {
         prod.setDataCadastro(data);
         prod.setAtivo(ckbAtivo.isSelected());
 
-        UsuarioController controller = new UsuarioController();
+        ProdutoController controller = new ProdutoController();
         if(controller.adicionarProduto(prod)) {
             this.dispose();
         }

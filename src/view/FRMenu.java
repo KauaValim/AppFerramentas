@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -129,6 +131,11 @@ public class FRMenu extends javax.swing.JFrame {
 
         MIOrdemCompras.setMnemonic('O');
         MIOrdemCompras.setText("Ordem Compras");
+        MIOrdemCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIOrdemComprasActionPerformed(evt);
+            }
+        });
         jMenu4.add(MIOrdemCompras);
 
         jMenuBar1.add(jMenu4);
@@ -161,13 +168,13 @@ public class FRMenu extends javax.swing.JFrame {
         MISair.setMnemonic('S');
         MISair.setText("Sair");
         MISair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        MISair.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+        MISair.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
+            public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
+                MISairMenuKeyPressed(evt);
             }
-            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
             }
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                MISairMenuSelected(evt);
+            public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
             }
         });
         MISair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -217,14 +224,6 @@ public class FRMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MISairMouseClicked
 
-    private void MISairMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_MISairMenuSelected
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-        if(resposta == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_MISairMenuSelected
-
     private void MICadFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadFornecedorActionPerformed
         new FRCadFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MICadFornecedorActionPerformed
@@ -236,6 +235,18 @@ public class FRMenu extends javax.swing.JFrame {
     private void MIConProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIConProdutosActionPerformed
         new FRConProduto(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MIConProdutosActionPerformed
+
+    private void MISairMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_MISairMenuKeyPressed
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if(resposta == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_MISairMenuKeyPressed
+
+    private void MIOrdemComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIOrdemComprasActionPerformed
+        new FRConProduto(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_MIOrdemComprasActionPerformed
 
     /**
      * @param args the command line arguments
