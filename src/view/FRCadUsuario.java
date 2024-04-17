@@ -112,9 +112,9 @@ public class FRCadUsuario extends javax.swing.JDialog {
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseClicked(evt);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
             }
         });
         btnSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -129,9 +129,9 @@ public class FRCadUsuario extends javax.swing.JDialog {
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseClicked(evt);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -229,35 +229,6 @@ public class FRCadUsuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarMouseClicked
-
-    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
-        // Verificar campos
-        if (verificaCampos() == false) {
-            return;
-        }
-
-        // Salvar no banco de dados
-        Usuario usu = new Usuario();
-        usu.setNome(txtNome.getText());
-        usu.setEmail(txtEmail.getText());
-        
-        String senha = new String(txtSenha.getPassword());
-        senha = Utils.calcularMD5(senha);
-        usu.setSenha(senha);
-        usu.setAtivo(ckbAtivo.isSelected());
-        
-        Date data = Utils.converterStringToDate(txtDataAdmissao.getText());
-        usu.setDataAdmissao(data);
-        
-        UsuarioController controller = new UsuarioController();
-        if(controller.adicionarUsuario(usu)) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnSalvarMouseClicked
-
     private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtEmail.requestFocus();
@@ -296,9 +267,38 @@ public class FRCadUsuario extends javax.swing.JDialog {
 
     private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            btnSalvarMouseClicked(null);
+            btnSalvarActionPerformed(null);
         }
     }//GEN-LAST:event_btnSalvarKeyPressed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // Verificar campos
+        if (verificaCampos() == false) {
+            return;
+        }
+
+        // Salvar no banco de dados
+        Usuario usu = new Usuario();
+        usu.setNome(txtNome.getText());
+        usu.setEmail(txtEmail.getText());
+        
+        String senha = new String(txtSenha.getPassword());
+        senha = Utils.calcularMD5(senha);
+        usu.setSenha(senha);
+        usu.setAtivo(ckbAtivo.isSelected());
+        
+        Date data = Utils.converterStringToDate(txtDataAdmissao.getText());
+        usu.setDataAdmissao(data);
+        
+        UsuarioController controller = new UsuarioController();
+        if(controller.adicionarUsuario(usu)) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private boolean verificaCampos() {
         if (txtNome.getText().equals("")) {

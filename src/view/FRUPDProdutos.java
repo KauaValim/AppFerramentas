@@ -4,22 +4,40 @@
  */
 package view;
 
-import controller.FornecedorController;
+import controller.ProdutoController;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
-import model.Fornecedor;
+import model.Produto;
 import utils.Utils;
 
 /**
  *
  * @author kaua_
  */
-public class FRConFornecedor extends javax.swing.JDialog {
+public class FRUPDProdutos extends javax.swing.JDialog {
+    private Long pk;
+    private String nome;
 
+    public Long getPk() {
+        return pk;
+    }
+
+    public void setPk(Long pk) {
+        this.pk = pk;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     /**
-     * Creates new form FRConFornecedores
+     * Creates new form FRUPDProdutos
      */
-    public FRConFornecedor(java.awt.Frame parent, boolean modal) {
+    public FRUPDProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -37,17 +55,15 @@ public class FRConFornecedor extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbFornecedor = new javax.swing.JTable();
+        tbProdutos = new javax.swing.JTable();
         btnPesquisar = new javax.swing.JButton();
         cbFiltro = new javax.swing.JComboBox<>();
         txtFiltro = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnReturn = new javax.swing.JButton();
-        btnAlterar = new javax.swing.JButton();
+        btnSelecionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta de Fornecedores");
-        setMinimumSize(new java.awt.Dimension(490, 490));
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
@@ -57,22 +73,22 @@ public class FRConFornecedor extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/find_user.png"))); // NOI18N
-        jLabel1.setText("Consulta de Fornecedores");
+        jLabel1.setText("Consulta de Produtos");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 28, -1, -1));
 
-        tbFornecedor.setModel(new javax.swing.table.DefaultTableModel(
+        tbProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome", "Email", "CNPJ", "Data cadastro", "Endereço", "Cidade", "CEP", "Ativo"
+                "Código", "Nome", "Categoria", "NCM", "Data cadastro", "Ativo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -83,7 +99,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbFornecedor);
+        jScrollPane1.setViewportView(tbProdutos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 189, 449, 250));
 
@@ -95,7 +111,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
         });
         jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 121, 76, 50));
 
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome iniciando", "Nome contendo", "Email iniciando", "Email contendo" }));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome iniciando", "Nome contendo", "Categoria iniciando", "Categoria contendo" }));
         jPanel1.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 121, 137, -1));
 
         txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -118,20 +134,19 @@ public class FRConFornecedor extends javax.swing.JDialog {
         });
         jPanel1.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 451, -1, -1));
 
-        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
-        btnAlterar.setText("Alterar");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+        btnSelecionar.setText("Selecionar");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
+                btnSelecionarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
+        jPanel1.add(btnSelecionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,50 +156,42 @@ public class FRConFornecedor extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        pesquisar();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
     private void txtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             pesquisar();
         }
     }//GEN-LAST:event_txtFiltroKeyPressed
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        pesquisar();
-    }//GEN-LAST:event_btnPesquisarActionPerformed
-
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnReturnActionPerformed
 
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        if (tbFornecedor.getSelectedRow() != -1) {
-            int pk = Integer.parseInt(
-                    tbFornecedor.getValueAt(tbFornecedor.getSelectedRow(), 0).toString()
-            );
-
-            FRUPDUsuario telaUPD = new FRUPDUsuario(null, rootPaneCheckingEnabled);
-            telaUPD.setPkUsuario(pk);
-            telaUPD.carregarUsuario();
-            telaUPD.setVisible(true);
-
-            pesquisar();
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        if (tbProdutos.getSelectedRow() != -1) {
+            this.setPk(Long.valueOf(
+                tbProdutos.getValueAt(tbProdutos.getSelectedRow(), 0).toString()
+            ));
+            this.setNome(tbProdutos.getValueAt(tbProdutos.getSelectedRow(), 1).toString());
+            this.setVisible(false);
         }
-    }//GEN-LAST:event_btnAlterarActionPerformed
+    }//GEN-LAST:event_btnSelecionarActionPerformed
 
     private void pesquisar() {
-        DefaultTableModel modelo = (DefaultTableModel) tbFornecedor.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tbProdutos.getModel();
         modelo.setNumRows(0);
-        FornecedorController controller = new FornecedorController();
-        for (Fornecedor forn : controller.readForForn(
-                cbFiltro.getSelectedIndex(), txtFiltro.getText())) {
-            Object[] linha = {forn.getPkFornecedor(),
-                forn.getNome(),
-                forn.getEmail(),
-                forn.getCNPJ(),
-                Utils.converterDateToString(forn.getDataCadastro()),
-                forn.getEndereco(),
-                forn.getCidade(),
-                forn.getCEP(),
-                forn.ativoToString()};
+        ProdutoController controller = new ProdutoController();
+        for(Produto prod : controller.readForProd(
+        cbFiltro.getSelectedIndex(), txtFiltro.getText())) {
+            Object[] linha = {prod.getPkIdProduto()
+                    , prod.getNome()
+                    , prod.getCategoria()
+                    , prod.getNCM()
+                    , Utils.converterDateToString(prod.getDataCadastro())
+                    , prod.ativoToString()};
             modelo.addRow(linha);
         }
     }
@@ -206,21 +213,20 @@ public class FRConFornecedor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRConFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRUPDProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRConFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRUPDProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRConFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRUPDProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRConFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRUPDProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRConFornecedor dialog = new FRConFornecedor(new javax.swing.JFrame(), true);
+                FRUPDProdutos dialog = new FRUPDProdutos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -233,15 +239,15 @@ public class FRConFornecedor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnReturn;
+    private javax.swing.JButton btnSelecionar;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbFornecedor;
+    private javax.swing.JTable tbProdutos;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

@@ -63,7 +63,7 @@ public class FRConUsuario extends javax.swing.JDialog {
 
         tbUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Email", "Data admissão", "Ativo"
@@ -87,9 +87,9 @@ public class FRConUsuario extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tbUsuario);
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/find.png"))); // NOI18N
-        btnPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPesquisarMouseClicked(evt);
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
             }
         });
 
@@ -106,17 +106,17 @@ public class FRConUsuario extends javax.swing.JDialog {
 
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return.png"))); // NOI18N
         btnReturn.setText("Voltar");
-        btnReturn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnReturnMouseClicked(evt);
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
             }
         });
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         btnAlterar.setText("Alterar");
-        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAlterarMouseClicked(evt);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -182,11 +182,17 @@ public class FRConUsuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
-        pesquisar();
-    }//GEN-LAST:event_btnPesquisarMouseClicked
+    private void txtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            pesquisar();
+        }
+    }//GEN-LAST:event_txtFiltroKeyPressed
 
-    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        pesquisar();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if (tbUsuario.getSelectedRow() != -1) {
             int pk = Integer.parseInt(
                     tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0).toString()
@@ -199,17 +205,11 @@ public class FRConUsuario extends javax.swing.JDialog {
             
             pesquisar();
         }
-    }//GEN-LAST:event_btnAlterarMouseClicked
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void btnReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReturnMouseClicked
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnReturnMouseClicked
-
-    private void txtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            pesquisar();
-        }
-    }//GEN-LAST:event_txtFiltroKeyPressed
+    }//GEN-LAST:event_btnReturnActionPerformed
 
     private void pesquisar() {
         DefaultTableModel modelo = (DefaultTableModel) tbUsuario.getModel();

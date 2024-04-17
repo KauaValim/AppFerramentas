@@ -83,9 +83,9 @@ public class FRCadProduto extends javax.swing.JDialog {
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseClicked(evt);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
             }
         });
         btnSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -104,9 +104,9 @@ public class FRCadProduto extends javax.swing.JDialog {
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseClicked(evt);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -138,12 +138,11 @@ public class FRCadProduto extends javax.swing.JDialog {
         lblFoto.setText("Imagem");
 
         btnAddFoto.setText("Adicionar Imagem");
-        btnAddFoto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAddFotoMouseClicked(evt);
+        btnAddFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddFotoActionPerformed(evt);
             }
         });
-
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,7 +237,53 @@ public class FRCadProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ckbAtivoKeyPressed
 
-    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+    private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            btnSalvarActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnSalvarKeyPressed
+
+    private void txtNomeProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeProdKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtDataCadProd.requestFocus();
+        }
+    }//GEN-LAST:event_txtNomeProdKeyPressed
+
+    private void txtDataCadProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataCadProdKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ckbAtivo.requestFocus();
+        }
+    }//GEN-LAST:event_txtDataCadProdKeyPressed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        txtDataCadProd.setText(dtf.format(now));
+    }//GEN-LAST:event_formComponentShown
+
+    private void btnAddFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFotoActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolha um arquivo");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter (
+        "Imagens", "jpg", "jpeg", "png");
+        fileChooser.setFileFilter(filtro);
+        
+        // Configuração para permitir a seleção de apenas um arquivo
+        fileChooser.setMultiSelectionEnabled(false);
+        
+        int returnValue = fileChooser.showOpenDialog(null);
+        
+        if(returnValue == JFileChooser.APPROVE_OPTION) {
+            File arquivo = fileChooser.getSelectedFile();
+            Icon icon = Utils.fileParaIcon(arquivo);
+            
+            ImageIcon iconRedimensionado = Utils.redimensionarIcon( icon, 140, 140);
+            
+            lblFoto.setIcon(iconRedimensionado);
+        }
+    }//GEN-LAST:event_btnAddFotoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // Verificar campos
         if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null,"Algum erro de texto");
@@ -260,57 +305,11 @@ public class FRCadProduto extends javax.swing.JDialog {
         if(controller.adicionarProduto(prod)) {
             this.dispose();
         }
-    }//GEN-LAST:event_btnSalvarMouseClicked
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            btnSalvarMouseClicked(null);
-        }
-    }//GEN-LAST:event_btnSalvarKeyPressed
-
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnCancelarMouseClicked
-
-    private void txtNomeProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeProdKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtDataCadProd.requestFocus();
-        }
-    }//GEN-LAST:event_txtNomeProdKeyPressed
-
-    private void txtDataCadProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataCadProdKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ckbAtivo.requestFocus();
-        }
-    }//GEN-LAST:event_txtDataCadProdKeyPressed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        txtDataCadProd.setText(dtf.format(now));
-    }//GEN-LAST:event_formComponentShown
-
-    private void btnAddFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddFotoMouseClicked
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Escolha um arquivo");
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter (
-        "Imagens", "jpg", "jpeg", "png");
-        fileChooser.setFileFilter(filtro);
-        
-        // Configuração para permitir a seleção de apenas um arquivo
-        fileChooser.setMultiSelectionEnabled(false);
-        
-        int returnValue = fileChooser.showOpenDialog(null);
-        
-        if(returnValue == JFileChooser.APPROVE_OPTION) {
-            File arquivo = fileChooser.getSelectedFile();
-            Icon icon = Utils.fileParaIcon(arquivo);
-            
-            ImageIcon iconRedimensionado = Utils.redimensionarIcon( icon, 140, 140);
-            
-            lblFoto.setIcon(iconRedimensionado);
-        }
-    }//GEN-LAST:event_btnAddFotoMouseClicked
+    }//GEN-LAST:event_btnCancelarActionPerformed
     
     
     

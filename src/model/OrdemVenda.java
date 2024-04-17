@@ -3,14 +3,14 @@ package model;
 import java.util.Date;
 
 public class OrdemVenda {
-    private Long numOrdemVenda;
+    private Long numOV;
     private String condPag;
     private Date dataEmissao;
     private double valorTotal;
     private double qntdTotal;
 
-    public OrdemVenda(Long numOrdemVenda, String condPag, Date dataEmissao, double valorTotal, double qntdTotal) {
-        this.numOrdemVenda = numOrdemVenda;
+    public OrdemVenda(Long numOV, String condPag, Date dataEmissao, double valorTotal, double qntdTotal) {
+        this.numOV = numOV;
         this.condPag = condPag;
         this.dataEmissao = dataEmissao;
         this.valorTotal = valorTotal;
@@ -18,11 +18,11 @@ public class OrdemVenda {
     }
 
     public Long getNumOrdemVenda() {
-        return numOrdemVenda;
+        return numOV;
     }
 
-    public void setNumOrdemVenda(Long numOrdemVenda) {
-        this.numOrdemVenda = numOrdemVenda;
+    public void setNumOrdemVenda(Long numOV) {
+        this.numOV = numOV;
     }
 
     public String getCondPag() {
