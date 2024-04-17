@@ -132,9 +132,9 @@ public class FRCadFornecedor extends javax.swing.JDialog {
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseClicked(evt);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
             }
         });
         btnSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -150,9 +150,9 @@ public class FRCadFornecedor extends javax.swing.JDialog {
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseClicked(evt);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
             }
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, -1, -1));
@@ -231,7 +231,29 @@ public class FRCadFornecedor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtDataCadastroKeyPressed
 
-    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+    private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            btnSalvarActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnSalvarKeyPressed
+
+    private void txtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCidadeKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtCep.requestFocus();
+        }
+    }//GEN-LAST:event_txtCidadeKeyPressed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        txtDataCadastro.setText(dtf.format(now));
+    }//GEN-LAST:event_formComponentShown
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // Verificar campos
         if (verificaCampos() == false) {
             return;
@@ -254,33 +276,11 @@ public class FRCadFornecedor extends javax.swing.JDialog {
         if(controller.adicionarFornecedor(forn)) {
             this.dispose();
         }
-    }//GEN-LAST:event_btnSalvarMouseClicked
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            btnSalvarMouseClicked(null);
-        }
-    }//GEN-LAST:event_btnSalvarKeyPressed
-
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnCancelarMouseClicked
-
-    private void txtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCidadeKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtCep.requestFocus();
-        }
-    }//GEN-LAST:event_txtCidadeKeyPressed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        txtDataCadastro.setText(dtf.format(now));
-    }//GEN-LAST:event_formComponentShown
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private boolean verificaCampos() {
         if (txtNome.getText().equals("")) {

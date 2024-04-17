@@ -134,9 +134,9 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalvarMouseClicked(evt);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
             }
         });
         btnSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -151,9 +151,9 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseClicked(evt);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -174,9 +174,9 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         btnExcluir.setMaximumSize(new java.awt.Dimension(104, 31));
         btnExcluir.setMinimumSize(new java.awt.Dimension(104, 31));
         btnExcluir.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExcluirMouseClicked(evt);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
             }
         });
         btnExcluir.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -192,9 +192,9 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         jLabel7.setText("Código:");
 
         btnAlterarSenha.setText("Alterar Senha");
-        btnAlterarSenha.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAlterarSenhaMouseClicked(evt);
+        btnAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarSenhaActionPerformed(evt);
             }
         });
 
@@ -326,7 +326,56 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtDataNascKeyPressed
 
-    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+    private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            btnSalvarActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnSalvarKeyPressed
+
+    private void txtConfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfSenhaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtDataNasc.requestFocus();
+        }
+    }//GEN-LAST:event_txtConfSenhaKeyPressed
+
+    private void btnExcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnExcluirKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcluirKeyPressed
+
+    private void btnAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarSenhaActionPerformed
+        if (btnAlterarSenha.getText().equals("Alterar Senha")) {
+            txtSenha.setEditable(true);
+            txtConfSenha.setEditable(true);
+            txtSenha.setBackground(Color.white);
+            txtConfSenha.setBackground(Color.white);
+            btnAlterarSenha.setText("Cancelar Alteração");
+
+            txtSenha.setText("");
+            txtConfSenha.setText("");
+        } else {
+            txtSenha.setEditable(false);
+            txtConfSenha.setEditable(false);
+            txtSenha.setBackground(Color.gray);
+            txtConfSenha.setBackground(Color.gray);
+            btnAlterarSenha.setText("Alterar Senha");
+
+            txtSenha.setText(getSenhaUsuario());
+            txtConfSenha.setText(getSenhaUsuario());
+        }
+    }//GEN-LAST:event_btnAlterarSenhaActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_NO_OPTION) {
+            UsuarioController controller = new UsuarioController();
+            if (controller.excluirUsuario(pkUsuario)) {
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // Verificar campos
         if (verificaCampos() == false) {
             return;
@@ -378,62 +427,11 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         if (controller.alterarUsuario(usu)) {
             this.dispose();
         }
-    }//GEN-LAST:event_btnSalvarMouseClicked
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            btnSalvarMouseClicked(null);
-        }
-    }//GEN-LAST:event_btnSalvarKeyPressed
-
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnCancelarMouseClicked
-
-    private void txtConfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfSenhaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtDataNasc.requestFocus();
-        }
-    }//GEN-LAST:event_txtConfSenhaKeyPressed
-
-    private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-        if (resposta == JOptionPane.YES_NO_OPTION) {
-            UsuarioController controller = new UsuarioController();
-            if (controller.excluirUsuario(pkUsuario)) {
-                this.dispose();
-            }
-        }
-    }//GEN-LAST:event_btnExcluirMouseClicked
-
-    private void btnExcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnExcluirKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirKeyPressed
-
-    private void btnAlterarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarSenhaMouseClicked
-        if (btnAlterarSenha.getText().equals("Alterar Senha")) {
-            txtSenha.setEditable(true);
-            txtConfSenha.setEditable(true);
-            txtSenha.setBackground(Color.white);
-            txtConfSenha.setBackground(Color.white);
-            btnAlterarSenha.setText("Cancelar Alteração");
-
-            txtSenha.setText("");
-            txtConfSenha.setText("");
-        } else {
-            txtSenha.setEditable(false);
-            txtConfSenha.setEditable(false);
-            txtSenha.setBackground(Color.gray);
-            txtConfSenha.setBackground(Color.gray);
-            btnAlterarSenha.setText("Alterar Senha");
-
-            txtSenha.setText(getSenhaUsuario());
-            txtConfSenha.setText(getSenhaUsuario());
-        }
-
-
-    }//GEN-LAST:event_btnAlterarSenhaMouseClicked
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private boolean verificaCampos() {
         if (txtNome.getText().equals("")) {

@@ -76,27 +76,27 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnGithub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Github_logo.png"))); // NOI18N
         btnGithub.setText("Github");
-        btnGithub.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGithubMouseClicked(evt);
+        btnGithub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGithubActionPerformed(evt);
             }
         });
         jPanel1.add(btnGithub, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, -1, -1));
 
         btnLinkedin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Linkedin_logo.png"))); // NOI18N
         btnLinkedin.setText("LinkedIn");
-        btnLinkedin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLinkedinMouseClicked(evt);
+        btnLinkedin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLinkedinActionPerformed(evt);
             }
         });
         jPanel1.add(btnLinkedin, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return.png"))); // NOI18N
         btnReturn.setText("Voltar");
-        btnReturn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnReturnMouseClicked(evt);
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
             }
         });
         jPanel1.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
@@ -115,11 +115,7 @@ public class FRSobre extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReturnMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_btnReturnMouseClicked
-
-    private void btnGithubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGithubMouseClicked
+    private void btnGithubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGithubActionPerformed
         try {
             Desktop desktop = Desktop.getDesktop();
             URI uri = new URI("https://github.com/KauaValim");
@@ -127,9 +123,9 @@ public class FRSobre extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_btnGithubMouseClicked
+    }//GEN-LAST:event_btnGithubActionPerformed
 
-    private void btnLinkedinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLinkedinMouseClicked
+    private void btnLinkedinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLinkedinActionPerformed
         try {
             Desktop desktop = Desktop.getDesktop();
             URI uri = new URI("https://linkedin.com/in/kauavalim");
@@ -137,7 +133,11 @@ public class FRSobre extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_btnLinkedinMouseClicked
+    }//GEN-LAST:event_btnLinkedinActionPerformed
+
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnReturnActionPerformed
 
     /**
      * @param args the command line arguments

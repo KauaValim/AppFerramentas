@@ -46,6 +46,8 @@ public class FRMenu extends javax.swing.JFrame {
         MIOrdemCompras = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         MIOrdemVendas = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        MIHistMov = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         MISobre = new javax.swing.JMenuItem();
         MISair = new javax.swing.JMenu();
@@ -109,7 +111,7 @@ public class FRMenu extends javax.swing.JFrame {
         MIConFornec.setText("Fornecedores");
         MIConFornec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                MIConFornecActionPerformed(evt);
             }
         });
         jMenu2.add(MIConFornec);
@@ -149,6 +151,15 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu5.add(MIOrdemVendas);
 
         jMenuBar1.add(jMenu5);
+
+        jMenu6.setMnemonic('E');
+        jMenu6.setText("Estoque");
+        jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        MIHistMov.setText("Histórico de movimentações");
+        jMenu6.add(MIHistMov);
+
+        jMenuBar1.add(jMenu6);
 
         jMenu3.setMnemonic('A');
         jMenu3.setText("Ajuda");
@@ -216,21 +227,13 @@ public class FRMenu extends javax.swing.JFrame {
         new FRSobre(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MISobreActionPerformed
 
-    private void MISairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MISairMouseClicked
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-        if(resposta == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_MISairMouseClicked
-
     private void MICadFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadFornecedorActionPerformed
         new FRCadFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MICadFornecedorActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void MIConFornecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIConFornecActionPerformed
         new FRConFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_MIConFornecActionPerformed
 
     private void MIConProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIConProdutosActionPerformed
         new FRConProduto(this, rootPaneCheckingEnabled).setVisible(true);
@@ -245,8 +248,16 @@ public class FRMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_MISairMenuKeyPressed
 
     private void MIOrdemComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIOrdemComprasActionPerformed
-        new FRConProduto(this, rootPaneCheckingEnabled).setVisible(true);
+        new FROrdemCompra(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MIOrdemComprasActionPerformed
+
+    private void MISairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MISairMouseClicked
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if(resposta == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_MISairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -290,6 +301,7 @@ public class FRMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem MIConFornec;
     private javax.swing.JMenuItem MIConProdutos;
     private javax.swing.JMenuItem MIConUsuario;
+    private javax.swing.JMenuItem MIHistMov;
     private javax.swing.JMenuItem MIOrdemCompras;
     private javax.swing.JMenuItem MIOrdemVendas;
     private javax.swing.JMenu MISair;
@@ -300,6 +312,7 @@ public class FRMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

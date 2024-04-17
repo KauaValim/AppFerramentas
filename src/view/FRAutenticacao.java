@@ -74,9 +74,9 @@ public class FRAutenticacao extends javax.swing.JFrame {
         btnSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key.png"))); // NOI18N
         btnSenha.setText(" Entrar");
         btnSenha.setName("btnSenha"); // NOI18N
-        btnSenha.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSenhaMouseClicked(evt);
+        btnSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSenhaActionPerformed(evt);
             }
         });
 
@@ -135,10 +135,6 @@ public class FRAutenticacao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSenhaMouseClicked
-        logar();
-    }//GEN-LAST:event_btnSenhaMouseClicked
-
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             logar();
@@ -150,6 +146,10 @@ public class FRAutenticacao extends javax.swing.JFrame {
             txtSenha.requestFocus();
         }
     }//GEN-LAST:event_txtEmailKeyPressed
+
+    private void btnSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSenhaActionPerformed
+        logar();
+    }//GEN-LAST:event_btnSenhaActionPerformed
 
     /**
      * @param args the command line arguments
