@@ -1,39 +1,40 @@
 package controller;
 
 import javax.swing.JOptionPane;
-import model.Usuario;
+import model.OrdemVenda;
+import model.OVDAO;
 
 public class OVController {
 
     private OVDAO ovDAO;
 
     public OVController() {
-        ovDAO = OVDAO();
+        ovDAO = new OVDAO(); 
     }
 
-    public boolean adicionarOV(Usuario u) {
-        if (ovDAO.adicionarUsuario(u)) {
+    public boolean adicionarOV(OrdemVenda ov) { 
+        if (ovDAO.adicionarOV(ov)) {
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario não cadastrado");
+            JOptionPane.showMessageDialog(null, "Ordem de venda não cadastrada"); 
             return false;
         }
     }
 
-    public boolean alterarOV(Usuario u) {
-        if (ovDAO.alterarUsuario(u)) {
+    public boolean alterarOV(OrdemVenda ov) { 
+        if (ovDAO.alterarOV(ov)) { 
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario não alterado");
+            JOptionPane.showMessageDialog(null, "Ordem de venda não alterada"); 
             return false;
         }
     }
 
-    public boolean excluirOV(int pkUsuario) {
-        if (ovDAO.excluirUsuario(pkUsuario)) {
+    public boolean excluirOV(Long numOrdemVenda) { 
+        if (ovDAO.excluirOV(numOrdemVenda)) {
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario não excluído");
+            JOptionPane.showMessageDialog(null, "Ordem de venda não excluída"); 
             return false;
         }
     }
