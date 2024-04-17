@@ -6,8 +6,6 @@ package controller;
 
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Fornecedor;
-import model.Produto;
 import model.Usuario;
 import model.UsuarioDAO;
 
@@ -57,25 +55,7 @@ public class UsuarioController {
             return false;
         }
     }
-    
-    public boolean adicionarProduto(Produto p) {
-        if (usuarioDAO.adicionarProduto(p)){
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null,"Produto não cadastrado");
-            return false;
-        }
-    }
-    
-    public boolean adicionarFornecedor(Fornecedor f) {
-        if (usuarioDAO.adicionarFornecedor(f)){
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null,"Fornecedor não cadastrado");
-            return false;
-        }
-    }
-    
+
     // TODO método readForDesc()
 
     public List<Usuario> readForDesc(int tipo, String desc) {
@@ -90,12 +70,4 @@ public class UsuarioController {
         }
         return usu;
     }
-    
-    public List<Fornecedor> readForForn(int tipo, String desc) {
-       return usuarioDAO.readForForn(tipo, desc);
-    }
-    
-    public List<Produto> readForProd(int tipo, String desc) {
-       return usuarioDAO.readForProd(tipo, desc);
-    }    
 }

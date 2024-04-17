@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.UsuarioController;
+import controller.ProdutoController;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
@@ -172,7 +172,7 @@ public class FRConProduto extends javax.swing.JDialog {
     private void pesquisar() {
         DefaultTableModel modelo = (DefaultTableModel) tbUsuario.getModel();
         modelo.setNumRows(0);
-        UsuarioController controller = new UsuarioController();
+        ProdutoController controller = new ProdutoController();
         for(Produto prod : controller.readForProd(
         cbFiltro.getSelectedIndex(), txtFiltro.getText())) {
             Object[] linha = {prod.getPkIdProduto()

@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.UsuarioController;
+import controller.FornecedorController;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 import model.Fornecedor;
@@ -173,7 +173,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
     private void pesquisar() {
         DefaultTableModel modelo = (DefaultTableModel) tbFornecedor.getModel();
         modelo.setNumRows(0);
-        UsuarioController controller = new UsuarioController();
+        FornecedorController controller = new FornecedorController();
         for (Fornecedor forn : controller.readForForn(
                 cbFiltro.getSelectedIndex(), txtFiltro.getText())) {
             Object[] linha = {forn.getPkFornecedor(),
