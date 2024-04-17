@@ -386,6 +386,10 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
     private void btnNovaOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaOCActionPerformed
         OCController controller = new OCController();
+        if (controller.getLastId().size() == 0){
+            
+        }
+        
         Long id = controller.getLastId().get(0).getNumOC() + 1;
         oc.setNumOC(id);
         txtCodigo.setText(oc.getNumOC().toString());
