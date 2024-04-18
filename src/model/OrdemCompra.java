@@ -15,7 +15,7 @@ import java.util.List;
 public class OrdemCompra {
     private Long numOC;
     private Date dataEmissao;
-    private String condpagamento;
+    private String condPagamento;
     private double valorTotal;
     private int qntdTotal;
     private Long pkFornecedor;
@@ -23,10 +23,10 @@ public class OrdemCompra {
 
     public OrdemCompra() {}
 
-    public OrdemCompra(Long numOC, Date dataEmissao, String condpagamento, double valorTotal, int qntdTotal, Long pkFornecedor) {
+    public OrdemCompra(Long numOC, Date dataEmissao, String condPagamento, double valorTotal, int qntdTotal, Long pkFornecedor) {
         this.numOC = numOC;
         this.dataEmissao = dataEmissao;
-        this.condpagamento = condpagamento;
+        this.condPagamento = condPagamento;
         this.pkFornecedor = pkFornecedor;
     }
 
@@ -46,12 +46,12 @@ public class OrdemCompra {
         this.dataEmissao = dataEmissao;
     }
 
-    public String getCondpagamento() {
-        return condpagamento;
+    public String getCondPagamento() {
+        return condPagamento;
     }
 
-    public void setCondpagamento(String condpagamento) {
-        this.condpagamento = condpagamento;
+    public void setCondPagamento(String condPagamento) {
+        this.condPagamento = condPagamento;
     }
 
     public double getValorTotal() {
