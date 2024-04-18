@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -134,8 +135,6 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
         txtNomeProd.setEditable(false);
         txtNomeProd.setFocusable(false);
         jPanel1.add(txtNomeProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 450, -1));
-
-        txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jPanel1.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 120, -1));
 
         txtQuant.setModel(new javax.swing.SpinnerNumberModel(0, null, 9999, 1));
@@ -183,6 +182,9 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        if (verificaCampos() == false) {
+            return;
+        }
         if (txtCodigoProd.getText() == "" || txtNomeProd.getText() == "" || txtQuant.getValue() == null || txtPreco.getText() == "") {
             JOptionPane.showMessageDialog(null, "Favor preencher todos os campos");
         } else {
@@ -192,6 +194,19 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnInserirActionPerformed
 
+    private boolean verificaCampos() {
+        if (txtPreco.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Preço' está vazio.");
+            return false;
+        }
+        
+        if (txtPreco.getText().equals("^[0-9]+.[0-9]+$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Preço' precisa ser no formato: 1000,00");
+            return false;
+        }
+        return true;
+    }
+    
     /**
      * @param args the command line arguments
      */

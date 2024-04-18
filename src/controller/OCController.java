@@ -20,10 +20,6 @@ public class OCController {
         ocDAO = new OCDAO();
     }
     
-    public List<OrdemCompra> getLastId(){
-        return ocDAO.getLastId();
-    }
-    
     public boolean salvarOC(OrdemCompra o) {
         if (ocDAO.salvarOC(o)){
             return true;
