@@ -113,6 +113,9 @@
                 <Property name="mnemonic" type="int" value="79"/>
                 <Property name="text" type="java.lang.String" value="Ordem Vendas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MIOrdemVendasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
