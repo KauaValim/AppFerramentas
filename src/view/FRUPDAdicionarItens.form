@@ -83,6 +83,7 @@
         <Component class="javax.swing.JTextField" name="txtCodigoProd">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
@@ -162,6 +163,7 @@
         <Component class="javax.swing.JTextField" name="txtNomeProd">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
@@ -180,7 +182,10 @@
         <Component class="javax.swing.JSpinner" name="txtQuant">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0" maximum="9999" numberType="java.lang.Integer" stepSize="1" type="number"/>
+              <SpinnerModel initial="0" maximum="9999" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
             </Property>
           </Properties>
           <Constraints>

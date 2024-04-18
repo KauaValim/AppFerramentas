@@ -17,6 +17,7 @@ import utils.Utils;
 public class FRUPDProdutos extends javax.swing.JDialog {
     private Long pk;
     private String nome;
+    private boolean ativa;
 
     public Long getPk() {
         return pk;
@@ -32,6 +33,14 @@ public class FRUPDProdutos extends javax.swing.JDialog {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public boolean isAtiva() {
+        return ativa;
+    }
+
+    public void setAtiva(boolean ativa) {
+        this.ativa = ativa;
     }
     
     /**
@@ -167,7 +176,8 @@ public class FRUPDProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_txtFiltroKeyPressed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        this.dispose();
+        this.setAtiva(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
@@ -176,6 +186,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
                 tbProdutos.getValueAt(tbProdutos.getSelectedRow(), 0).toString()
             ));
             this.setNome(tbProdutos.getValueAt(tbProdutos.getSelectedRow(), 1).toString());
+            this.setAtiva(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_btnSelecionarActionPerformed

@@ -6,10 +6,15 @@ package view;
 
 import controller.OCController;
 import controller.ProdutoController;
+import controller.UsuarioController;
 import java.awt.event.KeyEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ItensOC;
 import model.OrdemCompra;
@@ -22,8 +27,11 @@ import utils.Utils;
  * @author S.Lucas
  */
 public class FROrdemCompra extends javax.swing.JDialog {
-        OrdemCompra oc = new OrdemCompra();
-        ItensOC it = new ItensOC();
+
+    OrdemCompra oc = new OrdemCompra();
+    ItensOC it = new ItensOC();
+    List<ItensOC> lista = new ArrayList<>();
+
     /**
      * Creates new form FRUPDOrdemCompra
      */
@@ -60,6 +68,13 @@ public class FROrdemCompra extends javax.swing.JDialog {
         btnSelectForn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtNomeForn = new javax.swing.JTextField();
+        btnRemoveItem = new javax.swing.JButton();
+        txtDataEmissao = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtQntTot = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtVlrTot = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ordem de compra");
@@ -176,6 +191,11 @@ public class FROrdemCompra extends javax.swing.JDialog {
         tbListaCompras.setEnabled(false);
         tbListaCompras.setShowGrid(true);
         tbListaCompras.getTableHeader().setReorderingAllowed(false);
+        tbListaCompras.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tbListaComprasFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbListaCompras);
 
         btnAddItem.setText("Adicionar Item");
@@ -207,6 +227,28 @@ public class FROrdemCompra extends javax.swing.JDialog {
         txtNomeForn.setEditable(false);
         txtNomeForn.setFocusable(false);
 
+        btnRemoveItem.setText("Remover item selecionado");
+        btnRemoveItem.setEnabled(false);
+        btnRemoveItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveItemActionPerformed(evt);
+            }
+        });
+
+        txtDataEmissao.setEditable(false);
+        txtDataEmissao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataEmissao.setEnabled(false);
+        txtDataEmissao.setFocusable(false);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Data de Emissão:");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("Quantidade Total");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Valor Total");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,7 +260,16 @@ public class FROrdemCompra extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRemoveItem, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(txtVlrTot)
+                            .addComponent(txtQntTot)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jLabel7)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -237,13 +288,15 @@ public class FROrdemCompra extends javax.swing.JDialog {
                             .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNomeForn)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnNovaOC, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNomeForn)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSelectForn)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(txtDataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSelectForn))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -256,11 +309,17 @@ public class FROrdemCompra extends javax.swing.JDialog {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNovaOC))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNovaOC)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -277,12 +336,21 @@ public class FROrdemCompra extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(btnAddItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRemoveItem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtQntTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtVlrTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,7 +363,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -331,26 +399,41 @@ public class FROrdemCompra extends javax.swing.JDialog {
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         FRUPDAdicionarItens telaUPD2 = new FRUPDAdicionarItens(null, rootPaneCheckingEnabled);
         telaUPD2.setVisible(true);
-        
-        
-        
-        List<ItensOC> lista = new ArrayList<>();
-        it.setCodigo(telaUPD2.getCodProd());
-        it.setNome(telaUPD2.getNomeProd());
-        it.setQuantidade(telaUPD2.getQuantProd());
-        it.setPrecoUnitario(telaUPD2.getPrecoProd());
-        lista.add(it);
-        oc.setItens(lista);
-        
-        DefaultTableModel modelo = (DefaultTableModel) tbListaCompras.getModel();
-        for(ItensOC i : oc.getItens()) {
-            Object[] linha = {i.getCodigo()
-                    , i.getNome()
-                    , i.getQuantidade()
-                    , i.getPrecoUnitario()};
-            modelo.addRow(linha);
+
+        if (telaUPD2.isAtiva()) {
+            it.setCodigo(telaUPD2.getCodProd());
+            it.setNome(telaUPD2.getNomeProd());
+            it.setQuantidade(telaUPD2.getQuantProd());
+            it.setPrecoUnitario(telaUPD2.getPrecoProd());
+            lista.add(it);
+
+            DefaultTableModel modelo = (DefaultTableModel) tbListaCompras.getModel();
+            for (ItensOC i : oc.getItens()) {
+                Object[] linha = {i.getCodigo(),
+                     i.getNome(),
+                     i.getQuantidade(),
+                     i.getPrecoUnitario()};
+                modelo.addRow(linha);
+            }
+            
+            int quant = 0;
+            double vlr = 0;
+            for (int i = 0; i < lista.size();i++){
+                System.out.println("Iteração: nº" + (i+1));
+                System.out.println("qnt: "+lista.size());
+                System.out.println("qnttot: "+lista.get(i).getQuantidade());
+                System.out.println("vlrtot: "+lista.get(i).getQuantidade()*lista.get(i).getPrecoUnitario());
+                quant += lista.get(i).getQuantidade();
+                vlr += lista.get(i).getQuantidade()*lista.get(i).getPrecoUnitario();
+                System.out.println("qntTotArr: "+quant);
+                System.out.println("vlrTotArr: "+vlr);
+            };
+            txtVlrTot.setText(String.valueOf(vlr));
+            txtQntTot.setText(Integer.toString(quant));
+                
+            
         }
-        
+
         telaUPD2.dispose();
     }//GEN-LAST:event_btnAddItemActionPerformed
 
@@ -359,12 +442,23 @@ public class FROrdemCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-            // Verificar campos
+        // Verificar campos
         if (verificaCampos() == false) {
             return;
         }
 
         // Salvar no banco de dados
+        Date data = Utils.converterStringToDate(txtDataEmissao.getText());
+        oc.setDataEmissao(data);
+        oc.setCondPagamento(txtCondPag.getText());
+        
+        oc.setValorTotal(ABORT);
+        
+        OCController controller = new OCController();
+        if(controller.salvarOC(oc)) {
+            this.dispose();
+        }
+        
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -375,19 +469,28 @@ public class FROrdemCompra extends javax.swing.JDialog {
     private void btnSelectFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectFornActionPerformed
         FRUPDFornecedores telaUPD = new FRUPDFornecedores(null, rootPaneCheckingEnabled);
         telaUPD.setVisible(true);
-        
-        if(telaUPD.getPk() == 0) {
+
+        if (telaUPD.getPk() == 0) {
             txtCodigoForn.setText("");
         } else {
             txtCodigoForn.setText(String.valueOf(telaUPD.getPk()));
         }
         txtNomeForn.setText(telaUPD.getNome());
+        List<ItensOC> listaForn = new ArrayList<>();
+        listaForn.add(it);
+        oc.setItens(listaForn);
+
         telaUPD.dispose();
     }//GEN-LAST:event_btnSelectFornActionPerformed
 
     private void btnNovaOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaOCActionPerformed
         OCController controller = new OCController();
-
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        txtDataEmissao.setText(dtf.format(now));
+        
+        txtDataEmissao.setEnabled(true);
         btnSelectForn.setEnabled(true);
         btnAddItem.setEnabled(true);
         tbListaCompras.setEnabled(true);
@@ -399,14 +502,42 @@ public class FROrdemCompra extends javax.swing.JDialog {
         btnCancelar.setEnabled(true);
     }//GEN-LAST:event_btnNovaOCActionPerformed
 
+    private void btnRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveItemActionPerformed
+        if (tbListaCompras.getSelectedRow() != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) tbListaCompras.getModel();
+            lista.remove(tbListaCompras.getSelectedRow());
+            modelo.removeRow(tbListaCompras.getSelectedRow());
+        }
+        btnRemoveItem.setEnabled(false);
+    }//GEN-LAST:event_btnRemoveItemActionPerformed
+
+    private void tbListaComprasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbListaComprasFocusGained
+        btnRemoveItem.setEnabled(true);
+    }//GEN-LAST:event_tbListaComprasFocusGained
+
     private boolean verificaCampos() {
-        //TODO Criar verificadores de campos
+        if (txtCodigoForn.getText().equals("") && txtNomeForn.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Selecionar um fornecedor");
+            return false;
+        }
+
+        if (txtCondPag.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informar uma condição de pagamento");
+            return false;
+        }
+
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Adicionar ao menos um item na ordem de compra");
+            return false;
+        }
+
         return true;
     }
 
     /**
      * @param args the command line arguments
-     **/
+     *
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -452,20 +583,27 @@ public class FROrdemCompra extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovaOC;
+    private javax.swing.JButton btnRemoveItem;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnSelectForn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbListaCompras;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoForn;
     private javax.swing.JTextField txtCondPag;
+    private javax.swing.JTextField txtDataEmissao;
     private javax.swing.JTextField txtNomeForn;
+    private javax.swing.JTextField txtQntTot;
+    private javax.swing.JTextField txtVlrTot;
     // End of variables declaration//GEN-END:variables
 
 }

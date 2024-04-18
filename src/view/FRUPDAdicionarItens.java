@@ -6,6 +6,10 @@ package view;
 
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,10 +17,12 @@ import javax.swing.JOptionPane;
  * @author kaua_
  */
 public class FRUPDAdicionarItens extends javax.swing.JDialog {
+
     private Long codProd;
     private String nomeProd;
     private int quantProd;
     private double precoProd;
+    private boolean ativa;
 
     public Long getCodProd() {
         return codProd;
@@ -49,7 +55,15 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
     public void setPrecoProd(double precoProd) {
         this.precoProd = precoProd;
     }
-    
+
+    public boolean isAtiva() {
+        return ativa;
+    }
+
+    public void setAtiva(boolean ativa) {
+        this.ativa = ativa;
+    }
+
     /**
      * Creates new form FRUPDAdicionarItens
      */
@@ -104,6 +118,7 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
         jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 140, 23));
 
         txtCodigoProd.setEditable(false);
+        txtCodigoProd.setEnabled(false);
         txtCodigoProd.setFocusable(false);
         jPanel1.add(txtCodigoProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, -1));
 
@@ -133,11 +148,13 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         txtNomeProd.setEditable(false);
+        txtNomeProd.setEnabled(false);
         txtNomeProd.setFocusable(false);
         jPanel1.add(txtNomeProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 450, -1));
         jPanel1.add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 120, -1));
 
-        txtQuant.setModel(new javax.swing.SpinnerNumberModel(0, null, 9999, 1));
+        txtQuant.setModel(new javax.swing.SpinnerNumberModel(0, 0, 9999, 1));
+        txtQuant.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(txtQuant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         btnInserir.setText("Inserir");
@@ -165,48 +182,70 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         FRUPDProdutos telaUPD = new FRUPDProdutos(null, rootPaneCheckingEnabled);
         telaUPD.setVisible(true);
-        
-        if(telaUPD.getPk() == 0) {
-            txtCodigoProd.setText("");
-        } else {
-            txtCodigoProd.setText(String.valueOf(telaUPD.getPk()));
-            this.setCodProd(telaUPD.getPk());
+
+        if (telaUPD.isAtiva()) {
+            if (telaUPD.getPk() == 0) {
+                txtCodigoProd.setText("");
+            } else {
+                txtCodigoProd.setText(String.valueOf(telaUPD.getPk()));
+                this.setCodProd(telaUPD.getPk());
+                txtCodigoProd.setEnabled(true);
+            }
+            txtNomeProd.setText(telaUPD.getNome());
+            this.setNomeProd(telaUPD.getNome());
+            txtNomeProd.setEnabled(true);
         }
-        txtNomeProd.setText(telaUPD.getNome());
-        this.setNomeProd(telaUPD.getNome());
         telaUPD.dispose();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        this.dispose();
+        this.setAtiva(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-        if (verificaCampos() == false) {
-            return;
-        }
-        if (txtCodigoProd.getText() == "" || txtNomeProd.getText() == "" || txtQuant.getValue() == null || txtPreco.getText() == "") {
-            JOptionPane.showMessageDialog(null, "Favor preencher todos os campos");
-        } else {
-            this.setQuantProd(Integer.parseInt(txtQuant.getValue().toString()));
-            this.setPrecoProd(Double.parseDouble(txtPreco.getText()));
-            this.setVisible(false);
+        try {
+            if (verificaCampos() == false) {
+                return;
+            }
+            NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
+            double preco = nf.parse(txtPreco.getText()).doubleValue();
+
+            if (txtCodigoProd.getText() == "" || txtNomeProd.getText() == "" || txtQuant.getValue() == null || preco == 0) {
+                JOptionPane.showMessageDialog(null, "Favor preencher todos os campos");
+            } else {
+                this.setQuantProd(Integer.parseInt(txtQuant.getValue().toString()));
+                this.setPrecoProd(preco);
+                this.setAtiva(true);
+                this.setVisible(false);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(FRUPDAdicionarItens.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private boolean verificaCampos() {
+        if (txtCodigoProd.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Código do Produto' está vazio.");
+            return false;
+        }
+        if (txtNomeProd.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Nome do Produto' está vazio.");
+            return false;
+        }
+
+        if (txtQuant.getValue().equals(0)) {
+            JOptionPane.showMessageDialog(null, "Campo 'Quantidade' está zerada.");
+            return false;
+        }
+
         if (txtPreco.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo 'Preço' está vazio.");
             return false;
         }
-        
-        if (txtPreco.getText().equals("^[0-9]+.[0-9]+$")) {
-            JOptionPane.showMessageDialog(null, "Campo 'Preço' precisa ser no formato: 1000,00");
-            return false;
-        }
         return true;
     }
-    
+
     /**
      * @param args the command line arguments
      */
