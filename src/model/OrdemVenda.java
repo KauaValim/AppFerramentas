@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class OrdemVenda {
     private Long numOV;
@@ -8,6 +10,9 @@ public class OrdemVenda {
     private Date dataEmissao;
     private double valorTotal;
     private double qntdTotal;
+    List<ItensOV> itens = new ArrayList<>();
+    
+    public OrdemVenda(){}
 
     public OrdemVenda(Long numOV, String condPag, Date dataEmissao, double valorTotal, double qntdTotal) {
         this.numOV = numOV;
@@ -17,11 +22,11 @@ public class OrdemVenda {
         this.qntdTotal = qntdTotal;
     }
 
-    public Long getNumOrdemVenda() {
+    public Long getNumOV() {
         return numOV;
     }
 
-    public void setNumOrdemVenda(Long numOV) {
+    public void setNumOV(Long numOV) {
         this.numOV = numOV;
     }
 
@@ -56,4 +61,13 @@ public class OrdemVenda {
     public void setQntdTotal(double qntdTotal) {
         this.qntdTotal = qntdTotal;
     }
+
+    public List<ItensOV> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItensOV> itens) {
+        this.itens = itens;
+    }
+    
 }

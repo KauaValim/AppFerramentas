@@ -148,6 +148,11 @@ public class FRMenu extends javax.swing.JFrame {
 
         MIOrdemVendas.setMnemonic('O');
         MIOrdemVendas.setText("Ordem Vendas");
+        MIOrdemVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIOrdemVendasActionPerformed(evt);
+            }
+        });
         jMenu5.add(MIOrdemVendas);
 
         jMenuBar1.add(jMenu5);
@@ -258,6 +263,10 @@ public class FRMenu extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_MISairMouseClicked
+
+    private void MIOrdemVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIOrdemVendasActionPerformed
+        new FROrdemVenda(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_MIOrdemVendasActionPerformed
 
     /**
      * @param args the command line arguments

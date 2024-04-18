@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class GerenciadorConexao {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/dbappferramentas";
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "root";
     // private static GerenciadorConexao instancia:
     private Connection conexao;
     

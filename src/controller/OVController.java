@@ -20,5 +20,13 @@ public class OVController {
             return false;
         }
     }
-
+    
+    public boolean excluirOV(Long numOV) {
+        if (ovDAO.excluirOrdemVenda(numOV)){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"Ordem de venda não excluída");
+            return false;
+        }
+    }
 }
