@@ -162,7 +162,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
                 java.lang.Long.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -175,7 +175,6 @@ public class FROrdemCompra extends javax.swing.JDialog {
         });
         tbListaCompras.setEnabled(false);
         tbListaCompras.setShowGrid(true);
-        tbListaCompras.setShowVerticalLines(true);
         tbListaCompras.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbListaCompras);
 
@@ -333,6 +332,8 @@ public class FROrdemCompra extends javax.swing.JDialog {
         FRUPDAdicionarItens telaUPD2 = new FRUPDAdicionarItens(null, rootPaneCheckingEnabled);
         telaUPD2.setVisible(true);
         
+        
+        
         List<ItensOC> lista = new ArrayList<>();
         it.setCodigo(telaUPD2.getCodProd());
         it.setNome(telaUPD2.getNomeProd());
@@ -386,13 +387,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
     private void btnNovaOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaOCActionPerformed
         OCController controller = new OCController();
-        if (controller.getLastId().size() == 0){
-            
-        }
-        
-        Long id = controller.getLastId().get(0).getNumOC() + 1;
-        oc.setNumOC(id);
-        txtCodigo.setText(oc.getNumOC().toString());
+
         btnSelectForn.setEnabled(true);
         btnAddItem.setEnabled(true);
         tbListaCompras.setEnabled(true);
