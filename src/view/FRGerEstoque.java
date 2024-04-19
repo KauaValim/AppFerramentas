@@ -101,7 +101,7 @@ public class FRGerEstoque extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(16, 157, 218));
+        jPanel1.setBackground(new java.awt.Color(255, 102, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
