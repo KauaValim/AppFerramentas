@@ -4,12 +4,14 @@
  */
 package view;
 
+import controller.EstoqueController;
 import controller.ProdutoController;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.Estoque;
 import model.Produto;
 import utils.Utils;
 
@@ -18,65 +20,12 @@ import utils.Utils;
  * @author admin
  */
 public class FRGerEstoque extends javax.swing.JDialog {
-
-    private Long codProd;
-    private String nomeProd;
-    private String tipoMov;
-    private int qntd;
-    private double valorU;
-    private Date dataMov;
-
-    public Long getCodProd() {
-        return codProd;
-    }
-
-    public void setCodProd(Long codProd) {
-        this.codProd = codProd;
-    }
-
-    public String getNomeProd() {
-        return nomeProd;
-    }
-
-    public void setNomeProd(String nomeProd) {
-        this.nomeProd = nomeProd;
-    }
-
-    public String getTipoMov() {
-        return tipoMov;
-    }
-
-    public void setTipoMov(String tipoMov) {
-        this.tipoMov = tipoMov;
-    }
-
-    public int getQntd() {
-        return qntd;
-    }
-
-    public void setQntd(int qntd) {
-        this.qntd = qntd;
-    }
-
-    public double getValorU() {
-        return valorU;
-    }
-
-    public void setValorU(double valorU) {
-        this.valorU = valorU;
-    }
-
-    public Date getDataMov() {
-        return dataMov;
-    }
-
-    public void setDataMov(Date dataMov) {
-        this.dataMov = dataMov;
-    }
+    
     
     public FRGerEstoque(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -140,12 +89,14 @@ public class FRGerEstoque extends javax.swing.JDialog {
                 btnPesquisarActionPerformed(evt);
             }
         });
-
-        txtNomeProd.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNomeProdKeyPressed(evt);
+                btnPesquisarKeyPressed(evt);
             }
         });
+
+        txtNomeProd.setEditable(false);
+        txtNomeProd.setFocusable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Nome do Produto:");
@@ -160,6 +111,10 @@ public class FRGerEstoque extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Cód. Prod.:");
+
+        txtCodProd.setEditable(false);
+        txtCodProd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodProd.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,24 +163,18 @@ public class FRGerEstoque extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReturn)
-                .addContainerGap())
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -234,12 +183,6 @@ public class FRGerEstoque extends javax.swing.JDialog {
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnReturnActionPerformed
-
-    private void txtNomeProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeProdKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            pesquisar();
-        }
-    }//GEN-LAST:event_txtNomeProdKeyPressed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         FRUPDProdutos telaUPD = new FRUPDProdutos(null, rootPaneCheckingEnabled);
@@ -250,28 +193,34 @@ public class FRGerEstoque extends javax.swing.JDialog {
                 txtCodProd.setText("");
             } else {
                 txtCodProd.setText(String.valueOf(telaUPD.getPk()));
-                this.setCodProd(telaUPD.getPk());
                 txtCodProd.setEnabled(true);
             }
-            txtCodProd.setText(telaUPD.getNome());
-            this.setNomeProd(telaUPD.getNome());
+            txtNomeProd.setText(telaUPD.getNome());
             txtNomeProd.setEnabled(true);
         }
         telaUPD.dispose();
+        
+        pesquisar();
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPesquisarKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnPesquisarActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnPesquisarKeyPressed
 
     private void pesquisar() {
         DefaultTableModel modelo = (DefaultTableModel) tbGerEstoque.getModel();
         modelo.setNumRows(0);
-        ProdutoController controller = new ProdutoController();
-        for(Produto prod : controller.readForProd(
-        Integer.valueOf(txtCodProd.getText()), txtNomeProd.getText())) {
-            Object[] linha = {prod.getPkIdProduto()
-                    , prod.getNome()
-                    , prod.getCategoria()
-                    , prod.getNCM()
-                    , Utils.converterDateToString(prod.getDataCadastro())
-                    , prod.ativoToString()};
+        Estoque estoque = new Estoque();
+        estoque.setCodProd(Long.valueOf(txtCodProd.getText()));
+        estoque.setNomeProd(txtNomeProd.getText());
+        EstoqueController est = new EstoqueController();
+        for(Estoque e : est.getEstoque(estoque)) {
+            Object[] linha = {e.getTipoMov()
+                    , e.getQntd()
+                    , e.getVlrUnit()
+                    , Utils.converterDateToString(e.getDataMov())};
             modelo.addRow(linha);
         }
     }

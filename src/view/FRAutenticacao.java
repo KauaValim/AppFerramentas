@@ -216,8 +216,11 @@ public class FRAutenticacao extends javax.swing.JFrame {
         if (controller.autenticar(txtEmail.getText(),
                 hash) == true) {
             // logar
+            
             this.dispose();
-            new FRMenu().setVisible(true);
+            FRMenu menu = new FRMenu();
+                menu.setEmail(txtEmail.getText());
+                menu.setVisible(true);
         }
     }
 }

@@ -4,8 +4,6 @@
  */
 package view;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +11,16 @@ import javax.swing.JOptionPane;
  * @author S.Lucas
  */
 public class FRMenu extends javax.swing.JFrame {
+    private String email;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     /**
      * Creates new form FRMenu
      */
@@ -162,6 +169,11 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         MIHistMov.setText("Histórico de movimentações");
+        MIHistMov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIHistMovActionPerformed(evt);
+            }
+        });
         jMenu6.add(MIHistMov);
 
         jMenuBar1.add(jMenu6);
@@ -265,8 +277,14 @@ public class FRMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_MISairMouseClicked
 
     private void MIOrdemVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIOrdemVendasActionPerformed
-        new FROrdemVenda(this, rootPaneCheckingEnabled).setVisible(true);
+        FROrdemVenda ordVnd = new FROrdemVenda(this, rootPaneCheckingEnabled);
+        ordVnd.setEmail(this.getEmail());
+        ordVnd.setVisible(true);
     }//GEN-LAST:event_MIOrdemVendasActionPerformed
+
+    private void MIHistMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIHistMovActionPerformed
+        new FRGerEstoque(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_MIHistMovActionPerformed
 
     /**
      * @param args the command line arguments

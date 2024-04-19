@@ -1,31 +1,34 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package controller;
 
+import java.util.List;
 import javax.swing.JOptionPane;
-import model.OrdemVenda;
 import model.OVDAO;
+import model.OrdemVenda;
 
+/**
+ *
+ * @author S.Lucas
+ */
 public class OVController {
-
     private OVDAO ovDAO;
 
     public OVController() {
         ovDAO = new OVDAO();
     }
-
-    public boolean adicionarOV(OrdemVenda ov) {
-        if (ovDAO.adicionarOrdemVenda(ov)) {
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "Ordem de venda não cadastrada");
-            return false;
-        }
-    }
     
-    public boolean excluirOV(Long numOV) {
-        if (ovDAO.excluirOrdemVenda(numOV)){
+    public List<OrdemVenda> getLastId(){
+        return ovDAO.getLastId();
+    }
+
+    public boolean salvarOV(OrdemVenda ov) {
+        if (ovDAO.salvarOV(ov)) {
             return true;
         } else {
-            JOptionPane.showMessageDialog(null,"Ordem de venda não excluída");
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar a OV");
             return false;
         }
     }

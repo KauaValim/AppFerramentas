@@ -70,4 +70,8 @@ public class UsuarioController {
         }
         return usu;
     }
+    
+    public Long readForId(String email) {
+        return usuarioDAO.readForId(email);
+    }
 }

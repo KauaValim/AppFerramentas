@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Fornecedor;
 import model.FornecedorDAO;
+import model.Usuario;
 
 /**
  *
@@ -32,5 +33,14 @@ public class FornecedorController {
     
     public List<Fornecedor> readForForn(int tipo, String desc) {
        return fornecedorDAO.readForForn(tipo, desc);
+    }
+    
+    public Fornecedor readForPk(long pk) {
+        Fornecedor forn = fornecedorDAO.readForPk(pk);
+        if(forn == null) {
+            JOptionPane.showMessageDialog(null, "Fornecedor não encontrado");
+            return null;
+        }
+        return forn;
     }
 }

@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author kaua_
- */
 public class OrdemCompra {
     private Long numOC;
     private Date dataEmissao;
@@ -27,6 +19,8 @@ public class OrdemCompra {
         this.numOC = numOC;
         this.dataEmissao = dataEmissao;
         this.condPagamento = condPagamento;
+        this.valorTotal = valorTotal;
+        this.qntdTotal = qntdTotal;
         this.pkFornecedor = pkFornecedor;
     }
 

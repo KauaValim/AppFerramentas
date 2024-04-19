@@ -6,20 +6,22 @@ import java.util.List;
 
 public class OrdemVenda {
     private Long numOV;
-    private String condPag;
+    private String condPagamento;
     private Date dataEmissao;
     private double valorTotal;
     private double qntdTotal;
+    private Long pkVendedor;
     List<ItensOV> itens = new ArrayList<>();
     
     public OrdemVenda(){}
 
-    public OrdemVenda(Long numOV, String condPag, Date dataEmissao, double valorTotal, double qntdTotal) {
+    public OrdemVenda(Long numOV, String condPagamento, Date dataEmissao, double valorTotal, double qntdTotal, Long pkVendedor) {
         this.numOV = numOV;
-        this.condPag = condPag;
+        this.condPagamento = condPagamento;
         this.dataEmissao = dataEmissao;
         this.valorTotal = valorTotal;
         this.qntdTotal = qntdTotal;
+        this.pkVendedor = pkVendedor;
     }
 
     public Long getNumOV() {
@@ -30,12 +32,12 @@ public class OrdemVenda {
         this.numOV = numOV;
     }
 
-    public String getCondPag() {
-        return condPag;
+    public String getCondPagamento() {
+        return condPagamento;
     }
 
-    public void setCondPag(String condPag) {
-        this.condPag = condPag;
+    public void setCondPagamento(String condPagamento) {
+        this.condPagamento = condPagamento;
     }
 
     public Date getDataEmissao() {
@@ -60,6 +62,14 @@ public class OrdemVenda {
 
     public void setQntdTotal(double qntdTotal) {
         this.qntdTotal = qntdTotal;
+    }
+
+    public Long getPkVendedor() {
+        return pkVendedor;
+    }
+
+    public void setPkVendedor(Long pkVendedor) {
+        this.pkVendedor = pkVendedor;
     }
 
     public List<ItensOV> getItens() {

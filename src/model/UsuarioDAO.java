@@ -206,4 +206,27 @@ public class UsuarioDAO {
 
         return usuario;
     }
+
+    public Long readForId(String email) {
+        String sql = "SELECT pkidvendedor from tbvendedores WHERE email = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt, rs);
+        }
+        return null;
+    }
 }

@@ -7,25 +7,45 @@ package view;
 import controller.OVController;
 import controller.UsuarioController;
 import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ItensOV;
 import model.OrdemVenda;
+import model.Usuario;
+import utils.Utils;
 
 /**
  *
  * @author admin
  */
 public class FROrdemVenda extends javax.swing.JDialog {
+    private String email;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    Usuario usu = new Usuario();
     OrdemVenda ov = new OrdemVenda();
     ItensOV it = new ItensOV();
+    
+    List<ItensOV> lista = new ArrayList<>();
 
     public FROrdemVenda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -37,31 +57,38 @@ public class FROrdemVenda extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         txtCondPag = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tbListaVendas = new javax.swing.JTable();
         btnAddItem = new javax.swing.JButton();
+        btnNovaOV = new javax.swing.JButton();
+        btnRemoveItem = new javax.swing.JButton();
+        txtDataEmissao = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtQntTot = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtVlrTot = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ordem de venda");
 
-        jPanel1.setBackground(new java.awt.Color(51, 255, 204));
-        jPanel1.setPreferredSize(new java.awt.Dimension(450, 490));
+        jPanel2.setBackground(new java.awt.Color(51, 255, 204));
+        jPanel2.setPreferredSize(new java.awt.Dimension(450, 490));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/alter_user.png"))); // NOI18N
-        jLabel1.setText("Ordem de venda");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/alter_user.png"))); // NOI18N
+        jLabel2.setText("Ordem de Venda");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Condição de pagamento:");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Forma de pagamento:");
 
         txtCondPag.setFocusable(false);
         txtCondPag.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -73,6 +100,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setEnabled(false);
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -90,6 +118,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setEnabled(false);
         btnCancelar.setFocusable(false);
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setMinimumSize(new java.awt.Dimension(104, 31));
@@ -100,29 +129,12 @@ public class FROrdemVenda extends javax.swing.JDialog {
             }
         });
 
-        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash.png"))); // NOI18N
-        btnExcluir.setText("Excluir");
-        btnExcluir.setMaximumSize(new java.awt.Dimension(104, 31));
-        btnExcluir.setMinimumSize(new java.awt.Dimension(104, 31));
-        btnExcluir.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-        btnExcluir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnExcluirKeyPressed(evt);
-            }
-        });
-
         txtCodigo.setEditable(false);
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigo.setFocusable(false);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Nº OV:");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Nº OV:");
 
         tbListaVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,7 +148,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
                 java.lang.Long.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -150,92 +162,169 @@ public class FROrdemVenda extends javax.swing.JDialog {
         tbListaVendas.setEnabled(false);
         tbListaVendas.setShowGrid(true);
         tbListaVendas.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tbListaVendas);
+        tbListaVendas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tbListaVendasFocusGained(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbListaVendas);
 
         btnAddItem.setText("Adicionar Item");
+        btnAddItem.setEnabled(false);
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddItemActionPerformed(evt);
             }
         });
+        btnAddItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnAddItemKeyPressed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(243, 243, 243))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        btnNovaOV.setText("Gerar nova OV");
+        btnNovaOV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovaOVActionPerformed(evt);
+            }
+        });
+        btnNovaOV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnNovaOVKeyPressed(evt);
+            }
+        });
+
+        btnRemoveItem.setText("Remover item selecionado");
+        btnRemoveItem.setEnabled(false);
+        btnRemoveItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveItemActionPerformed(evt);
+            }
+        });
+
+        txtDataEmissao.setEditable(false);
+        txtDataEmissao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataEmissao.setEnabled(false);
+        txtDataEmissao.setFocusable(false);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Data de Emissão:");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setText("Quantidade Total");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setText("Valor Total");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCondPag)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRemoveItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtVlrTot)
+                            .addComponent(txtQntTot)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNovaOV, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtDataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCondPag, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(259, 259, 259))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel2)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCondPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(58, 58, 58))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNovaOV)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCondPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
                         .addComponent(btnAddItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRemoveItem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtQntTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtVlrTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(28, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCondPagKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCondPagKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnAddItem.requestFocus();
+        }
+    }//GEN-LAST:event_txtCondPagKeyPressed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // Verificar campos
@@ -244,6 +333,21 @@ public class FROrdemVenda extends javax.swing.JDialog {
         }
 
         // Salvar no banco de dados
+        Date data = Utils.converterStringToDate(txtDataEmissao.getText());
+        ov.setDataEmissao(data);
+        ov.setCondPagamento(txtCondPag.getText());
+
+        ov.setValorTotal(Double.parseDouble(txtVlrTot.getText()));
+        ov.setQntdTotal(Integer.parseInt(txtQntTot.getText()));
+        UsuarioController usu = new UsuarioController();
+        ov.setPkVendedor(usu.readForId(this.getEmail()));
+        ov.setItens(lista);
+
+        OVController controller = new OVController();
+        if (controller.salvarOV(ov)) {
+            this.dispose();
+        }
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
@@ -256,58 +360,126 @@ public class FROrdemVenda extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        int resposta = JOptionPane.showConfirmDialog(null, 
-                "Deseja excluir o n° de ordem de compra?", 
-                "Confirmação", JOptionPane.YES_NO_OPTION);
-
-        if (resposta == JOptionPane.YES_NO_OPTION) {
-            OVController controller = new OVController();
-            if (controller.excluirOV(ov.getNumOV())) {
-                this.dispose();
-            }
-        }
-    }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void btnExcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnExcluirKeyPressed
-        // TODO Avançar para próximo botão:
-    }//GEN-LAST:event_btnExcluirKeyPressed
+    private void tbListaVendasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbListaVendasFocusGained
+        btnRemoveItem.setEnabled(true);
+    }//GEN-LAST:event_tbListaVendasFocusGained
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         FRUPDAdicionarItens telaUPD2 = new FRUPDAdicionarItens(null, rootPaneCheckingEnabled);
         telaUPD2.setVisible(true);
 
-        List<ItensOV> lista = new ArrayList<>();
-        it.setCodigo(telaUPD2.getCodProd());
-        it.setNome(telaUPD2.getNomeProd());
-        it.setQuantidade(telaUPD2.getQuantProd());
-        it.setPrecoUnitario(telaUPD2.getPrecoProd());
-        lista.add(it);
-        ov.setItens(lista);
+        if (telaUPD2.isAtiva()) {
+            ItensOV it = new ItensOV();
+            it.setCodigo(telaUPD2.getCodProd());
+            it.setNome(telaUPD2.getNomeProd());
+            it.setQuantidade(telaUPD2.getQuantProd());
+            it.setPrecoUnitario(telaUPD2.getPrecoProd());
+            lista.add(it);
 
-        DefaultTableModel modelo = (DefaultTableModel) tbListaVendas.getModel();
-        for (ItensOV i : ov.getItens()) {
-            Object[] linha = {i.getCodigo(),
-                 i.getNome(),
-                 i.getQuantidade(),
-                 i.getPrecoUnitario()};
-            modelo.addRow(linha);
+            ov.setItens(lista);
+            DefaultTableModel modelo = (DefaultTableModel) tbListaVendas.getModel();
+            modelo.setNumRows(0);
+            for (ItensOV i : ov.getItens()) {
+                Object[] linha = {i.getCodigo(),
+                    i.getNome(),
+                    i.getQuantidade(),
+                    i.getPrecoUnitario()
+                };
+                modelo.addRow(linha);
+            }
+
+            int quant = 0;
+            double vlr = 0;
+            for (int i = 0; i < lista.size(); i++) {
+                /*System.out.println("\nIteracao: n." + (i + 1));
+                System.out.println("qnt: " + lista.size());
+                System.out.println("qnttot: " + lista.get(i).getQuantidade());
+                System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());*/
+                quant += lista.get(i).getQuantidade();
+                vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
+                /*System.out.println("qntTotArr: " + quant);
+                System.out.println("vlrTotArr: " + vlr);*/
+            };
+            NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
+            txtVlrTot.setText(String.valueOf(nf.format(vlr)));
+            txtQntTot.setText(Integer.toString(quant));
+
         }
 
         telaUPD2.dispose();
     }//GEN-LAST:event_btnAddItemActionPerformed
 
-    private void txtCondPagKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCondPagKeyPressed
+    private void btnAddItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAddItemKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btnAddItem.requestFocus();
+            btnAddItemActionPerformed(null);
         }
-    }//GEN-LAST:event_txtCondPagKeyPressed
+    }//GEN-LAST:event_btnAddItemKeyPressed
+
+    private void btnNovaOVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaOVActionPerformed
+        OVController controller = new OVController();
+        if (controller.getLastId().isEmpty()){
+            txtCodigo.setText("1");
+        } else {
+            Long id = controller.getLastId().get(0).getNumOV() + 1;
+            ov.setNumOV(id);
+            txtCodigo.setText(ov.getNumOV().toString());
+        }
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        txtDataEmissao.setText(dtf.format(now));
+
+        txtDataEmissao.setEnabled(true);
+        btnAddItem.setEnabled(true);
+        tbListaVendas.setEnabled(true);
+        txtCondPag.setEnabled(true);
+        txtCondPag.setEditable(true);
+        txtCondPag.setFocusable(true);
+        btnSalvar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+    }//GEN-LAST:event_btnNovaOVActionPerformed
+
+    private void btnNovaOVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNovaOVKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnNovaOVActionPerformed(null);
+            txtCondPag.requestFocus();
+        }
+    }//GEN-LAST:event_btnNovaOVKeyPressed
+
+    private void btnRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveItemActionPerformed
+        if (tbListaVendas.getSelectedRow() != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) tbListaVendas.getModel();
+            lista.remove(tbListaVendas.getSelectedRow());
+            modelo.removeRow(tbListaVendas.getSelectedRow());
+        }
+        int quant = 0;
+        double vlr = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println("\nIteracao: n." + (i + 1));
+            System.out.println("qnt: " + lista.size());
+            System.out.println("qnttot: " + lista.get(i).getQuantidade());
+            System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());
+            quant += lista.get(i).getQuantidade();
+            vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
+            System.out.println("qntTotArr: " + quant);
+            System.out.println("vlrTotArr: " + vlr);
+        };
+        txtVlrTot.setText(String.valueOf(vlr));
+        txtQntTot.setText(Integer.toString(quant));
+        btnRemoveItem.setEnabled(false);
+    }//GEN-LAST:event_btnRemoveItemActionPerformed
     
     public boolean verificaCampos() {
         if (txtCondPag.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo 'Condição de pagemento' em branco");
+            JOptionPane.showMessageDialog(null, "Informar uma condição de pagamento");
             return false;
         }
+        
+        if (lista.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Adicionar ao menos um item na ordem de compra");
+            return false;
+        }
+        
         return true;
     }
 
@@ -356,15 +528,22 @@ public class FROrdemVenda extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNovaOV;
+    private javax.swing.JButton btnRemoveItem;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbListaVendas;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCondPag;
+    private javax.swing.JTextField txtDataEmissao;
+    private javax.swing.JTextField txtQntTot;
+    private javax.swing.JTextField txtVlrTot;
     // End of variables declaration//GEN-END:variables
 }
