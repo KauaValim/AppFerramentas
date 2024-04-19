@@ -1,37 +1,53 @@
 package model;
 
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import view.FRGerEstoque;
 
 public class EstoqueDAO {
 
-    public List<FRGerEstoque> getEstoque() {
-        /*String sql = "SELECT pkidcompra FROM tbcompras ORDER BY pkidcompra DESC limit 1;";
+     public static List<FRGerEstoque> getEstoque() {
+        String sqlCompra = "SELECT tbcompras FROM tbcompras ORDER BY pkidcompra DESC LIMIT 1;";
+        String sqlVenda = "SELECT tbvendas FROM tbvendas ORDER BY pkidvenda DESC LIMIT 1;";
 
-        /*GerenciadorConexao gerenciador = new GerenciadorConexao();
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<OrdemCompra> numOC = new ArrayList<>();
+         List<FRGerEstoque> estoque = new ArrayList<>();
 
         try {
-            stmt = con.prepareStatement(sql);
+            
+            stmt = con.prepareStatement(sqlCompra);
             rs = stmt.executeQuery();
-
             while (rs.next()) {
-                OrdemCompra oc = new OrdemCompra();
-                oc.setNumOC(rs.getLong("pkidcompra"));
-                numOC.add(oc);
+                OrdemCompra ordemCompra = new OrdemCompra();
+                ordemCompra.setNumOC(rs.getLong("pkidcompra"));
+                FRGerEstoque frGerEstoque = new FRGerEstoque();
+                frGerEstoque.setOrdem(ordemCompra);
+                estoque.add(frGerEstoque);
+            }
+
+            stmt = con.prepareStatement(sqlVenda);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                OrdemVenda ordemVenda = new OrdemVenda();
+                ordemVenda.setNumOV(rs.getLong("pkidvenda"));
+                estoque.add(ordemVenda);
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EstoqueDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             gerenciador.closeConnection(stmt, rs);
         }
 
-        return numOC;*/
-
+        return estoque;
     }
 }
