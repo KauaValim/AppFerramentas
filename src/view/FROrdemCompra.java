@@ -5,21 +5,16 @@
 package view;
 
 import controller.OCController;
-import controller.ProdutoController;
-import controller.UsuarioController;
 import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ItensOC;
 import model.OrdemCompra;
-import model.Produto;
-import model.Usuario;
 import utils.Utils;
 
 /**
@@ -29,7 +24,7 @@ import utils.Utils;
 public class FROrdemCompra extends javax.swing.JDialog {
 
     OrdemCompra oc = new OrdemCompra();
-    ItensOC it = new ItensOC();
+
     List<ItensOC> lista = new ArrayList<>();
 
     /**
@@ -58,7 +53,6 @@ public class FROrdemCompra extends javax.swing.JDialog {
         txtCondPag = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -137,24 +131,6 @@ public class FROrdemCompra extends javax.swing.JDialog {
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash.png"))); // NOI18N
-        btnExcluir.setText("Excluir");
-        btnExcluir.setEnabled(false);
-        btnExcluir.setMaximumSize(new java.awt.Dimension(104, 31));
-        btnExcluir.setMinimumSize(new java.awt.Dimension(104, 31));
-        btnExcluir.setPreferredSize(new java.awt.Dimension(104, 31));
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-        btnExcluir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnExcluirKeyPressed(evt);
             }
         });
 
@@ -270,18 +246,6 @@ public class FROrdemCompra extends javax.swing.JDialog {
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel6))
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jLabel7)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtCodigoForn, javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,10 +257,23 @@ public class FROrdemCompra extends javax.swing.JDialog {
                                 .addComponent(btnNovaOC, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5)
-                            .addComponent(txtDataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSelectForn))))
+                            .addComponent(btnSelectForn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDataEmissao)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel4))
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -353,8 +330,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
 
@@ -392,46 +368,45 @@ public class FROrdemCompra extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSalvarKeyPressed
 
-    private void btnExcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnExcluirKeyPressed
-        // TODO Avançar para próximo botão:
-    }//GEN-LAST:event_btnExcluirKeyPressed
-
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         FRUPDAdicionarItens telaUPD2 = new FRUPDAdicionarItens(null, rootPaneCheckingEnabled);
         telaUPD2.setVisible(true);
 
         if (telaUPD2.isAtiva()) {
+            ItensOC it = new ItensOC();
             it.setCodigo(telaUPD2.getCodProd());
             it.setNome(telaUPD2.getNomeProd());
             it.setQuantidade(telaUPD2.getQuantProd());
             it.setPrecoUnitario(telaUPD2.getPrecoProd());
             lista.add(it);
 
+            oc.setItens(lista);
             DefaultTableModel modelo = (DefaultTableModel) tbListaCompras.getModel();
+            modelo.setNumRows(0);
             for (ItensOC i : oc.getItens()) {
                 Object[] linha = {i.getCodigo(),
-                     i.getNome(),
-                     i.getQuantidade(),
-                     i.getPrecoUnitario()};
+                    i.getNome(),
+                    i.getQuantidade(),
+                    i.getPrecoUnitario()
+                };
                 modelo.addRow(linha);
             }
-            
+
             int quant = 0;
             double vlr = 0;
-            for (int i = 0; i < lista.size();i++){
-                System.out.println("Iteração: nº" + (i+1));
-                System.out.println("qnt: "+lista.size());
-                System.out.println("qnttot: "+lista.get(i).getQuantidade());
-                System.out.println("vlrtot: "+lista.get(i).getQuantidade()*lista.get(i).getPrecoUnitario());
+            for (int i = 0; i < lista.size(); i++) {
+                System.out.println("\nIteracao: n." + (i + 1));
+                System.out.println("qnt: " + lista.size());
+                System.out.println("qnttot: " + lista.get(i).getQuantidade());
+                System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());
                 quant += lista.get(i).getQuantidade();
-                vlr += lista.get(i).getQuantidade()*lista.get(i).getPrecoUnitario();
-                System.out.println("qntTotArr: "+quant);
-                System.out.println("vlrTotArr: "+vlr);
+                vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
+                System.out.println("qntTotArr: " + quant);
+                System.out.println("vlrTotArr: " + vlr);
             };
             txtVlrTot.setText(String.valueOf(vlr));
             txtQntTot.setText(Integer.toString(quant));
-                
-            
+
         }
 
         telaUPD2.dispose();
@@ -451,20 +426,21 @@ public class FROrdemCompra extends javax.swing.JDialog {
         Date data = Utils.converterStringToDate(txtDataEmissao.getText());
         oc.setDataEmissao(data);
         oc.setCondPagamento(txtCondPag.getText());
+
+        oc.setValorTotal(Double.parseDouble(txtVlrTot.getText()));
+        oc.setQntdTotal(Integer.parseInt(txtQntTot.getText()));
         
-        oc.setValorTotal(ABORT);
+        oc.setPkFornecedor(Long.parseLong(txtCodigoForn.getText()));
         
+        oc.setItens(lista);
+
         OCController controller = new OCController();
-        if(controller.salvarOC(oc)) {
+        if (controller.salvarOC(oc)) {
             this.dispose();
         }
-        
+
 
     }//GEN-LAST:event_btnSalvarActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO Limpar as variáveis e os campos:
-    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnSelectFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectFornActionPerformed
         FRUPDFornecedores telaUPD = new FRUPDFornecedores(null, rootPaneCheckingEnabled);
@@ -476,20 +452,16 @@ public class FROrdemCompra extends javax.swing.JDialog {
             txtCodigoForn.setText(String.valueOf(telaUPD.getPk()));
         }
         txtNomeForn.setText(telaUPD.getNome());
-        List<ItensOC> listaForn = new ArrayList<>();
-        listaForn.add(it);
-        oc.setItens(listaForn);
-
         telaUPD.dispose();
     }//GEN-LAST:event_btnSelectFornActionPerformed
 
     private void btnNovaOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaOCActionPerformed
         OCController controller = new OCController();
-        
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         txtDataEmissao.setText(dtf.format(now));
-        
+
         txtDataEmissao.setEnabled(true);
         btnSelectForn.setEnabled(true);
         btnAddItem.setEnabled(true);
@@ -497,7 +469,6 @@ public class FROrdemCompra extends javax.swing.JDialog {
         txtCondPag.setEnabled(true);
         txtCondPag.setEditable(true);
         txtCondPag.setFocusable(true);
-        btnExcluir.setEnabled(true);
         btnSalvar.setEnabled(true);
         btnCancelar.setEnabled(true);
     }//GEN-LAST:event_btnNovaOCActionPerformed
@@ -508,6 +479,20 @@ public class FROrdemCompra extends javax.swing.JDialog {
             lista.remove(tbListaCompras.getSelectedRow());
             modelo.removeRow(tbListaCompras.getSelectedRow());
         }
+        int quant = 0;
+        double vlr = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println("\nIteracao: n." + (i + 1));
+            System.out.println("qnt: " + lista.size());
+            System.out.println("qnttot: " + lista.get(i).getQuantidade());
+            System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());
+            quant += lista.get(i).getQuantidade();
+            vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
+            System.out.println("qntTotArr: " + quant);
+            System.out.println("vlrTotArr: " + vlr);
+        };
+        txtVlrTot.setText(String.valueOf(vlr));
+        txtQntTot.setText(Integer.toString(quant));
         btnRemoveItem.setEnabled(false);
     }//GEN-LAST:event_btnRemoveItemActionPerformed
 
@@ -581,7 +566,6 @@ public class FROrdemCompra extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovaOC;
     private javax.swing.JButton btnRemoveItem;
     private javax.swing.JButton btnSalvar;
