@@ -6,11 +6,13 @@ package view;
 
 import controller.OCController;
 import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ItensOC;
@@ -181,11 +183,21 @@ public class FROrdemCompra extends javax.swing.JDialog {
                 btnAddItemActionPerformed(evt);
             }
         });
+        btnAddItem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnAddItemKeyPressed(evt);
+            }
+        });
 
         btnNovaOC.setText("Gerar nova OC");
         btnNovaOC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovaOCActionPerformed(evt);
+            }
+        });
+        btnNovaOC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnNovaOCKeyPressed(evt);
             }
         });
 
@@ -194,6 +206,11 @@ public class FROrdemCompra extends javax.swing.JDialog {
         btnSelectForn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectFornActionPerformed(evt);
+            }
+        });
+        btnSelectForn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSelectFornKeyPressed(evt);
             }
         });
 
@@ -395,16 +412,17 @@ public class FROrdemCompra extends javax.swing.JDialog {
             int quant = 0;
             double vlr = 0;
             for (int i = 0; i < lista.size(); i++) {
-                System.out.println("\nIteracao: n." + (i + 1));
+                /*System.out.println("\nIteracao: n." + (i + 1));
                 System.out.println("qnt: " + lista.size());
                 System.out.println("qnttot: " + lista.get(i).getQuantidade());
-                System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());
+                System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());*/
                 quant += lista.get(i).getQuantidade();
                 vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
-                System.out.println("qntTotArr: " + quant);
-                System.out.println("vlrTotArr: " + vlr);
+                /*System.out.println("qntTotArr: " + quant);
+                System.out.println("vlrTotArr: " + vlr);*/
             };
-            txtVlrTot.setText(String.valueOf(vlr));
+            NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
+            txtVlrTot.setText(String.valueOf(nf.format(vlr)));
             txtQntTot.setText(Integer.toString(quant));
 
         }
@@ -457,6 +475,13 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
     private void btnNovaOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaOCActionPerformed
         OCController controller = new OCController();
+        if (controller.getLastId().isEmpty()){
+            txtCodigo.setText("1");
+        } else {
+            Long id = controller.getLastId().get(0).getNumOC() + 1;
+            oc.setNumOC(id);
+            txtCodigo.setText(oc.getNumOC().toString());
+        }
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
@@ -499,6 +524,26 @@ public class FROrdemCompra extends javax.swing.JDialog {
     private void tbListaComprasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tbListaComprasFocusGained
         btnRemoveItem.setEnabled(true);
     }//GEN-LAST:event_tbListaComprasFocusGained
+
+    private void btnNovaOCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNovaOCKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnNovaOCActionPerformed(null);
+            btnSelectForn.requestFocus();
+        }
+    }//GEN-LAST:event_btnNovaOCKeyPressed
+
+    private void btnSelectFornKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSelectFornKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnSelectFornActionPerformed(null);
+            txtCondPag.requestFocus();
+        }
+    }//GEN-LAST:event_btnSelectFornKeyPressed
+
+    private void btnAddItemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAddItemKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnAddItemActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnAddItemKeyPressed
 
     private boolean verificaCampos() {
         if (txtCodigoForn.getText().equals("") && txtNomeForn.getText().equals("")) {

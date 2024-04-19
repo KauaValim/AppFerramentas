@@ -1,3 +1,5 @@
+drop database dbappferramentas;
+
 CREATE DATABASE dbappferramentas;
 USE dbappferramentas;
 
@@ -29,13 +31,10 @@ CREATE TABLE tbprodutos (
     ativo BOOLEAN NOT NULL,
     img BLOB);
 
-CREATE TABLE tbestoque (
-	pkidestoque INT AUTO_INCREMENT PRIMARY KEY,
-    tipomovimentacao VARCHAR(80) NOT NULL);
-
 CREATE TABLE tbvendas (
 	pkidvenda INT AUTO_INCREMENT PRIMARY KEY,
     dataemissao DATE NOT NULL,
+    condpagamento VARCHAR(50) NOT NULL,
     vlrtotal DOUBLE NOT NULL,
     qntitens INT NOT NULL,
     fkidvendedor INT NOT NULL,
@@ -48,9 +47,7 @@ CREATE TABLE tbitensvendas (
     fkidproduto INT NOT NULL,
     FOREIGN KEY (fkidproduto) REFERENCES tbprodutos(pkidproduto) ON DELETE CASCADE ON UPDATE CASCADE,
 	vlrunitario DOUBLE NOT NULL,
-    quantidade INT NOT NULL,
-    fkidestoque INT NOT NULL,
-    FOREIGN KEY (fkidestoque) REFERENCES tbestoque(pkidestoque) ON DELETE CASCADE ON UPDATE CASCADE);
+    quantidade INT NOT NULL);
 
 CREATE TABLE tbcompras (
 	pkidcompra INT AUTO_INCREMENT PRIMARY KEY,
@@ -68,10 +65,45 @@ CREATE TABLE tbitenscompras (
     fkidproduto INT NOT NULL,
     FOREIGN KEY (fkidproduto) REFERENCES tbprodutos(pkidproduto) ON DELETE CASCADE ON UPDATE CASCADE,
     vlrunitario DOUBLE NOT NULL,
-    quantidade INT NOT NULL,
-    fkidestoque INT NOT NULL,
-    FOREIGN KEY (fkidestoque) REFERENCES tbestoque(pkidestoque) ON DELETE CASCADE ON UPDATE CASCADE);
+    quantidade INT NOT NULL);
     
-
+    CREATE TABLE tbestoque (
+	pkidestoque INT AUTO_INCREMENT PRIMARY KEY,
+    tipomovimentacao VARCHAR(80) NOT NULL,
+    fkiditemcompras INT,
+    FOREIGN KEY (fkiditemcompras) REFERENCES tbitenscompras(pkiditemcompras) ON DELETE CASCADE ON UPDATE CASCADE,
+    fkiditemvendas INT,
+    FOREIGN KEY (fkiditemvendas) REFERENCES tbitensvendas(pkiditemvendas) ON DELETE CASCADE ON UPDATE CASCADE);
+    
 INSERT INTO tbvendedores (nome, email, senha, dataadmissao, ativo)
 VALUES ("adm", "adm@adm.com", md5("123"), "2022-08-15", true);
+
+INSERT INTO  tbfornecedores (nome, email, CNPJ, datacadastro, endereco, cidade, CEP, ativo)
+Values ("Fabesul", "fabesul@fabesul.com", "49.687.968/4163-51", "2024-04-19", "Rua João Braga da Silva", "Porto Alegre", "54656-163", 1),
+("Ulbra", "ulbra@ulbra.com.br", "13.857.984/0001-98", "2024-04-19", "Rual Alcino Nunes Souza", "Itajaí", "57461-351", 1);
+
+INSERT INTO tbprodutos (nome, categoria, NCM, datacadastro, ativo)
+VALUES ("Login", "Container", "1004.15.15", "2024-04-19", 1),
+("Organizador", "Ferramenta", "1005.42.42", "2024-04-19", 1),
+("Livro", "Conhecimento", "4002.50.50", "2024-04-19", 1),
+("Lápis", "Ferramenta", "8002.20.40", "2024-04-19", 1);
+
+INSERT INTO tbcompras (dataemissao, condpagamento, vlrtotal, qntitens, fkidfornecedor)
+VALUES ("2024-04-19", "1", 25, 7, 1);
+
+INSERT INTO tbitenscompras (fkidcompra, fkidproduto, vlrunitario, quantidade)
+VALUES (1, 3, 3, 3),
+(1, 4, 4, 4);
+
+INSERT INTO tbvendas (dataemissao, condpagamento, vlrtotal, qntitens, fkidvendedor)
+VALUES("2024-04-19", "1", 3, 2, 1);
+
+INSERT INTO tbitensvendas (fkidvenda, fkidproduto, vlrunitario, quantidade)
+VALUES (1, 1, 1, 1),
+(1, 2, 2, 1);
+
+INSERT INTO tbestoque ( tipomovimentacao, fkiditemcompras, fkiditemvendas)
+VALUES ("Saída", null, 1),
+("Saída", null, 2),
+("Entrada", 1, null),
+("Entrada", 2, null);

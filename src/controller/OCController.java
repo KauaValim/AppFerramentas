@@ -25,7 +25,6 @@ public class OCController {
     }
     
     public boolean salvarOC(OrdemCompra o) {
-        JOptionPane.showMessageDialog(null, "Foi para o lugar");
         if (ocDAO.salvarOC(o)){
             return true;
         } else {

@@ -110,7 +110,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tbProdutos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 189, 449, 250));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 189, 570, 250));
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/find.png"))); // NOI18N
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +118,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 121, 76, 50));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 76, 50));
 
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome iniciando", "Nome contendo", "Categoria iniciando", "Categoria contendo" }));
         jPanel1.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 121, 137, -1));
@@ -128,7 +128,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
                 txtFiltroKeyPressed(evt);
             }
         });
-        jPanel1.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 149, 311, -1));
+        jPanel1.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 149, 430, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Filtro:");
@@ -141,21 +141,23 @@ public class FRUPDProdutos extends javax.swing.JDialog {
                 btnReturnActionPerformed(evt);
             }
         });
-        jPanel1.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 451, -1, -1));
+        jPanel1.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 450, -1, -1));
 
-        btnSelecionar.setText("Selecionar");
+        btnSelecionar.setText("Inserir item selecionado");
         btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelecionarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSelecionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 120, 30));
+        jPanel1.add(btnSelecionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

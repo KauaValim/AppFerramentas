@@ -2,11 +2,11 @@ package controller;
 
 import java.util.List;
 import model.EstoqueDAO;
-import view.FRGerEstoque;
+import model.Estoque;
 
 public class EstoqueController {
 
-    public List<FRGerEstoque> getEstoque() {
-        return EstoqueDAO.getEstoque();
+    public List<Estoque> getEstoque(Estoque codProd) {
+        return EstoqueDAO.getEstoque(codProd);
     }
 }

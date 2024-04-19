@@ -98,4 +98,41 @@ public class FornecedorDAO {
 
         return fornecedores;
     }
+    
+    public Fornecedor readForPk(long pk) {
+        String sql = "SELECT * FROM tbfornecedores WHERE pkifornecedor = ?";
+       
+        
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Fornecedor fornecedor = new Fornecedor();
+
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setLong(1, pk);
+            
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                fornecedor.setPkFornecedor(rs.getLong("pkidfornecedor"));
+                fornecedor.setNome(rs.getString("nome"));
+                fornecedor.setEmail(rs.getString("email"));
+                fornecedor.setCNPJ(rs.getString("CNPJ"));
+                fornecedor.setDataCadastro(rs.getDate("datacadastro"));
+                fornecedor.setEndereco(rs.getString("endereco"));
+                fornecedor.setCidade(rs.getString("cidade"));
+                fornecedor.setCEP(rs.getString("CEP"));
+                fornecedor.setAtivo(rs.getBoolean("ativo"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            gerenciador.closeConnection(stmt, rs);
+        }
+
+        return fornecedor;
+    }
 }

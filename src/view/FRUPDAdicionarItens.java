@@ -115,7 +115,7 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 140, 23));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 133, 140, 30));
 
         txtCodigoProd.setEditable(false);
         txtCodigoProd.setEnabled(false);
@@ -226,11 +226,11 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
 
     private boolean verificaCampos() {
         if (txtCodigoProd.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo 'Código do Produto' está vazio.");
+            JOptionPane.showMessageDialog(null, "Favor pesquise um produto");
             return false;
         }
         if (txtNomeProd.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo 'Nome do Produto' está vazio.");
+            JOptionPane.showMessageDialog(null, "Favor pesquise um produto");
             return false;
         }
 

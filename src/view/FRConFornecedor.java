@@ -161,9 +161,9 @@ public class FRConFornecedor extends javax.swing.JDialog {
                     tbFornecedor.getValueAt(tbFornecedor.getSelectedRow(), 0).toString()
             );
 
-            FRUPDUsuario telaUPD = new FRUPDUsuario(null, rootPaneCheckingEnabled);
-            telaUPD.setPkUsuario(pk);
-            telaUPD.carregarUsuario();
+            FRUPDFornecedor telaUPD = new FRUPDFornecedor(null, rootPaneCheckingEnabled);
+            telaUPD.setPkFornecedor(pk);
+            telaUPD.carregarFornecedor();
             telaUPD.setVisible(true);
 
             pesquisar();
