@@ -19,6 +19,17 @@ import javax.swing.JOptionPane;
  * @author S.Lucas
  */
 public class OCDAO {
+    private String tipoMovim;
+
+    public String getTipoMovim() {
+        return tipoMovim;
+    }
+
+    public void setTipoMovim(String tipoMovim) {
+        this.tipoMovim = tipoMovim;
+    }
+    
+    
 
     public List<OrdemCompra> getLastId() {
         String sql = "SELECT pkidcompra FROM tbcompras ORDER BY pkidcompra DESC limit 1;";
@@ -76,7 +87,23 @@ public class OCDAO {
 
         JOptionPane.showMessageDialog(null, "Ordem de compra: " + o.getNumOC() + " salva com sucesso!");
 
-        String sql3= "INSERT into tbitenscompras (fkidcompra, fkidproduto, vlrunitario, quantidade, fkidesqtoque) VALUES (?,?,?,?,?)";
+        String sql2 = "INSERT into tbestoque (tipomovimentacao, fkiditemcompra, fkiditemvenda) VALUES (?,?,?)";
+        PreparedStatement stmt2 = null;
+
+        try {
+            stmt2 = con.prepareStatement(sql2);
+            stmt2.setString(1, "Entrada");
+            stmt2.setString(1, );
+            stmt2.setString(1, null);
+            stmt2.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt);
+        }
+
+        String sql3 = "INSERT into tbitenscompras (fkidcompra, fkidproduto, vlrunitario, quantidade, fkidesqtoque) VALUES (?,?,?,?,?)";
         PreparedStatement stmt3 = null;
 
         for (int i = 0; i < o.getItens().size(); i++) {
@@ -85,7 +112,7 @@ public class OCDAO {
                 stmt3.setString(1, String.valueOf(o.getNumOC()));
                 stmt3.setString(2, String.valueOf(o.getItens().get(i).getCodigo()));
                 stmt3.setString(3, String.valueOf(o.getItens().get(i).getPrecoUnitario()));
-                stmt3.setString(4,  String.valueOf(o.getItens().get(i).getQuantidade()));
+                stmt3.setString(4, String.valueOf(o.getItens().get(i).getQuantidade()));
                 stmt3.setString(5, String.valueOf(o.getValorTotal()));
                 stmt3.executeUpdate();
                 return true;
