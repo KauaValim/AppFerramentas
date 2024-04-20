@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package view;
 
 import controller.ProdutoController;
@@ -10,11 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import utils.Utils;
 
-/**
- *
- * @author kaua_
- */
-public class FRUPDProdutos extends javax.swing.JDialog {
+public class FRSelecProdutos extends javax.swing.JDialog {
     private Long pk;
     private String nome;
     private boolean ativa;
@@ -46,7 +38,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
     /**
      * Creates new form FRUPDProdutos
      */
-    public FRUPDProdutos(java.awt.Frame parent, boolean modal) {
+    public FRSelecProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -74,6 +66,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Produtos");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
@@ -109,6 +102,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tbProdutos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbProdutos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 189, 570, 250));
@@ -119,7 +113,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 76, 50));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 80, 50));
 
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome iniciando", "Nome contendo", "Categoria iniciando", "Categoria contendo" }));
         jPanel1.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 121, 137, -1));
@@ -227,20 +221,21 @@ public class FRUPDProdutos extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRUPDProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRSelecProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRUPDProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRSelecProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRUPDProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRSelecProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRUPDProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRSelecProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRUPDProdutos dialog = new FRUPDProdutos(new javax.swing.JFrame(), true);
+                FRSelecProdutos dialog = new FRSelecProdutos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

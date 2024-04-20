@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package view;
 
 import controller.ProdutoController;
@@ -10,10 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import utils.Utils;
 
-/**
- *
- * @author kaua_
- */
 public class FRConProduto extends javax.swing.JDialog {
 
     /**
@@ -47,6 +39,7 @@ public class FRConProduto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Produtos");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
@@ -82,6 +75,7 @@ public class FRConProduto extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tbUsuario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbUsuario);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 189, 449, 250));

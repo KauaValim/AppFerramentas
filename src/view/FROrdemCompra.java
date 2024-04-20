@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package view;
 
 import controller.OCController;
 import java.awt.event.KeyEvent;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,10 +15,6 @@ import model.ItensOC;
 import model.OrdemCompra;
 import utils.Utils;
 
-/**
- *
- * @author S.Lucas
- */
 public class FROrdemCompra extends javax.swing.JDialog {
 
     OrdemCompra oc = new OrdemCompra();
@@ -85,6 +76,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ordem de compra");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 255, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 490));
@@ -266,7 +258,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRemoveItem, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(btnRemoveItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtVlrTot)
                             .addComponent(txtQntTot)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -302,7 +294,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -366,9 +358,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +463,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnSelectFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectFornActionPerformed
-        FRUPDFornecedores telaUPD = new FRUPDFornecedores(null, rootPaneCheckingEnabled);
+        FRSelecFornecedores telaUPD = new FRSelecFornecedores(null, rootPaneCheckingEnabled);
         telaUPD.setVisible(true);
 
         if (telaUPD.getPk() == 0) {
