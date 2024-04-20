@@ -58,7 +58,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/find_user.png"/>
+              <Image iconType="3" name="/images/addItems64px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Adi&#xe7;&#xe3;o de itens"/>
           </Properties>

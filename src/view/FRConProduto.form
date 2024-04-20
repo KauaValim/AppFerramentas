@@ -58,13 +58,13 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/find_user.png"/>
+              <Image iconType="3" name="/images/ConsProduto64px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Consulta de Produtos"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="100" y="28" width="-1" height="-1"/>
+              <AbsoluteConstraints x="120" y="30" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
