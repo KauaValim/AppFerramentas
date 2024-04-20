@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package view;
 
 import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author S.Lucas
- */
 public class FRSobre extends javax.swing.JDialog {
 
     /**
@@ -47,35 +39,32 @@ public class FRSobre extends javax.swing.JDialog {
         setTitle("Sobre");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 81, 81));
         jPanel1.setMinimumSize(new java.awt.Dimension(498, 452));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 255, 204));
         jLabel2.setText("Sobre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 255, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Data: 22/04/2024");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 128, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 255, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Versão: 1.0");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 128, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 255, 204));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Autores: Daniel Vieira e Kauã Valim");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 250, -1));
 
         btnGithubK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Github_logo.png"))); // NOI18N
         btnGithubK.setText("Kauã");
+        btnGithubK.setFocusPainted(false);
         btnGithubK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGithubKActionPerformed(evt);
@@ -85,6 +74,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnLinkedinK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Linkedin_logo.png"))); // NOI18N
         btnLinkedinK.setText("Kauã");
+        btnLinkedinK.setFocusPainted(false);
         btnLinkedinK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLinkedinKActionPerformed(evt);
@@ -94,6 +84,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return.png"))); // NOI18N
         btnReturn.setText("Voltar");
+        btnReturn.setFocusPainted(false);
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReturnActionPerformed(evt);
@@ -103,6 +94,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnGitHubD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Github_logo.png"))); // NOI18N
         btnGitHubD.setText("Daniel");
+        btnGitHubD.setFocusPainted(false);
         btnGitHubD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGitHubDActionPerformed(evt);
@@ -112,6 +104,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnLinkedInD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Linkedin_logo.png"))); // NOI18N
         btnLinkedInD.setText("Daniel");
+        btnLinkedInD.setFocusPainted(false);
         btnLinkedInD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLinkedInDActionPerformed(evt);

@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package view;
 
-import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -12,10 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author kaua_
- */
 public class FRUPDAdicionarItens extends javax.swing.JDialog {
 
     private Long codProd;
@@ -98,6 +89,7 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adição de itens");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
@@ -181,7 +173,7 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        FRUPDProdutos telaUPD = new FRUPDProdutos(null, rootPaneCheckingEnabled);
+        FRSelecProdutos telaUPD = new FRSelecProdutos(null, rootPaneCheckingEnabled);
         telaUPD.setVisible(true);
 
         if (telaUPD.isAtiva()) {
@@ -230,6 +222,7 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Favor pesquise um produto");
             return false;
         }
+        
         if (txtNomeProd.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Favor pesquise um produto");
             return false;

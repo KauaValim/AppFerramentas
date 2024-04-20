@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package view;
 
 import controller.FornecedorController;
@@ -10,10 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Fornecedor;
 import utils.Utils;
 
-/**
- *
- * @author kaua_
- */
 public class FRConFornecedor extends javax.swing.JDialog {
 
     /**
@@ -48,6 +40,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta de Fornecedores");
         setMinimumSize(new java.awt.Dimension(490, 490));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
@@ -58,7 +51,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/consultaFornec64px.png"))); // NOI18N
         jLabel1.setText("Consulta de Fornecedores");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
 
         tbFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +76,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tbFornecedor.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbFornecedor);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 189, 640, 250));
@@ -93,7 +87,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 76, 50));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 80, 50));
 
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome iniciando", "Nome contendo", "Email iniciando", "Email contendo" }));
         jPanel1.add(cbFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 121, 137, -1));
@@ -116,7 +110,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
                 btnReturnActionPerformed(evt);
             }
         });
-        jPanel1.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, -1, -1));
+        jPanel1.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 90, -1));
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         btnAlterar.setText("Alterar");
@@ -125,7 +119,7 @@ public class FRConFornecedor extends javax.swing.JDialog {
                 btnAlterarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
+        jPanel1.add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 450, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
