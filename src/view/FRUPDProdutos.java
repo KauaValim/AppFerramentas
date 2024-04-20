@@ -73,6 +73,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
         btnSelecionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de Produtos");
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
@@ -83,7 +84,7 @@ public class FRUPDProdutos extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/find_user.png"))); // NOI18N
         jLabel1.setText("Consulta de Produtos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 28, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
 
         tbProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

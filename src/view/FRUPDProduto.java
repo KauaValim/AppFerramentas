@@ -4,18 +4,39 @@
  */
 package view;
 
+import controller.ProdutoController;
+import controller.UsuarioController;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import model.Produto;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import model.Usuario;
+import utils.Utils;
+
 /**
  *
  * @author kaua_
  */
 public class FRUPDProduto extends javax.swing.JDialog {
 
+    private int pkProduto;
+
+    public void setPkProduto(int pk) {
+        this.pkProduto = pk;
+    }
+    
     /**
      * Creates new form FRUPDProduto
      */
     public FRUPDProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,24 +51,24 @@ public class FRUPDProduto extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtNomeProd = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         ckbAtivo = new javax.swing.JCheckBox();
-        txtDataNasc = new javax.swing.JFormattedTextField();
+        txtDataCadProd = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtConfSenha = new javax.swing.JPasswordField();
         btnExcluir = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        btnAlterarSenha = new javax.swing.JButton();
+        txtNCMProd = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtCatProd = new javax.swing.JTextField();
+        lblFoto = new javax.swing.JLabel();
+        btnAddFoto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Produto");
 
         jPanel1.setBackground(new java.awt.Color(51, 255, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 490));
@@ -59,34 +80,17 @@ public class FRUPDProduto extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Nome:");
 
-        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNomeProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNomeKeyPressed(evt);
+                txtNomeProdKeyPressed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Email:");
-
-        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtEmailKeyPressed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Senha:");
-
-        txtSenha.setEditable(false);
-        txtSenha.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
-        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSenhaKeyPressed(evt);
-            }
-        });
+        jLabel3.setText("NCM:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Data de Admissão:");
+        jLabel5.setText("Data de Cadastro:");
 
         ckbAtivo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ckbAtivo.setText("Ativo");
@@ -96,10 +100,10 @@ public class FRUPDProduto extends javax.swing.JDialog {
             }
         });
 
-        txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        txtDataNasc.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDataCadProd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtDataCadProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDataNascKeyPressed(evt);
+                txtDataCadProdKeyPressed(evt);
             }
         });
 
@@ -132,17 +136,6 @@ public class FRUPDProduto extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setText("Confirmação de Senha:");
-
-        txtConfSenha.setEditable(false);
-        txtConfSenha.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
-        txtConfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtConfSenhaKeyPressed(evt);
-            }
-        });
-
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash.png"))); // NOI18N
         btnExcluir.setText("Excluir");
@@ -166,10 +159,16 @@ public class FRUPDProduto extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Código:");
 
-        btnAlterarSenha.setText("Alterar Senha");
-        btnAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Categoria:");
+
+        lblFoto.setBackground(new java.awt.Color(255, 0, 255));
+        lblFoto.setText("Imagem");
+
+        btnAddFoto.setText("Adicionar Imagem");
+        btnAddFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarSenhaActionPerformed(evt);
+                btnAddFotoActionPerformed(evt);
             }
         });
 
@@ -178,76 +177,81 @@ public class FRUPDProduto extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(btnAddFoto)
+                        .addGap(55, 55, 55)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(txtNome)
-                    .addComponent(txtEmail)
-                    .addComponent(txtConfSenha)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(ckbAtivo))
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtSenha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterarSenha)
-                        .addGap(1, 1, 1)))
-                .addGap(16, 16, 16))
+                        .addComponent(jLabel8)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtCatProd, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNCMProd)
+                            .addComponent(txtNomeProd, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtDataCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(81, 81, 81)
+                                        .addComponent(ckbAtivo))
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(16, 16, 16))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddFoto))
+                .addGap(8, 8, 8)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCatProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAlterarSenha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtConfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(txtNCMProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckbAtivo)
-                    .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDataCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,29 +269,19 @@ public class FRUPDProduto extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
+    private void txtNomeProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeProdKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtEmail.requestFocus();
+            txtCatProd.requestFocus();
         }
-    }//GEN-LAST:event_txtNomeKeyPressed
-
-    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtSenha.requestFocus();
-        }
-    }//GEN-LAST:event_txtEmailKeyPressed
-
-    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtConfSenha.requestFocus();
-        }
-    }//GEN-LAST:event_txtSenhaKeyPressed
+    }//GEN-LAST:event_txtNomeProdKeyPressed
 
     private void ckbAtivoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ckbAtivoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -295,11 +289,11 @@ public class FRUPDProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ckbAtivoKeyPressed
 
-    private void txtDataNascKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataNascKeyPressed
+    private void txtDataCadProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataCadProdKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ckbAtivo.requestFocus();
         }
-    }//GEN-LAST:event_txtDataNascKeyPressed
+    }//GEN-LAST:event_txtDataCadProdKeyPressed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // Verificar campos
@@ -308,49 +302,49 @@ public class FRUPDProduto extends javax.swing.JDialog {
         }
 
         // Salvar no banco de dados
-        Usuario usu = new Usuario();
-        usu.setPkUsuario(pkUsuario);
-        String nome = txtNome.getText();
-        String email = txtEmail.getText();
-        String senha = "";
+        Produto p = new Produto();
+        p.setPkIdProduto(pkProduto);
+        String nome = txtNomeProd.getText();
+        String categoria = txtCatProd.getText();
+        String NCM = txtNCMProd.getText();
         boolean ativo = ckbAtivo.isSelected();
-        Date dataDb = usu.getDataAdmissao();
+        Date dataDb = p.getDataCadastro();
+        
+        p.setImagem(lblFoto.getIcon());
 
-        if (!nome.equals(txtNome.getText())) {
-            usu.setNome(nome);
+        if (!nome.equals(txtNomeProd.getText())) {
+            p.setNome(nome);
         } else {
-            usu.setNome(txtNome.getText());
+            p.setNome(txtNomeProd.getText());
         }
 
-        if (!email.equals(txtEmail.getText())) {
-            usu.setEmail(email);
+        if (!categoria.equals(txtCatProd.getText())) {
+            p.setCategoria(categoria);
         } else {
-            usu.setEmail(txtEmail.getText());
+            p.setCategoria(txtCatProd.getText());
         }
-
-        if (txtSenha.isEditable()) {
-            senha = new String(txtSenha.getPassword());
-            senha = Utils.calcularMD5(senha);
+        
+        if (!NCM.equals(txtNCMProd.getText())) {
+            p.setNCM(NCM);
         } else {
-            senha = new String(txtSenha.getPassword());
+            p.setNCM(txtNCMProd.getText());
         }
-        usu.setSenha(senha);
 
         if (ativo != ckbAtivo.isSelected()) {
-            usu.setAtivo(ativo);
+            p.setAtivo(ativo);
         } else {
-            usu.setAtivo(ckbAtivo.isSelected());
+            p.setAtivo(ckbAtivo.isSelected());
         }
 
-        Date data = Utils.converterStringToDate(txtDataNasc.getText());
+        Date data = Utils.converterStringToDate(txtDataCadProd.getText());
         if (dataDb != data) {
-            usu.setDataAdmissao(data);
+            p.setDataCadastro(data);
         } else {
-            usu.setDataAdmissao(dataDb);
+            p.setDataCadastro(dataDb);
         }
 
-        UsuarioController controller = new UsuarioController();
-        if (controller.alterarUsuario(usu)) {
+        ProdutoController controller = new ProdutoController();
+        if (controller.alterarProduto(p)) {
             this.dispose();
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -365,18 +359,12 @@ public class FRUPDProduto extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtConfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfSenhaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            txtDataNasc.requestFocus();
-        }
-    }//GEN-LAST:event_txtConfSenhaKeyPressed
-
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
         if (resposta == JOptionPane.YES_NO_OPTION) {
-            UsuarioController controller = new UsuarioController();
-            if (controller.excluirUsuario(pkUsuario)) {
+            ProdutoController controller = new ProdutoController();
+            if (controller.excluirProduto(pkProduto)) {
                 this.dispose();
             }
         }
@@ -386,28 +374,78 @@ public class FRUPDProduto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirKeyPressed
 
-    private void btnAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarSenhaActionPerformed
-        if (btnAlterarSenha.getText().equals("Alterar Senha")) {
-            txtSenha.setEditable(true);
-            txtConfSenha.setEditable(true);
-            txtSenha.setBackground(Color.white);
-            txtConfSenha.setBackground(Color.white);
-            btnAlterarSenha.setText("Cancelar Alteração");
+    private void btnAddFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFotoActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolha um arquivo");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter (
+            "Imagens", "jpg", "jpeg", "png");
+        fileChooser.setFileFilter(filtro);
 
-            txtSenha.setText("");
-            txtConfSenha.setText("");
-        } else {
-            txtSenha.setEditable(false);
-            txtConfSenha.setEditable(false);
-            txtSenha.setBackground(Color.gray);
-            txtConfSenha.setBackground(Color.gray);
-            btnAlterarSenha.setText("Alterar Senha");
+        // Configuração para permitir a seleção de apenas um arquivo
+        fileChooser.setMultiSelectionEnabled(false);
 
-            txtSenha.setText(getSenhaUsuario());
-            txtConfSenha.setText(getSenhaUsuario());
+        int returnValue = fileChooser.showOpenDialog(null);
+
+        if(returnValue == JFileChooser.APPROVE_OPTION) {
+            File arquivo = fileChooser.getSelectedFile();
+            Icon icon = Utils.fileParaIcon(arquivo);
+
+            ImageIcon iconRedimensionado = Utils.redimensionarIcon( icon, 140, 140);
+
+            lblFoto.setIcon(iconRedimensionado);
         }
-    }//GEN-LAST:event_btnAlterarSenhaActionPerformed
+    }//GEN-LAST:event_btnAddFotoActionPerformed
 
+    private boolean verificaCampos() {
+        if (txtNomeProd.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Nome' em branco");
+            return false;
+        }
+
+        if (!txtNomeProd.getText().matches("^[\\p{L} ]+$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Nome' possui caracteres inválidos");
+            return false;
+        }
+        
+        if(txtCatProd.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Categoria' em branco");
+            return false;
+        }
+        
+        if (!txtCatProd.getText().matches("^[\\p{L} ]+$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Categoria' possui caracteres inválidos");
+            return false;
+        }
+        
+        if (!txtNCMProd.getText().matches("^[0-9]{4}.[0-9]{2}.[0-9]{2}$")&&!txtNCMProd.getText().matches("^[0-9]{2}.[0-9]{2}$")&&!txtNCMProd.getText().matches("^[0-9]{4}.[0-9]{2}$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'NCM' possui formato inválido Ex: 01.01 ou 1001.01 ou 1001.01.01 ");
+            return false;
+        }
+        
+        if (!txtDataCadProd.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Data Nascimento' possui formato inválido Ex: 01/01/2000");
+            return false;
+        }
+
+
+        return true;
+    }
+    
+    public void carregarProduto() {
+        ProdutoController controller = new ProdutoController();
+        Produto p = controller.readForPk(pkProduto);
+
+        String codigo = String.valueOf(p.getPkIdProduto());
+        lblFoto.setIcon(p.getImagem());
+        txtCodigo.setText(codigo);
+        txtNomeProd.setText(p.getNome());
+        txtCatProd.setText(p.getCategoria());
+        txtNCMProd.setText(p.getNCM());
+        txtDataCadProd.setText(
+                Utils.converterDateToString(p.getDataCadastro()));
+        ckbAtivo.setSelected(p.isAtivo());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -451,7 +489,7 @@ public class FRUPDProduto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterarSenha;
+    private javax.swing.JButton btnAddFoto;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
@@ -459,16 +497,15 @@ public class FRUPDProduto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblFoto;
+    private javax.swing.JTextField txtCatProd;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JPasswordField txtConfSenha;
-    private javax.swing.JFormattedTextField txtDataNasc;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JFormattedTextField txtDataCadProd;
+    private javax.swing.JTextField txtNCMProd;
+    private javax.swing.JTextField txtNomeProd;
     // End of variables declaration//GEN-END:variables
 }

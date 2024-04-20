@@ -97,6 +97,7 @@ public class FRUPDAdicionarItens extends javax.swing.JDialog {
         btnInserir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Adição de itens");
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));

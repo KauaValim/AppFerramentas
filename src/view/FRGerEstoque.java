@@ -5,14 +5,9 @@
 package view;
 
 import controller.EstoqueController;
-import controller.ProdutoController;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Estoque;
-import model.Produto;
 import utils.Utils;
 
 /**
@@ -49,6 +44,7 @@ public class FRGerEstoque extends javax.swing.JDialog {
         txtCodProd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gerenciamento de Estoque");
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));

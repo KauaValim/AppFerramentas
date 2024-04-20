@@ -4,7 +4,6 @@
  */
 package model;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +13,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import utils.Utils;
 
 /**
  *

@@ -8,7 +8,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Fornecedor;
 import model.FornecedorDAO;
-import model.Usuario;
 
 /**
  *
@@ -27,6 +26,24 @@ public class FornecedorController {
             return true;
         } else {
             JOptionPane.showMessageDialog(null,"Fornecedor não cadastrado");
+            return false;
+        }
+    }
+    
+    public boolean alterarFornecedor(Fornecedor f) {
+        if (fornecedorDAO.alterarFornecedor(f)){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"Fornecedor não cadastrado");
+            return false;
+        }
+    }
+    
+    public boolean excluirFornecedor(int pkFornecedor) {
+        if (fornecedorDAO.excluirFornecedor(pkFornecedor)){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"Fornecedor não excluído");
             return false;
         }
     }

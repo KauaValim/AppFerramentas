@@ -35,11 +35,12 @@ public class EstoqueDAO {
             
             rs = stmt.executeQuery();
             while (rs.next()) {
-                codProd.setTipoMov(rs.getString("tipomovimentacao"));
-                codProd.setQntd(rs.getInt("quantidade"));
-                codProd.setVlrUnit(rs.getDouble("vlrunitario"));
-                codProd.setDataMov(rs.getDate("dataemissao"));
-                lista.add(codProd);
+                Estoque est = new Estoque();
+                est.setTipoMov(rs.getString("tipomovimentacao"));
+                est.setQntd(rs.getInt("quantidade"));
+                est.setVlrUnit(rs.getDouble("vlrunitario"));
+                est.setDataMov(rs.getDate("dataemissao"));
+                lista.add(est);
             }
 
         } catch (SQLException ex) {
