@@ -37,7 +37,59 @@ public class FornecedorDAO {
             stmt.setString(7, f.getCEP());
             stmt.setBoolean(8, f.isAtivo());
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario: " + f.getNome() + " inserido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Fornecedor: " + f.getNome() + " inserido com sucesso!");
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt);
+        }
+
+        return false;
+    }
+    
+    public boolean alterarFornecedor(Fornecedor f) {
+        String sql = "UPDATE tbfornecedores SET nome = ?, email = ?, CNPJ = ?,  datacadastro = ?, endereco = ?, cidade = ?, CEP = ?, ativo = ? WHERE pkidfornecedor = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, f.getNome());
+            stmt.setString(2, f.getEmail());
+            stmt.setString(3, f.getCNPJ());
+            stmt.setDate(4, new java.sql.Date(f.getDataCadastro().getTime()));
+            stmt.setString(5, f.getEndereco());
+            stmt.setString(6, f.getCidade());
+            stmt.setString(7, f.getCEP());
+            stmt.setBoolean(8, f.isAtivo());
+            stmt.setLong(9, f.getPkFornecedor());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Fornecedor: " + f.getNome() + " alterado com sucesso!");
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt);
+        }
+
+        return false;
+    }
+    
+    public boolean excluirFornecedor(int pkFornecedor) {
+        String sql = "DELETE FROM tbfornecedores WHERE pkidfornecedor = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement(sql);         
+            stmt.setLong(1, pkFornecedor);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Fornecedor excluído com sucesso!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
@@ -91,7 +143,7 @@ public class FornecedorDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             gerenciador.closeConnection(stmt, rs);
         }
@@ -100,7 +152,7 @@ public class FornecedorDAO {
     }
     
     public Fornecedor readForPk(long pk) {
-        String sql = "SELECT * FROM tbfornecedores WHERE pkifornecedor = ?";
+        String sql = "SELECT * FROM tbfornecedores WHERE pkidfornecedor = ?";
        
         
         GerenciadorConexao gerenciador = new GerenciadorConexao();
@@ -128,7 +180,7 @@ public class FornecedorDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             gerenciador.closeConnection(stmt, rs);
         }

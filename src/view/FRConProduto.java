@@ -46,7 +46,7 @@ public class FRConProduto extends javax.swing.JDialog {
         btnAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Consulta de Usuários");
+        setTitle("Consulta de Produtos");
 
         jPanel1.setBackground(new java.awt.Color(16, 157, 218));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
@@ -160,9 +160,9 @@ public class FRConProduto extends javax.swing.JDialog {
                 tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0).toString()
             );
 
-            FRUPDUsuario telaUPD = new FRUPDUsuario(null, rootPaneCheckingEnabled);
-            telaUPD.setPkUsuario(pk);
-            telaUPD.carregarUsuario();
+            FRUPDProduto telaUPD = new FRUPDProduto(null, rootPaneCheckingEnabled);
+            telaUPD.setPkProduto(pk);
+            telaUPD.carregarProduto();
             telaUPD.setVisible(true);
 
             pesquisar();
