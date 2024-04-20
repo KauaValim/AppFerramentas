@@ -135,7 +135,6 @@ public class FRCadProduto extends javax.swing.JDialog {
         jLabel6.setText("NCM:");
 
         lblFoto.setBackground(new java.awt.Color(255, 0, 255));
-        lblFoto.setText("Imagem");
 
         btnAddFoto.setText("Adicionar Imagem");
         btnAddFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -173,11 +172,10 @@ public class FRCadProduto extends javax.swing.JDialog {
                                 .addComponent(txtNCMProd)
                                 .addComponent(jLabel2)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
                                     .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
                                     .addComponent(btnAddFoto)
-                                    .addGap(53, 53, 53)))
+                                    .addGap(65, 65, 65)))
                             .addComponent(jLabel5))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -187,9 +185,11 @@ public class FRCadProduto extends javax.swing.JDialog {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddFoto))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnAddFoto)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -319,7 +319,7 @@ public class FRCadProduto extends javax.swing.JDialog {
             return false;
         }
 
-        if (!txtNomeProd.getText().matches("^[\\p{L} ]+$")) {
+        if (!txtNomeProd.getText().matches("^[\\Wa-zA-Z0-9 ]+$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Nome' possui caracteres inválidos");
             return false;
         }

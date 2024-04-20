@@ -27,6 +27,7 @@ import utils.Utils;
  */
 public class FROrdemVenda extends javax.swing.JDialog {
     private String email;
+    private double vlrTotal;
 
     public String getEmail() {
         return email;
@@ -34,6 +35,14 @@ public class FROrdemVenda extends javax.swing.JDialog {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public double getVlrTotal() {
+        return vlrTotal;
+    }
+
+    public void setVlrTotal(double vlrTotal) {
+        this.vlrTotal = vlrTotal;
     }
     
     Usuario usu = new Usuario();
@@ -337,7 +346,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
         ov.setDataEmissao(data);
         ov.setCondPagamento(txtCondPag.getText());
 
-        ov.setValorTotal(Double.parseDouble(txtVlrTot.getText()));
+        ov.setValorTotal(this.getVlrTotal());
         ov.setQntdTotal(Integer.parseInt(txtQntTot.getText()));
         UsuarioController usu = new UsuarioController();
         ov.setPkVendedor(usu.readForId(this.getEmail()));
@@ -400,6 +409,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
                 /*System.out.println("qntTotArr: " + quant);
                 System.out.println("vlrTotArr: " + vlr);*/
             };
+            this.setVlrTotal(vlr);
             NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
             txtVlrTot.setText(String.valueOf(nf.format(vlr)));
             txtQntTot.setText(Integer.toString(quant));

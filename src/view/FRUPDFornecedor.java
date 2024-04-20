@@ -447,7 +447,7 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
             return false;
         }
 
-        if (!txtNome.getText().matches("^[\\p{L} ]+$")) {
+        if (!txtNome.getText().matches("^[\\Wa-zA-Z0-9 ]+$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Nome' possui caracteres inválidos");
             return false;
         }

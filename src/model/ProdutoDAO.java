@@ -25,6 +25,7 @@ import utils.Utils;
  * @author S.Lucas
  */
 public class ProdutoDAO {
+
     public boolean adicionarProduto(Produto p) {
         String sql = "INSERT into TBPRODUTOS (nome, categoria, NCM, datacadastro, ativo, img) VALUES (?,?,?,?,?,?)";
 
@@ -56,7 +57,7 @@ public class ProdutoDAO {
 
         return false;
     }
-    
+
     public boolean alterarProduto(Produto p) {
         String sql = "UPDATE tbprodutos SET nome = ?, categoria = ?, ncm = ?, datacadastro = ?, ativo = ?, img = ? WHERE pkidproduto = ?";
 
@@ -85,7 +86,7 @@ public class ProdutoDAO {
 
         return false;
     }
-    
+
     public boolean excluirProduto(int pkProduto) {
         String sql = "DELETE FROM tbprodutos WHERE pkidproduto = ?";
 
@@ -94,7 +95,7 @@ public class ProdutoDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement(sql);         
+            stmt = con.prepareStatement(sql);
             stmt.setLong(1, pkProduto);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
@@ -107,7 +108,7 @@ public class ProdutoDAO {
 
         return false;
     }
-    
+
     public List<Produto> readForProd(int tipo, String desc) {
         String sql = "SELECT * FROM tbprodutos";
         if (!desc.equals("")) {
@@ -155,11 +156,10 @@ public class ProdutoDAO {
 
         return produtos;
     }
-    
+
     public Produto readForPk(long pk) {
         String sql = "SELECT * FROM tbprodutos WHERE pkidproduto = ?";
-       
-        
+
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
         PreparedStatement stmt = null;
@@ -169,7 +169,7 @@ public class ProdutoDAO {
         try {
             stmt = con.prepareStatement(sql);
             stmt.setLong(1, pk);
-            
+
             rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -179,11 +179,14 @@ public class ProdutoDAO {
                 produto.setNCM(rs.getString("NCM"));
                 produto.setDataCadastro(rs.getDate("datacadastro"));
                 produto.setAtivo(rs.getBoolean("ativo"));
-                byte[] bytes = rs.getBytes("img");
-                ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-                BufferedImage imagem = ImageIO.read(bis);
-                
-                produto.setImagem(new ImageIcon(imagem));
+                if (rs.getBytes("img") == null) {
+                    
+                } else {
+                    byte[] bytes = rs.getBytes("img");
+                    ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+                    BufferedImage imagem = ImageIO.read(bis);
+                    produto.setImagem(new ImageIcon(imagem));
+                }
             }
 
         } catch (SQLException | IOException ex) {

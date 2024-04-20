@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package view;
 
 import controller.ProdutoController;
-import controller.UsuarioController;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.Date;
@@ -15,13 +10,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import model.Usuario;
 import utils.Utils;
 
-/**
- *
- * @author kaua_
- */
 public class FRUPDProduto extends javax.swing.JDialog {
 
     private int pkProduto;
@@ -163,7 +153,6 @@ public class FRUPDProduto extends javax.swing.JDialog {
         jLabel8.setText("Categoria:");
 
         lblFoto.setBackground(new java.awt.Color(255, 0, 255));
-        lblFoto.setText("Imagem");
 
         btnAddFoto.setText("Adicionar Imagem");
         btnAddFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -191,9 +180,9 @@ public class FRUPDProduto extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAddFoto)
-                        .addGap(55, 55, 55)))
+                        .addGap(66, 66, 66)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -226,9 +215,11 @@ public class FRUPDProduto extends javax.swing.JDialog {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddFoto))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnAddFoto)))
                 .addGap(8, 8, 8)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -360,7 +351,7 @@ public class FRUPDProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o produto?", "Confirmação", JOptionPane.YES_NO_OPTION);
 
         if (resposta == JOptionPane.YES_NO_OPTION) {
             ProdutoController controller = new ProdutoController();
@@ -402,7 +393,7 @@ public class FRUPDProduto extends javax.swing.JDialog {
             return false;
         }
 
-        if (!txtNomeProd.getText().matches("^[\\p{L} ]+$")) {
+        if (!txtNomeProd.getText().matches("^[\\Wa-zA-Z0-9 ]+$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Nome' possui caracteres inválidos");
             return false;
         }
