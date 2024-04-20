@@ -6,6 +6,7 @@ package view;
 
 import controller.OCController;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +30,16 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
     List<ItensOC> lista = new ArrayList<>();
 
+    private double vlrTotal;
+
+    public double getVlrTotal() {
+        return vlrTotal;
+    }
+
+    public void setVlrTotal(double vlrTotal) {
+        this.vlrTotal = vlrTotal;
+    }
+    
     /**
      * Creates new form FRUPDOrdemCompra
      */
@@ -421,6 +432,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
                 /*System.out.println("qntTotArr: " + quant);
                 System.out.println("vlrTotArr: " + vlr);*/
             };
+            this.setVlrTotal(vlr);
             NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
             txtVlrTot.setText(String.valueOf(nf.format(vlr)));
             txtQntTot.setText(Integer.toString(quant));
@@ -445,7 +457,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
         oc.setDataEmissao(data);
         oc.setCondPagamento(txtCondPag.getText());
 
-        oc.setValorTotal(Double.parseDouble(txtVlrTot.getText()));
+        oc.setValorTotal(this.getVlrTotal());
         oc.setQntdTotal(Integer.parseInt(txtQntTot.getText()));
         
         oc.setPkFornecedor(Long.parseLong(txtCodigoForn.getText()));
