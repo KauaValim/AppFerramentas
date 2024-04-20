@@ -170,7 +170,7 @@
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/alter_user.png"/>
+              <Image iconType="3" name="/images/alterar_fornec64px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Alterar Fornecedor"/>
           </Properties>

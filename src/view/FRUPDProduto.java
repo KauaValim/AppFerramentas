@@ -74,7 +74,7 @@ public class FRUPDProduto extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 490));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/alter_user.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/alterar_prod64px.png"))); // NOI18N
         jLabel1.setText("Alterar Produto");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

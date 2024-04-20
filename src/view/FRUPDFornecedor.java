@@ -72,7 +72,7 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(415, 575));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/alter_user.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/alterar_fornec64px.png"))); // NOI18N
         jLabel1.setText("Alterar Fornecedor");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
