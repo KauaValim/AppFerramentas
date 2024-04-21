@@ -4,7 +4,7 @@ import java.awt.Window;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
-public class FRMenu extends javax.swing.JFrame {
+public class FRMenu extends javax.swing.JFrame {    
     private String email;
 
     public String getEmail() {
@@ -284,7 +284,8 @@ public class FRMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void confirmarSaida() {
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar o sistema?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        Object[] options = {"Sim", "Não"};
+        int resposta = JOptionPane.showOptionDialog(null, "Deseja encerrar o sistema?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,options, options[1]);
 
         if(resposta == JOptionPane.YES_OPTION) {
             this.dispose();
