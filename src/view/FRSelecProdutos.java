@@ -68,7 +68,7 @@ public class FRSelecProdutos extends javax.swing.JDialog {
         setTitle("Consulta de Produtos");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(16, 157, 218));
+        jPanel1.setBackground(new java.awt.Color(204, 0, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(490, 509));
         jPanel1.setPreferredSize(new java.awt.Dimension(490, 509));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
