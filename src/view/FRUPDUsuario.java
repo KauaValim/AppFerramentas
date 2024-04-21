@@ -2,6 +2,7 @@ package view;
 
 import controller.UsuarioController;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -77,6 +78,8 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Nome:");
 
+        txtNome.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtNome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomeKeyPressed(evt);
@@ -86,6 +89,8 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Email:");
 
+        txtEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEmailKeyPressed(evt);
@@ -96,7 +101,8 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         jLabel4.setText("Senha:");
 
         txtSenha.setEditable(false);
-        txtSenha.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
+        txtSenha.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtSenha.setEnabled(false);
         txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSenhaKeyPressed(evt);
@@ -108,12 +114,14 @@ public class FRUPDUsuario extends javax.swing.JDialog {
 
         ckbAtivo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ckbAtivo.setText("Ativo");
+        ckbAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ckbAtivo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ckbAtivoKeyPressed(evt);
             }
         });
 
+        txtDataNasc.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         txtDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         txtDataNasc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -124,6 +132,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -141,6 +150,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -154,7 +164,9 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         jLabel6.setText("Confirmação de Senha:");
 
         txtConfSenha.setEditable(false);
-        txtConfSenha.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
+        txtConfSenha.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtConfSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtConfSenha.setEnabled(false);
         txtConfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtConfSenhaKeyPressed(evt);
@@ -164,6 +176,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcluir.setMaximumSize(new java.awt.Dimension(104, 31));
         btnExcluir.setMinimumSize(new java.awt.Dimension(104, 31));
         btnExcluir.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -179,13 +192,15 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         });
 
         txtCodigo.setEditable(false);
-        txtCodigo.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCodigo.setEnabled(false);
         txtCodigo.setFocusable(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Código:");
 
         btnAlterarSenha.setText("Alterar Senha");
+        btnAlterarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarSenhaActionPerformed(evt);
@@ -266,12 +281,12 @@ public class FRUPDUsuario extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckbAtivo)
                     .addComponent(txtDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -284,7 +299,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
 
         pack();
@@ -339,22 +354,24 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     private void btnAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarSenhaActionPerformed
         if (btnAlterarSenha.getText().equals("Alterar Senha")) {
             txtSenha.setEditable(true);
-            txtConfSenha.setEditable(true);
-            txtSenha.setBackground(Color.white);
-            txtConfSenha.setBackground(Color.white);
-            btnAlterarSenha.setText("Cancelar Alteração");
-
+            txtSenha.setEnabled(true);
             txtSenha.setText("");
+            txtSenha.setCursor(new Cursor(Cursor.TEXT_CURSOR));
+            txtConfSenha.setEditable(true);
+            txtConfSenha.setEnabled(true);
             txtConfSenha.setText("");
+            txtConfSenha.setCursor(new Cursor(Cursor.TEXT_CURSOR));
+            btnAlterarSenha.setText("Cancelar Alteração");
         } else {
             txtSenha.setEditable(false);
-            txtConfSenha.setEditable(false);
-            txtSenha.setBackground(Color.gray);
-            txtConfSenha.setBackground(Color.gray);
-            btnAlterarSenha.setText("Alterar Senha");
-
+            txtSenha.setEnabled(false);
             txtSenha.setText(getSenhaUsuario());
+            txtSenha.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            txtConfSenha.setEditable(false);
+            txtConfSenha.setEnabled(false);
             txtConfSenha.setText(getSenhaUsuario());
+            txtConfSenha.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            btnAlterarSenha.setText("Alterar Senha");
         }
     }//GEN-LAST:event_btnAlterarSenhaActionPerformed
 

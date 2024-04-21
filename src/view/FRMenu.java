@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.Window;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 public class FRMenu extends javax.swing.JFrame {
     private String email;
@@ -19,6 +21,7 @@ public class FRMenu extends javax.swing.JFrame {
     public FRMenu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -54,6 +57,11 @@ public class FRMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -250,11 +258,7 @@ public class FRMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_MIConProdutosActionPerformed
 
     private void MISairMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_MISairMenuKeyPressed
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-        if(resposta == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
+        confirmarSaida();
     }//GEN-LAST:event_MISairMenuKeyPressed
 
     private void MIOrdemComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIOrdemComprasActionPerformed
@@ -262,11 +266,7 @@ public class FRMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_MIOrdemComprasActionPerformed
 
     private void MISairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MISairMouseClicked
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-        if(resposta == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
+        confirmarSaida();
     }//GEN-LAST:event_MISairMouseClicked
 
     private void MIOrdemVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIOrdemVendasActionPerformed
@@ -279,6 +279,17 @@ public class FRMenu extends javax.swing.JFrame {
         new FRGerEstoque(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MIHistMovActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        confirmarSaida();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void confirmarSaida() {
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja encerrar o sistema?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if(resposta == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }
     /**
      * @param args the command line arguments
      */

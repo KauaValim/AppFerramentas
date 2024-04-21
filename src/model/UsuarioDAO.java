@@ -78,7 +78,7 @@ public class UsuarioDAO {
             stmt.setBoolean(5, u.isAtivo());
             stmt.setLong(6, u.getPkUsuario());
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario: " + u.getNome() + " inserido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Usuario: " + u.getNome() + " alterado com sucesso!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
