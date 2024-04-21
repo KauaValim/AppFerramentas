@@ -68,7 +68,7 @@ public class ProdutoDAO {
             stmt.setBytes(6, iconBytes);
             stmt.setLong(7, p.getPkIdProduto());
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Produto: " + p.getNome() + " inserido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Produto: " + p.getNome() + " alterado com sucesso!");
             return true;
         } catch (SQLException | IOException e) {
             JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());

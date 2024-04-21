@@ -69,6 +69,7 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Nome:");
 
+        txtNome.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomeKeyPressed(evt);
@@ -78,6 +79,7 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Email:");
 
+        txtEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEmailKeyPressed(evt);
@@ -92,12 +94,14 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
 
         ckbAtivo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ckbAtivo.setText("Ativo");
+        ckbAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ckbAtivo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ckbAtivoKeyPressed(evt);
             }
         });
 
+        txtDataCadastro.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         txtDataCadastro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         txtDataCadastro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -108,6 +112,7 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -125,6 +130,7 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -140,6 +146,7 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcluir.setMaximumSize(new java.awt.Dimension(104, 31));
         btnExcluir.setMinimumSize(new java.awt.Dimension(104, 31));
         btnExcluir.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -155,24 +162,32 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
         });
 
         txtCodigo.setEditable(false);
-        txtCodigo.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtCodigo.setEnabled(false);
         txtCodigo.setFocusable(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Código:");
 
+        txtEndereco.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Cidade:");
+
+        txtCidade.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("CEP:");
 
+        txtCNPJ.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         try {
             txtCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
+        txtCEP.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         try {
             txtCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
@@ -288,7 +303,7 @@ public class FRUPDFornecedor extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

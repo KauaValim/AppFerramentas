@@ -127,6 +127,7 @@ public class OVDAO {
                 stmt4.setString(2, String.valueOf(v.getItens().get(i).getPkIdItem()));
                 stmt4.executeUpdate();
             }
+            JOptionPane.showMessageDialog(null, "Ordem de venda " + v.getNumOV() + ", gerada com sucesso!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERRO: 'INSERT into tbestoque' " + e.getMessage());

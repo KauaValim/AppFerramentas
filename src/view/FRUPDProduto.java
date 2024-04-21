@@ -71,6 +71,8 @@ public class FRUPDProduto extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Nome:");
 
+        txtNomeProd.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtNomeProd.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtNomeProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomeProdKeyPressed(evt);
@@ -85,13 +87,16 @@ public class FRUPDProduto extends javax.swing.JDialog {
 
         ckbAtivo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ckbAtivo.setText("Ativo");
+        ckbAtivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ckbAtivo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ckbAtivoKeyPressed(evt);
             }
         });
 
+        txtDataCadProd.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         txtDataCadProd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txtDataCadProd.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtDataCadProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtDataCadProdKeyPressed(evt);
@@ -101,6 +106,7 @@ public class FRUPDProduto extends javax.swing.JDialog {
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -118,6 +124,7 @@ public class FRUPDProduto extends javax.swing.JDialog {
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setMinimumSize(new java.awt.Dimension(104, 31));
         btnCancelar.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -130,6 +137,7 @@ public class FRUPDProduto extends javax.swing.JDialog {
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcluir.setMaximumSize(new java.awt.Dimension(104, 31));
         btnExcluir.setMinimumSize(new java.awt.Dimension(104, 31));
         btnExcluir.setPreferredSize(new java.awt.Dimension(104, 31));
@@ -145,18 +153,27 @@ public class FRUPDProduto extends javax.swing.JDialog {
         });
 
         txtCodigo.setEditable(false);
-        txtCodigo.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
+        txtCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtCodigo.setEnabled(false);
         txtCodigo.setFocusable(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Código:");
 
+        txtNCMProd.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtNCMProd.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Categoria:");
+
+        txtCatProd.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCatProd.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         lblFoto.setBackground(new java.awt.Color(255, 0, 255));
 
         btnAddFoto.setText("Adicionar Imagem");
+        btnAddFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddFotoActionPerformed(evt);
@@ -243,7 +260,7 @@ public class FRUPDProduto extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckbAtivo)
                     .addComponent(txtDataCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
