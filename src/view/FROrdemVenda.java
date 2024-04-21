@@ -92,6 +92,8 @@ public class FROrdemVenda extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Forma de pagamento:");
 
+        txtCondPag.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCondPag.setEnabled(false);
         txtCondPag.setFocusable(false);
         txtCondPag.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -102,6 +104,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalvar.setEnabled(false);
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
@@ -120,6 +123,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setEnabled(false);
         btnCancelar.setFocusable(false);
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
@@ -131,8 +135,9 @@ public class FROrdemVenda extends javax.swing.JDialog {
             }
         });
 
-        txtCodigo.setEditable(false);
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCodigo.setEnabled(false);
         txtCodigo.setFocusable(false);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -161,6 +166,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tbListaVendas.setColumnSelectionAllowed(true);
         tbListaVendas.setEnabled(false);
         tbListaVendas.setShowGrid(true);
         tbListaVendas.getTableHeader().setReorderingAllowed(false);
@@ -170,8 +176,10 @@ public class FROrdemVenda extends javax.swing.JDialog {
             }
         });
         jScrollPane2.setViewportView(tbListaVendas);
+        tbListaVendas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         btnAddItem.setText("Adicionar Item");
+        btnAddItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddItem.setEnabled(false);
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +193,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
         });
 
         btnNovaOV.setText("Gerar nova OV");
+        btnNovaOV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNovaOV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovaOVActionPerformed(evt);
@@ -197,6 +206,7 @@ public class FROrdemVenda extends javax.swing.JDialog {
         });
 
         btnRemoveItem.setText("Remover item selecionado");
+        btnRemoveItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRemoveItem.setEnabled(false);
         btnRemoveItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,8 +214,9 @@ public class FROrdemVenda extends javax.swing.JDialog {
             }
         });
 
-        txtDataEmissao.setEditable(false);
         txtDataEmissao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataEmissao.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtDataEmissao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtDataEmissao.setEnabled(false);
         txtDataEmissao.setFocusable(false);
 
@@ -215,8 +226,18 @@ public class FROrdemVenda extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Quantidade Total");
 
+        txtQntTot.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtQntTot.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtQntTot.setEnabled(false);
+        txtQntTot.setFocusable(false);
+
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("Valor Total");
+
+        txtVlrTot.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtVlrTot.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtVlrTot.setEnabled(false);
+        txtVlrTot.setFocusable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -257,17 +278,17 @@ public class FROrdemVenda extends javax.swing.JDialog {
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(17, 17, 17))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(259, 259, 259))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel2)
-                .addGap(7, 7, 7)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -283,29 +304,26 @@ public class FROrdemVenda extends javax.swing.JDialog {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCondPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
                         .addComponent(btnAddItem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRemoveItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(93, 93, 93)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtQntTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVlrTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(28, Short.MAX_VALUE))))
+                        .addComponent(txtVlrTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -393,14 +411,8 @@ public class FROrdemVenda extends javax.swing.JDialog {
             int quant = 0;
             double vlr = 0;
             for (int i = 0; i < lista.size(); i++) {
-                /*System.out.println("\nIteracao: n." + (i + 1));
-                System.out.println("qnt: " + lista.size());
-                System.out.println("qnttot: " + lista.get(i).getQuantidade());
-                System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());*/
                 quant += lista.get(i).getQuantidade();
                 vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
-                /*System.out.println("qntTotArr: " + quant);
-                System.out.println("vlrTotArr: " + vlr);*/
             };
             this.setVlrTotal(vlr);
             NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
@@ -433,11 +445,14 @@ public class FROrdemVenda extends javax.swing.JDialog {
         txtDataEmissao.setText(dtf.format(now));
 
         txtDataEmissao.setEnabled(true);
+        txtCodigo.setEnabled(true);
         btnAddItem.setEnabled(true);
         tbListaVendas.setEnabled(true);
         txtCondPag.setEnabled(true);
         txtCondPag.setEditable(true);
         txtCondPag.setFocusable(true);
+        txtQntTot.setEnabled(true);
+        txtVlrTot.setEnabled(true);
         btnSalvar.setEnabled(true);
         btnCancelar.setEnabled(true);
     }//GEN-LAST:event_btnNovaOVActionPerformed
@@ -458,14 +473,8 @@ public class FROrdemVenda extends javax.swing.JDialog {
         int quant = 0;
         double vlr = 0;
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println("\nIteracao: n." + (i + 1));
-            System.out.println("qnt: " + lista.size());
-            System.out.println("qnttot: " + lista.get(i).getQuantidade());
-            System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());
             quant += lista.get(i).getQuantidade();
             vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
-            System.out.println("qntTotArr: " + quant);
-            System.out.println("vlrTotArr: " + vlr);
         };
         txtVlrTot.setText(String.valueOf(vlr));
         txtQntTot.setText(Integer.toString(quant));

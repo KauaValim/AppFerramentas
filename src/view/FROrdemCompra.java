@@ -90,6 +90,9 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
         txtCodigoForn.setEditable(false);
         txtCodigoForn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigoForn.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCodigoForn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtCodigoForn.setEnabled(false);
         txtCodigoForn.setFocusable(false);
         txtCodigoForn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -100,6 +103,10 @@ public class FROrdemCompra extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Condição de pagamento:");
 
+        txtCondPag.setEditable(false);
+        txtCondPag.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCondPag.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtCondPag.setEnabled(false);
         txtCondPag.setFocusable(false);
         txtCondPag.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -110,6 +117,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalvar.setEnabled(false);
         btnSalvar.setMaximumSize(new java.awt.Dimension(104, 31));
         btnSalvar.setMinimumSize(new java.awt.Dimension(104, 31));
@@ -128,6 +136,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setEnabled(false);
         btnCancelar.setFocusable(false);
         btnCancelar.setMaximumSize(new java.awt.Dimension(104, 31));
@@ -141,6 +150,9 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
         txtCodigo.setEditable(false);
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtCodigo.setEnabled(false);
         txtCodigo.setFocusable(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -151,7 +163,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nome", "Quantidade", "Preço"
+                "Código", "Nome", "Quantidade", "Valor Unitário"
             }
         ) {
             Class[] types = new Class [] {
@@ -169,6 +181,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tbListaCompras.setColumnSelectionAllowed(true);
         tbListaCompras.setEnabled(false);
         tbListaCompras.setShowGrid(true);
         tbListaCompras.getTableHeader().setReorderingAllowed(false);
@@ -178,8 +191,10 @@ public class FROrdemCompra extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tbListaCompras);
+        tbListaCompras.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         btnAddItem.setText("Adicionar Item");
+        btnAddItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddItem.setEnabled(false);
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +208,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
         });
 
         btnNovaOC.setText("Gerar nova OC");
+        btnNovaOC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNovaOC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovaOCActionPerformed(evt);
@@ -205,6 +221,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
         });
 
         btnSelectForn.setText("Selecionar Fornecedor");
+        btnSelectForn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSelectForn.setEnabled(false);
         btnSelectForn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,9 +238,13 @@ public class FROrdemCompra extends javax.swing.JDialog {
         jLabel4.setText("Nome:");
 
         txtNomeForn.setEditable(false);
+        txtNomeForn.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtNomeForn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtNomeForn.setEnabled(false);
         txtNomeForn.setFocusable(false);
 
         btnRemoveItem.setText("Remover item selecionado");
+        btnRemoveItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRemoveItem.setEnabled(false);
         btnRemoveItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,6 +254,8 @@ public class FROrdemCompra extends javax.swing.JDialog {
 
         txtDataEmissao.setEditable(false);
         txtDataEmissao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDataEmissao.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtDataEmissao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         txtDataEmissao.setEnabled(false);
         txtDataEmissao.setFocusable(false);
 
@@ -242,8 +265,20 @@ public class FROrdemCompra extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Quantidade Total");
 
+        txtQntTot.setEditable(false);
+        txtQntTot.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtQntTot.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtQntTot.setEnabled(false);
+        txtQntTot.setFocusable(false);
+
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Valor Total");
+
+        txtVlrTot.setEditable(false);
+        txtVlrTot.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        txtVlrTot.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtVlrTot.setEnabled(false);
+        txtVlrTot.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -298,7 +333,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(262, 262, 262))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,7 +374,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
                         .addComponent(btnAddItem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRemoveItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtQntTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,14 +448,8 @@ public class FROrdemCompra extends javax.swing.JDialog {
             int quant = 0;
             double vlr = 0;
             for (int i = 0; i < lista.size(); i++) {
-                /*System.out.println("\nIteracao: n." + (i + 1));
-                System.out.println("qnt: " + lista.size());
-                System.out.println("qnttot: " + lista.get(i).getQuantidade());
-                System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());*/
                 quant += lista.get(i).getQuantidade();
                 vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
-                /*System.out.println("qntTotArr: " + quant);
-                System.out.println("vlrTotArr: " + vlr);*/
             };
             this.setVlrTotal(vlr);
             NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
@@ -465,10 +494,12 @@ public class FROrdemCompra extends javax.swing.JDialog {
     private void btnSelectFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectFornActionPerformed
         FRSelecFornecedores telaUPD = new FRSelecFornecedores(null, rootPaneCheckingEnabled);
         telaUPD.setVisible(true);
-
+        
         if (telaUPD.getPk() == 0) {
             txtCodigoForn.setText("");
         } else {
+            txtCodigoForn.setEnabled(true);
+            txtNomeForn.setEnabled(true);
             txtCodigoForn.setText(String.valueOf(telaUPD.getPk()));
         }
         txtNomeForn.setText(telaUPD.getNome());
@@ -490,12 +521,15 @@ public class FROrdemCompra extends javax.swing.JDialog {
         txtDataEmissao.setText(dtf.format(now));
 
         txtDataEmissao.setEnabled(true);
+        txtCodigo.setEnabled(true);
         btnSelectForn.setEnabled(true);
         btnAddItem.setEnabled(true);
         tbListaCompras.setEnabled(true);
         txtCondPag.setEnabled(true);
         txtCondPag.setEditable(true);
         txtCondPag.setFocusable(true);
+        txtQntTot.setEnabled(true);
+        txtVlrTot.setEnabled(true);
         btnSalvar.setEnabled(true);
         btnCancelar.setEnabled(true);
     }//GEN-LAST:event_btnNovaOCActionPerformed
@@ -509,14 +543,8 @@ public class FROrdemCompra extends javax.swing.JDialog {
         int quant = 0;
         double vlr = 0;
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println("\nIteracao: n." + (i + 1));
-            System.out.println("qnt: " + lista.size());
-            System.out.println("qnttot: " + lista.get(i).getQuantidade());
-            System.out.println("vlrtot: " + lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario());
             quant += lista.get(i).getQuantidade();
             vlr += lista.get(i).getQuantidade() * lista.get(i).getPrecoUnitario();
-            System.out.println("qntTotArr: " + quant);
-            System.out.println("vlrTotArr: " + vlr);
         };
         txtVlrTot.setText(String.valueOf(vlr));
         txtQntTot.setText(Integer.toString(quant));
@@ -528,7 +556,7 @@ public class FROrdemCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_tbListaComprasFocusGained
 
     private void btnNovaOCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNovaOCKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
             btnNovaOCActionPerformed(null);
             btnSelectForn.requestFocus();
         }

@@ -64,6 +64,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnGithubK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Github_logo.png"))); // NOI18N
         btnGithubK.setText("Kauã");
+        btnGithubK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGithubK.setFocusPainted(false);
         btnGithubK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +75,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnLinkedinK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Linkedin_logo.png"))); // NOI18N
         btnLinkedinK.setText("Kauã");
+        btnLinkedinK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLinkedinK.setFocusPainted(false);
         btnLinkedinK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +86,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return.png"))); // NOI18N
         btnReturn.setText("Voltar");
+        btnReturn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReturn.setFocusPainted(false);
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +97,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnGitHubD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Github_logo.png"))); // NOI18N
         btnGitHubD.setText("Daniel");
+        btnGitHubD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGitHubD.setFocusPainted(false);
         btnGitHubD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +108,7 @@ public class FRSobre extends javax.swing.JDialog {
 
         btnLinkedInD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Linkedin_logo.png"))); // NOI18N
         btnLinkedInD.setText("Daniel");
+        btnLinkedInD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLinkedInD.setFocusPainted(false);
         btnLinkedInD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

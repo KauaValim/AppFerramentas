@@ -128,6 +128,7 @@ public class OCDAO {
                 stmt4.setString(2, String.valueOf(o.getItens().get(i).getPkIdItem()));
                 stmt4.executeUpdate();
             }
+            JOptionPane.showMessageDialog(null, "Ordem de compra " + o.getNumOC() + ", gerada com sucesso!");
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERRO: 'INSERT into tbestoque' " + e.getMessage());
